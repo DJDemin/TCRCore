@@ -15,13 +15,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class TCRQuestScreen extends Screen {
-    private List<TCRQuestManager.Quest> quests;
 
-    private TCRQuestManager.Quest selectedQuest;
+    private static List<TCRQuestManager.Quest> quests;
+
+    private static TCRQuestManager.Quest selectedQuest;
 
     private LocalPlayer player;
 
@@ -105,8 +107,22 @@ public class TCRQuestScreen extends Screen {
         ensureSelectedQuestVisible();
     }
 
+    public static TCRQuestManager.Quest getSelectedQuest() {
+        if(selectedQuest == null) {
+            refreshSelectedQuest();
+        }
+        return selectedQuest;
+    }
+
+    public static List<TCRQuestManager.Quest> getQuests() {
+        if(quests == null) {
+            refreshSelectedQuest();
+        }
+        return quests;
+    }
+
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(guiGraphics);
         if (quests == null || !hasRenderableQuests()) {
             guiGraphics.drawCenteredString(font, TCRCoreMod.getInfo("no_quest"), width / 2, height / 2 - font.lineHeight / 2, 0xFFFFFFFF);
@@ -388,11 +404,12 @@ public class TCRQuestScreen extends Screen {
         }
     }
 
-    private void refreshSelectedQuest() {
-        quests = TCRCapabilityProvider.getTCRPlayer(player).getCurrentQuests();
-        if (player == null) {
+    public static void refreshSelectedQuest() {
+        LocalPlayer player = Minecraft.getInstance().player;
+        if(player == null) {
             return;
         }
+        quests = TCRCapabilityProvider.getTCRPlayer(player).getCurrentQuests();
         if (quests == null) {
             quests = TCRCapabilityProvider.getTCRPlayer(player).getCurrentQuests();
         }
@@ -411,7 +428,7 @@ public class TCRQuestScreen extends Screen {
         }
     }
 
-    private boolean isEmptyQuest(TCRQuestManager.Quest quest) {
+    private static boolean isEmptyQuest(TCRQuestManager.Quest quest) {
         return quest == null || quest == TCRQuestManager.EMPTY;
     }
 

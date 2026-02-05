@@ -1,9 +1,18 @@
 package com.p1nero.tcrcore.capability;
 
+import com.p1nero.fast_tpa.network.PacketRelay;
+import com.p1nero.tcrcore.network.TCRPacketHandler;
+import com.p1nero.tcrcore.network.packet.clientbound.RefreshClientQuestsPacket;
+import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.worldgen.TCRDimensions;
+import dev.ftb.mods.ftbquests.quest.Quest;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -30,7 +39,7 @@ public class TCRQuestManager {
         KILL_PILLAGER = createTask("kill_pillager");
         GIVE_ORACLE_TO_KEEPER = createTask("give_oracle_to_keeper");
         BACK_TO_KEEPER = createTask("back_to_keeper");
-        FIND_GODNESS_STATUE = createTask("find_godness_statue");
+        FIND_GODNESS_STATUE = createTask("find_godness_statue").withTrackingPos(new BlockPos(WorldUtil.GODNESS_STATUE_POS), TCRDimensions.SANCTUM_LEVEL_KEY);
         FIND_ARTERIUS = createTask("find_arterius");
         LIGHT_ALL_ALTAR = createTask("light_all_altar");
         GO_TO_OVERWORLD = createTask("go_to_overworld");
@@ -58,6 +67,7 @@ public class TCRQuestManager {
         TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(player);
         tcrPlayer.addQuest(quest);
         PlayerDataManager.currentQuestId.put(player, quest.getId());
+        PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), player);
         tcrPlayer.syncToClient(player);
     }
 
@@ -71,7 +81,10 @@ public class TCRQuestManager {
         List<Quest> currentQuests = tcrPlayer.getCurrentQuests();
         if(!currentQuests.isEmpty()) {
             PlayerDataManager.currentQuestId.put(player, currentQuests.get(0).getId());
+        } else {
+            PlayerDataManager.currentQuestId.put(player, EMPTY.getId());
         }
+        PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), player);
         tcrPlayer.syncToClient(player);
     }
 
@@ -96,6 +109,8 @@ public class TCRQuestManager {
         private final Component desc;
         private final Component title;
         private ResourceLocation icon;
+        private BlockPos trackingPos;
+        private ResourceKey<Level> dimension;
 
         public Quest(int id, String key) {
             this.id = id;
@@ -122,6 +137,14 @@ public class TCRQuestManager {
             return icon;
         }
 
+        public BlockPos getTrackingPos() {
+            return trackingPos;
+        }
+
+        public ResourceKey<Level> getDimension() {
+            return dimension;
+        }
+
         public Component getTitle() {
             return title;
         }
@@ -144,6 +167,12 @@ public class TCRQuestManager {
 
         public Quest withIcon(ResourceLocation icon) {
             this.icon = icon;
+            return this;
+        }
+
+        public Quest withTrackingPos(BlockPos trackingPos, ResourceKey<Level> dimension) {
+            this.trackingPos = trackingPos;
+            this.dimension = dimension;
             return this;
         }
 

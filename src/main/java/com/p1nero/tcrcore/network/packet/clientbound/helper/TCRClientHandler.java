@@ -5,6 +5,7 @@ import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.client.gui.dialog.StartScreenHandler;
 import com.p1nero.tcrcore.client.gui.screen.TCREndScreen;
+import com.p1nero.tcrcore.client.gui.screen.TCRQuestScreen;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.serverbound.EndScreenCallbackPacket;
 import net.minecraft.client.Minecraft;
@@ -75,4 +76,7 @@ public class TCRClientHandler {
         }
     }
 
+    public static void refreshQuestScreen() {
+        TCRQuestScreen.refreshSelectedQuest();
+    }
 }

@@ -37,6 +37,8 @@ public class TCRPacketHandler {
         register(EndScreenCallbackPacket.class, EndScreenCallbackPacket::decode);
         register(ExecuteRiptidePacket.class, ExecuteRiptidePacket::decode);
 
+        register(RefreshClientQuestsPacket.class, RefreshClientQuestsPacket::decode);
+
         register(OpenEndScreenPacket.class, OpenEndScreenPacket::decode);
         register(OpenStartScreenPacket.class, OpenStartScreenPacket::decode);
         register(PlayItemPickupParticlePacket.class, PlayItemPickupParticlePacket::decode);

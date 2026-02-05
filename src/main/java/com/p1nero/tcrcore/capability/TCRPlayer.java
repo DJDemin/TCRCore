@@ -180,6 +180,7 @@ public class TCRPlayer {
         for (int i = 0; i < finishedQuests.size(); i++) {
             tag.putInt("finished_quest_" + i, finishedQuests.get(i));
         }
+
         return tag;
     }
 
@@ -594,4 +595,5 @@ public class TCRPlayer {
             }
         }
     }
+
 }
