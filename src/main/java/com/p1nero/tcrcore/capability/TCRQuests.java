@@ -1,6 +1,8 @@
 package com.p1nero.tcrcore.capability;
 
 import com.github.dodo.dodosmobs.init.ModEntities;
+import com.obscuria.aquamirae.registry.AquamiraeEntities;
+import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.TCRQuestManager.Quest;
 import com.p1nero.tcrcore.entity.TCREntities;
@@ -10,6 +12,7 @@ import com.p1nero.tcrcore.utils.WorldUtil;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import com.yungnickyoung.minecraft.ribbits.module.EntityTypeModule;
 import net.magister.bookofdragons.item.ModItems;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -66,6 +69,14 @@ public class TCRQuests {
     //呱呱支线
     public static Quest RIBBITS_QUEST;
     public static Quest GIVE_AMETHYST_BLOCK_TO_RIBBITS;
+
+    //主线·灵魂之章
+    public static Quest TALK_TO_AINE_ECHO;
+    public static Quest TALK_TO_CHRONOS_4;
+    public static Quest GO_TO_OVERWORLD_CURSED;
+    public static Quest USE_CURSED_RESONANCE_STONE;
+    public static Quest GET_CURSED_EYE;
+    public static Quest TALK_TO_CHRONOS_5;
 
     public static void init() {
 
@@ -132,6 +143,7 @@ public class TCRQuests {
                 .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_0 = TCRQuestManager.create("talk_to_aine_0")
+                .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.AINE_IRIS.get().getDescription())
                 .descParam(TCREntities.AINE_IRIS.get().getDescription(), TCREntities.AINE_IRIS.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
@@ -142,6 +154,7 @@ public class TCRQuests {
                 .descParam(TCREntities.FERRY_GIRL.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtil.FERRY_GIRL_POS.above(1)), TCRDimensions.SANCTUM_LEVEL_KEY);
         TALK_TO_ORNN_0 = TCRQuestManager.create("talk_to_ornn_0")
+                .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.ORNN.get().getDescription())
                 .descParam(TCREntities.CHRONOS_SOL.get().getDescription(), TCREntities.ORNN.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtil.ORNN_POS.above(3)), TCRDimensions.SANCTUM_LEVEL_KEY);
@@ -197,7 +210,7 @@ public class TCRQuests {
 
         TALK_TO_CHRONOS_3 = TCRQuestManager.create("talk_to_chronos_3")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
-                .descParam(com.github.L_Ender.cataclysm.init.ModItems.ABYSS_EYE.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription())
+                .descParam(com.github.L_Ender.cataclysm.init.ModItems.ABYSS_EYE.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription(), AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         RIBBITS_QUEST = TCRQuestManager.create("ribbits_quest")
@@ -209,6 +222,27 @@ public class TCRQuests {
                 .shortDescParam(Items.AMETHYST_BLOCK.getDescription(), EntityTypeModule.RIBBIT.get().getDescription())
                 .descParam(com.github.L_Ender.cataclysm.init.ModItems.ABYSS_EYE.get().getDescription(), EntityTypeModule.RIBBIT.get().getDescription(), Items.AMETHYST_BLOCK.getDescription(),
                         Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()), artifacts.registry.ModItems.CHARM_OF_SINKING.get().getDescription());
+
+        TALK_TO_AINE_ECHO = TCRQuestManager.create("talk_to_aine_echo")
+                .shortDescParam(TCREntities.AINE_IRIS.get().getDescription())
+                .descParam(TCREntities.CHRONOS_SOL.get().getDescription(), AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA), TCREntities.AINE_IRIS.get().getDescription())
+                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+
+        TALK_TO_CHRONOS_4 = TCRQuestManager.create("talk_to_chronos_4")
+                .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
+                .descParam(TCREntities.AINE_IRIS.get().getDescription(), AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA), TCREntities.CHRONOS_SOL.get().getDescription())
+                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+
+        GO_TO_OVERWORLD_CURSED = TCRQuestManager.create("go_to_overworld_cursed")
+                .descParam(AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA), com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get().getDescription(), TCRItems.CURSED_RESONANCE_STONE.get().getDescription());
+
+        USE_CURSED_RESONANCE_STONE = TCRQuestManager.create("use_cursed_resonance_stone")
+                .shortDescParam(TCRItems.CURSED_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))
+                .descParam(AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA), com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get().getDescription(), TCRItems.CURSED_RESONANCE_STONE.get().getDescription());
+
+        GET_CURSED_EYE = TCRQuestManager.create("get_cursed_eye")
+                .shortDescParam(com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))
+                .descParam(TCRItems.CURSED_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN), com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN), AquamiraeEntities.CAPTAIN_CORNELIA.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN));
 
     }
 }

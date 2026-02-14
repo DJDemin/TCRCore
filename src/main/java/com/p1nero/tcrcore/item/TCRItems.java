@@ -34,7 +34,7 @@ public class TCRItems {
     public static final RegistryObject<Item> RESONANCE_STONE = REGISTRY.register("resonance_stone", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
     public static final RegistryObject<Item> LAND_RESONANCE_STONE = REGISTRY.register("land_resonance_stone",
-            () -> new LandResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.LAND_GOLEM), 114, Level.OVERWORLD.location(), (serverPlayer) ->
+            () -> new LandResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.LAND_GOLEM), 114, Level.OVERWORLD, (serverPlayer) ->
                     TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_LAND_RESONANCE_STONE) || serverPlayer.isCreative(),
                     ((pos, serverPlayer) -> {
                         WaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.DESERT_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.LAND_GOLEM)))), pos, WaypointColor.YELLOW);
@@ -44,7 +44,7 @@ public class TCRItems {
     );
 
     public static final RegistryObject<Item> OCEAN_RESONANCE_STONE = REGISTRY.register("ocean_resonance_stone",
-            () -> new OceanResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.OCEAN_GOLEM), 63, Level.OVERWORLD.location(), (serverPlayer) ->
+            () -> new OceanResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.OCEAN_GOLEM), 63, Level.OVERWORLD, (serverPlayer) ->
                     TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_OCEAN_RESONANCE_STONE),
                     ((pos, serverPlayer) ->
                     {
@@ -54,8 +54,18 @@ public class TCRItems {
                     }))
     );
 
-    public static final RegistryObject<Item> MYSTERIOUS_WEAPONS = REGISTRY.register("mysterious_weapons", () -> new SimpleDescriptionItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), true));
+    public static final RegistryObject<Item> CURSED_RESONANCE_STONE = REGISTRY.register("cursed_resonance_stone",
+            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.AQUAMIRAE_SHIP_STRUCTURE), 63, Level.OVERWORLD, (serverPlayer) ->
+                    TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_CURSED_RESONANCE_STONE),
+                    ((pos, serverPlayer) ->
+                    {
+                        WaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.CURSED_EYE.get().getDescription(), Component.translatable("structure.aquamirae.ice_maze")), pos, WaypointColor.DARK_GREEN);
+                        TCRQuests.USE_CURSED_RESONANCE_STONE.finish(serverPlayer, true);
+                        TCRQuests.GET_CURSED_EYE.start(serverPlayer);
+                    }))
+    );
 
+    public static final RegistryObject<Item> MYSTERIOUS_WEAPONS = REGISTRY.register("mysterious_weapons", () -> new SimpleDescriptionItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), true));
 
     public static final RegistryObject<Item> THE_INCINERATOR_SOUL = REGISTRY.register("the_incinerator_soul", () -> new The_Incinerator((new Item.Properties()).stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 }

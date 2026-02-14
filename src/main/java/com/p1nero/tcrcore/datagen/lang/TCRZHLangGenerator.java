@@ -73,10 +73,17 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addQuest(TCRQuests.GO_TO_OVERWORLD_OCEAN, "海洋之章", "前往Overworld", "[%s]已完成充能，该前往Overworld使用它了！它将为我们指引下一个眼睛的位置！");
         this.addQuest(TCRQuests.USE_OCEAN_RESONANCE_STONE, "海洋之章", "使用[%s]", "你已经抵达了主世界，快使用[%s]吧！它将为我们指引下一个眼睛的位置！到底有什么样的冒险在等着我们呢？");
         this.addQuest(TCRQuests.GET_OCEAN_EYE, "海洋之章", "寻回[%s]", "[%s]为我们标记了[%s]所散落的位置，快出发去寻回[%s]吧！\n\n§a[提示]:[%s§a]可能藏匿于方块之中！ \n\n§4[注意]：若获取后无法完成任务，请尝试关闭可能自动拾取物品的插件，并扔出去后重新拾取！");
-        this.addQuest(TCRQuests.TALK_TO_CHRONOS_3, "海洋之章", "和%s对话", "[%s]已经寻回，快回主城找%s汇报吧！她将告诉我们下一步该做什么。");
+        this.addQuest(TCRQuests.TALK_TO_CHRONOS_3, "海洋之章", "和%s对话", "[%s]已经寻回，快回主城找%s汇报吧！她将告诉我们下一步该做什么。\n\n本次我们还取回了[%s]，这里面究竟蕴藏了什么秘密？顺便问问吧！");
 
         this.addQuest(TCRQuests.RIBBITS_QUEST, "海洋之章", "探索[%s]", "[%s]似乎为我们标记了一个另一个地点，说不定有什么奇遇，快去看看吧！\n\n§a[任务奖励]: §f[%s] [%s]\n\n§6[推荐优先完成]");
         this.addQuest(TCRQuests.GIVE_AMETHYST_BLOCK_TO_RIBBITS, "海洋之章", "将[%s]交给%s", "看来想要打探更多关于[%s]的线索，需要与%s们做个交易才行。收集好12个[%s]就回去找它们吧！\n\n§a[任务奖励]: §f[%s] [%s]\n\n§6[推荐优先完成]");
+
+        //主线·诅咒之眼
+        this.addQuest(TCRQuests.TALK_TO_AINE_ECHO, "灵魂之章", "和%s对话", "[%s]也不知道[%s]的来历，去找%s问问吧！或许智库中有所记载，借助魔力或许可以解读其中的秘密。");
+        this.addQuest(TCRQuests.TALK_TO_CHRONOS_4, "灵魂之章", "和%s对话", "%s已经将[%s]解读完毕了，现在请把消息告诉%s吧！");
+        this.addQuest(TCRQuests.GO_TO_OVERWORLD_CURSED, "灵魂之章", "前往Overworld", "你意外地从[%s]中获得了[%s]散落的位置，快前去Overworld寻回它吧！[%s]将为我们指引它的位置。");
+        this.addQuest(TCRQuests.USE_CURSED_RESONANCE_STONE, "灵魂之章", "使用[%s]", "你意外地从[%s]中获得了[%s]散落的位置，快前去Overworld寻回它吧！[%s]将为我们指引它的位置。");
+        this.addQuest(TCRQuests.GET_CURSED_EYE, "灵魂之章", "寻回[%s]", "[%s]为我们标记了[%s]所散落的位置，快出发去寻回[%s]吧！\n\n§a[提示]:§f探索以寻找召唤[%s]的线索！");
 
         this.addEffect(TCREffects.INVULNERABLE, "无敌");
         this.addEffect(TCREffects.SOUL_INCINERATOR, "灵魂火");
@@ -123,6 +130,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRItems.RESONANCE_STONE.get(), "共鸣石");
         this.add(TCRItems.LAND_RESONANCE_STONE.get(), "大地共鸣石");
         this.add(TCRItems.OCEAN_RESONANCE_STONE.get(), "海洋共鸣石");
+        this.add(TCRItems.CURSED_RESONANCE_STONE.get(), "诅咒共鸣石");
         this.addInfo("resonance_stone_usage", "可与使徒封印的位置共鸣。");
         this.add(TCRItems.CORE_FLINT.get(), "炉心火石");
         this.addItemUsageInfo(TCRItems.CORE_FLINT.get(), "在黑曜石框架上使用，可打开地狱之门。");
@@ -344,6 +352,12 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 14, "神之眼也可在女神像处祈福，神之眼所蕴含的使徒（Angel）的部分力量将通过神像享与阁下。");
         this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 15, "共鸣石充能仍需要点时间，还请阁下等待！");
         this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 16, "共鸣石已完成充能，出发吧，阁下！");
+        this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 17, "辛苦阁下了！待吾为共鸣石充能，阁下请稍作休息！");
+        this.addDialogOption(TCREntities.CHRONOS_SOL.get(), 8, "§a关于[%s§a]");
+        this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 18, "[%s]？吾找不到相关记忆，还请阁下去请教魔女阁下，借助她的力量在智库中搜寻看看吧！");
+        this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 19, "阁下，共鸣石尚未完成充能。还请阁下稍安勿躁。");
+        this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 20, "这是...%s？！");
+        this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 21, "既然如此，这份记忆便可以让共鸣石提前恢复魔力，吾这就将回响注入共鸣石之中，阁下务必把祂的火种收回！");
 
         this.addDialogOption(TCREntities.AINE_IRIS.get(), -2, "结束对话");
         this.addDialogOption(TCREntities.AINE_IRIS.get(), -1, "继续");
@@ -362,6 +376,12 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialogOption(TCREntities.AINE_IRIS.get(), 6, "精神世界？");
         this.addDialogAnswer(TCREntities.AINE_IRIS.get(), 7, "嗯，或许在幻境深处可以找到使徒（Angel）们的映射，并借此获取它们的力量！");
         this.addDialogAnswer(TCREntities.AINE_IRIS.get(), 8, "在幻境中探索看看吧！说不定会有不小的收获，也许还可以获取宝贵的忆质材料！");
+        this.addDialogOption(TCREntities.AINE_IRIS.get(), 7, "§a关于[%s§a]");
+        this.addDialogAnswer(TCREntities.AINE_IRIS.get(), 9, "这是...特殊的忆质呢，似乎记载了一个团体的记忆，而不是某个生命的记忆。让我们看看其中有什么秘密吧！");
+        this.addDialogAnswer(TCREntities.AINE_IRIS.get(), 10, "！！");
+        this.addDialogAnswer(TCREntities.AINE_IRIS.get(), 11, "上面记载了可妮莉亚船长(Captain Cornelia)的冒险故事，并且从记忆来看，灵魂使徒(Soul Angel) %s 被黑潮侵蚀后，就附身在可妮莉亚船长(Captain Cornelia)身上！快把这份解读的记忆给%s看看吧！");
+        this.addDialogOption(TCREntities.AINE_IRIS.get(), 8, "%s? %s?");
+        this.addDialogAnswer(TCREntities.AINE_IRIS.get(), 12, "灵魂之使徒，%s，掌管亡者之世界。可妮莉亚船长(Captain Cornelia)的船队则是世界闻名的远洋船队，受到黑潮的诅咒，和[%s]一起永远困在了那片寒冰迷宫！");
 
         this.addDialogOption(TCREntities.ORNN.get(), -2, "结束对话");
         this.addDialogOption(TCREntities.ORNN.get(), -1, "继续");

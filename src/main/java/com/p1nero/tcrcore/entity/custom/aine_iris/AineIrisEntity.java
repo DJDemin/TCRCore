@@ -1,21 +1,26 @@
 package com.p1nero.tcrcore.entity.custom.aine_iris;
 
+import com.obscuria.aquamirae.registry.AquamiraeEntities;
+import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.dialog_lib.api.component.DialogNode;
 import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
 import com.p1nero.dialog_lib.api.entity.custom.IEntityNpc;
 import com.p1nero.dialog_lib.client.screen.DialogueScreen;
 import com.p1nero.dialog_lib.client.screen.builder.StreamDialogueScreenBuilder;
+import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRQuestManager;
 import com.p1nero.tcrcore.capability.TCRQuests;
 import com.p1nero.tcrcore.entity.TCREntities;
+import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import moe.plushie.armourers_workshop.init.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,6 +37,7 @@ import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -115,7 +121,16 @@ public class AineIrisEntity extends PathfinderMob implements IEntityNpc, GeoEnti
                     .addOption(-1, 8)
                     .addFinalOption(-2, 2);
             return dialogueScreenBuilder.build();
-        } else  {
+        } else if(TCRQuests.TALK_TO_AINE_ECHO.equals(currentQuest)) {
+            dialogueScreenBuilder.start(dBuilder.ans(4, localPlayer.getDisplayName()))
+                    .addOption(dBuilder.opt(7, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription()), dBuilder.ans(9))
+                    .addOption(-1, 10)
+                    .thenExecute(3)
+                    .addOption(dBuilder.opt(-1), dBuilder.ans(11, TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription()))
+                    .addOption(dBuilder.opt(8, AquamiraeEntities.CAPTAIN_CORNELIA.get().getDescription(), TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription()), dBuilder.ans(12, TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription(), com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get().getDescription()))
+                    .addFinalOption(-2, 4);
+            return dialogueScreenBuilder.build();
+        } else {
             if(PlayerDataManager.chonosTalked.get(localPlayer)) {
                 root.addChild(aboutChronos);
                 root.addChild(aboutThisWorld);
@@ -127,18 +142,41 @@ public class AineIrisEntity extends PathfinderMob implements IEntityNpc, GeoEnti
     }
 
     @Override
-    public void handleNpcInteraction(ServerPlayer serverPlayer, int i) {
+    public void handleNpcInteraction(ServerPlayer serverPlayer, int code) {
         //初次对话&领取时装
-        if(i == 1) {
+        if(code == 1) {
             ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_TEMPLATE.get(), 20);
             ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_LIBRARY_GLOBAL.get().getDefaultInstance());
             ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_LIBRARY.get().getDefaultInstance());
             ItemUtil.addItemEntity(serverPlayer, ModItems.SKINNING_TABLE.get().getDefaultInstance());
             TCRQuests.TALK_TO_AINE_0.finish(serverPlayer);
         }
-        if(i == 2) {
+        //聊幻境
+        if(code == 2) {
             TCRQuests.TALK_TO_AINE_CLOUDLAND.finish(serverPlayer);
         }
+        //播放解读海船回响特效
+        if(code == 3) {
+            Vec3 dis = this.position().subtract(serverPlayer.position());
+            Vec3 pos = serverPlayer.position().add(dis.scale(0.5F));
+            serverPlayer.serverLevel().sendParticles(
+                    ParticleTypes.SOUL,
+                    pos.x,
+                    pos.y,
+                    pos.z,
+                    10,
+                    0, 0.1, 0,
+                    0.1f
+            );
+            EntityUtil.playLocalSound(serverPlayer, SoundEvents.BEACON_ACTIVATE);
+            return;
+        }
+
+        if(code == 4) {
+            TCRQuests.TALK_TO_AINE_ECHO.finish(serverPlayer);
+            TCRQuests.TALK_TO_CHRONOS_4.start(serverPlayer);
+        }
+
         this.setConversingPlayer(null);
     }
 

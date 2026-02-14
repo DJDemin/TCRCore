@@ -45,12 +45,12 @@ import java.util.function.Predicate;
 public class ResonanceStoneItem extends Item {
 
     protected final ResourceLocation targetStructure;
-    protected final ResourceLocation dimension;
+    protected final ResourceKey<Level> dimension;
     protected final int y;
     protected final BiConsumer<BlockPos, ServerPlayer> callback;
     protected final Predicate<ServerPlayer> predicate;
 
-    public ResonanceStoneItem(Properties properties, ResourceLocation targetStructure, int y, ResourceLocation dimension, Predicate<ServerPlayer> predicate, BiConsumer<BlockPos, ServerPlayer> callback) {
+    public ResonanceStoneItem(Properties properties, ResourceLocation targetStructure, int y, ResourceKey<Level> dimension, Predicate<ServerPlayer> predicate, BiConsumer<BlockPos, ServerPlayer> callback) {
         super(properties);
         this.targetStructure = targetStructure;
         this.dimension = dimension;
@@ -63,8 +63,7 @@ public class ResonanceStoneItem extends Item {
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         if(player instanceof ServerPlayer serverPlayer) {
-            ResourceKey<Level> levelResourceKey = ResourceKey.create(Registries.DIMENSION, dimension);
-            if(predicate.test(serverPlayer) && level.dimension().equals(levelResourceKey)) {
+            if(predicate.test(serverPlayer) && level.dimension().equals(dimension)) {
                 CompletableFuture.supplyAsync(() -> {
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("resonance_stone_working", this.getDescription()), true);
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(EpicSkillsSounds.GAIN_ABILITY_POINTS.get()), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
@@ -93,7 +92,7 @@ public class ResonanceStoneItem extends Item {
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemStack, level, list, flag);
         list.add(TCRCoreMod.getInfo("resonance_stone_usage").withStyle(ChatFormatting.GRAY));
-        String dimensionNameKey = Util.makeDescriptionId("travelerstitles", dimension);
+        String dimensionNameKey = Util.makeDescriptionId("travelerstitles", dimension.location());
         if(Language.getInstance().has(dimensionNameKey)) {
             list.add(Component.translatable(dimensionNameKey));
         }

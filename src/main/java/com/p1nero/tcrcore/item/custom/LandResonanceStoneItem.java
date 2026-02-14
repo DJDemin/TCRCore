@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -31,7 +32,7 @@ import java.util.function.Predicate;
 
 public class LandResonanceStoneItem extends ResonanceStoneItem{
 
-    public LandResonanceStoneItem(Properties properties, ResourceLocation targetStructure, int y, ResourceLocation dimension, Predicate<ServerPlayer> predicate, BiConsumer<BlockPos, ServerPlayer> callback) {
+    public LandResonanceStoneItem(Properties properties, ResourceLocation targetStructure, int y, ResourceKey<Level> dimension, Predicate<ServerPlayer> predicate, BiConsumer<BlockPos, ServerPlayer> callback) {
         super(properties, targetStructure, y, dimension, predicate, callback);
     }
 

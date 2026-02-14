@@ -1,12 +1,14 @@
 package com.p1nero.tcrcore.entity.custom.chronos_sol;
 
 import com.github.L_Ender.cataclysm.init.ModItems;
+import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
 import com.p1nero.dialog_lib.api.component.DialogNode;
 import com.p1nero.dialog_lib.api.entity.custom.IEntityNpc;
 import com.p1nero.dialog_lib.api.entity.goal.LookAtConservingPlayerGoal;
 import com.p1nero.dialog_lib.client.screen.DialogueScreen;
 import com.p1nero.dialog_lib.client.screen.builder.StreamDialogueScreenBuilder;
+import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.*;
 import com.p1nero.tcrcore.entity.TCREntities;
@@ -190,6 +192,19 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
             //充能完毕，去开始领海洋共鸣石
             root = new DialogNode(dBuilder.ans(16))
                     .addLeaf(dBuilder.opt(-4, TCRItems.OCEAN_RESONANCE_STONE.get().getDescription()), 3);
+        } else if(TCRQuests.TALK_TO_CHRONOS_3.equals(currentQuest)) {
+            //问海船墓地回响
+            treeBuilder.start(dBuilder.ans(12, ModItems.ABYSS_EYE.get().getDescription()))
+                    .addOption(dBuilder.opt(7, ModItems.ABYSS_EYE.get().getDescription()), dBuilder.ans(17))
+                    .addOption(dBuilder.opt(8, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription()), dBuilder.ans(18, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription()))
+                    .addFinalOption(dBuilder.opt(-2), 4);
+            return treeBuilder.build();
+        } else if(TCRQuests.TALK_TO_CHRONOS_4.equals(currentQuest)) {
+            treeBuilder.start(19)
+                    .addOption(dBuilder.opt(8, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription()), dBuilder.ans(20, TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription()))
+                    .addOption(-1, 21)
+                    .addFinalOption(dBuilder.opt(-4, TCRItems.CURSED_RESONANCE_STONE.get().getDescription()), 5);
+            return treeBuilder.build();
         } else {
             //默认的情况
 
@@ -242,6 +257,18 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
             TCRQuests.TALK_TO_CHRONOS_2.finish(player);
             ItemUtil.addItemEntity(player, TCRItems.OCEAN_RESONANCE_STONE.get(), 1, ChatFormatting.BLUE.getColor());
             TCRQuests.GO_TO_OVERWORLD_OCEAN.start(player);
+        }
+
+        //找安问问海船墓地回响
+        if(code == 4) {
+            TCRQuests.TALK_TO_CHRONOS_3.finish(player);
+            TCRQuests.TALK_TO_AINE_ECHO.start(player);
+        }
+
+        if(code == 5) {
+            TCRQuests.TALK_TO_CHRONOS_4.finish(player);
+            ItemUtil.addItemEntity(player, TCRItems.CURSED_RESONANCE_STONE.get(), 1, ChatFormatting.DARK_GREEN.getColor());
+            TCRQuests.GO_TO_OVERWORLD_CURSED.start(player);
         }
 
         this.setConversingPlayer(null);

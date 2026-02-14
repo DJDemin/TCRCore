@@ -10,8 +10,11 @@ import com.obscuria.obscureapi.util.PlayerUtils;
 import com.obscuria.obscureapi.util.TextUtils;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
+import com.p1nero.tcrcore.capability.TCRQuestManager;
+import com.p1nero.tcrcore.capability.TCRQuests;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -40,13 +43,14 @@ public class ShellHornItemMixin extends Item {
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     private void tcr$use(@NotNull Level world, @NotNull Player player, @NotNull InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+
         InteractionResultHolder<ItemStack> ar = super.use(world, player, hand);
-        if (player.level() instanceof ServerLevel level) {
-            if(!PlayerDataManager.desertEyeBlessed.get(player) && !player.isCreative()) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            if(!TCRQuestManager.hasQuest(player, TCRQuests.GET_CURSED_EYE) || TCRQuests.GET_CURSED_EYE.isFinished(serverPlayer)) {
                 player.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), false);
                 return;
             }
-            level.playSound(null, player.blockPosition().above(),
+            serverPlayer.level().playSound(null, player.blockPosition().above(),
                     AquamiraeSounds.ITEM_SHELL_HORN_USE.get(), SoundSource.PLAYERS, 3, 1);
             ItemStack stack = ar.getObject();
             player.swing(InteractionHand.MAIN_HAND, true);

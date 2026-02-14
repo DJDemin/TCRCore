@@ -254,23 +254,6 @@ public class PlayerEventListeners {
                 if (!serverPlayer.serverLevel().isLoaded(serverPlayer.getOnPos())) {
                     return;
                 }
-                //改为合并进结构并自然重生
-//                if (PlayerDataManager.stormEyeTraded.get(serverPlayer) && serverPlayer.tickCount % 200 == 0 && WorldUtil.isInStructure(serverPlayer, WorldUtil.COVES)) {
-//                    //定点生
-//                    BlockPos pos = TCRMainLevelSaveData.get(serverPlayer.serverLevel()).getAbyssPos();
-//                    if (!serverPlayer.serverLevel().isLoaded(pos)) {
-//                        return;
-//                    }
-//                    if (pos.equals(BlockPos.ZERO)) {
-//                        Vec3 targetPos = serverPlayer.position().add(serverPlayer.getViewVector(1.0F).scale(10));
-//                        pos = new BlockPos((int) targetPos.x, (int) (serverPlayer.getY() + 5), (int) targetPos.z);
-//                    }
-//                    //保险措施
-//                    if (EntityUtil.getNearByEntities(serverPlayer.serverLevel(), pos.getCenter(), 150, BulldrogiothEntity.class).isEmpty()) {
-//                        BulldrogiothEntity entity = EntityRegistry.BULLDROGIOTH.get().spawn(serverPlayer.serverLevel(), pos, MobSpawnType.SPAWNER);
-//                        entity.setGlowingTag(true);
-//                    }
-//                }
                 if (WorldUtil.inMainLand(serverPlayer)) {
                     if(serverPlayer.isSprinting()) {
                         serverPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 10, 2, false, false, true));
@@ -381,6 +364,10 @@ public class PlayerEventListeners {
                     TCRQuests.GO_TO_OVERWORLD_OCEAN.finish(serverPlayer, true);
                     TCRQuests.USE_OCEAN_RESONANCE_STONE.start(serverPlayer);
                 }
+                if(TCRQuestManager.hasQuest(serverPlayer, TCRQuests.GO_TO_OVERWORLD_CURSED)) {
+                    TCRQuests.GO_TO_OVERWORLD_CURSED.finish(serverPlayer, true);
+                    TCRQuests.USE_CURSED_RESONANCE_STONE.start(serverPlayer);
+                }
             }
             updateHealth(serverPlayer, event.getFrom());
             updateHealth(serverPlayer, event.getTo());
@@ -434,12 +421,16 @@ public class PlayerEventListeners {
     @SubscribeEvent
     public static void onPlayerReadyPickupItem(EntityItemPickupEvent event) {
         if(event.getEntity() instanceof ServerPlayer player) {
-            //未完成过前置时则不能捡起
+            //未完成过前置时则不能捡起，防止多人游戏捡了别人的眼睛，进度直接乱了
             if(!TCRQuests.USE_LAND_RESONANCE_STONE.isFinished(player) && event.getItem().getItem().is(com.github.L_Ender.cataclysm.init.ModItems.DESERT_EYE.get())) {
                 player.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                 event.setCanceled(true);
             }
             if(!TCRQuests.USE_OCEAN_RESONANCE_STONE.isFinished(player) && event.getItem().getItem().is(com.github.L_Ender.cataclysm.init.ModItems.ABYSS_EYE.get())) {
+                player.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
+                event.setCanceled(true);
+            }
+            if(!TCRQuests.USE_CURSED_RESONANCE_STONE.isFinished(player) && event.getItem().getItem().is(com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get())) {
                 player.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                 event.setCanceled(true);
             }
@@ -464,15 +455,31 @@ public class PlayerEventListeners {
                 TCRQuests.GET_DESERT_EYE.finish(player, true);
                 TCRQuests.TALK_TO_CHRONOS_1.start(player);
             }
-            //持有任务时捡起来才推进进度
             if(TCRQuestManager.hasQuest(player, TCRQuests.GET_OCEAN_EYE) && itemStack.is(com.github.L_Ender.cataclysm.init.ModItems.ABYSS_EYE.get())) {
                 giveOracleEffect(player, com.github.L_Ender.cataclysm.init.ModItems.ABYSS_EYE.get());
                 PlayerDataManager.abyssEyeGotten.put(player, true);
-                //完成收回眼睛的任务
                 TCRQuests.GET_OCEAN_EYE.finish(player, true);
+                //点神像和点祭坛
+                if(!PlayerDataManager.abyssEyeActivated.get(player)) {
+                    TCRQuests.PUT_ABYSS_EYE_ON_ALTAR.start(player, false);
+                }
+                if(!PlayerDataManager.abyssEyeBlessed.get(player)) {
+                    TCRQuests.BLESS_ON_THE_GODNESS_STATUE.start(player, false);
+                }
                 TCRQuests.TALK_TO_CHRONOS_3.start(player);
             }
-
+            if(TCRQuestManager.hasQuest(player, TCRQuests.GET_CURSED_EYE) && itemStack.is(com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get())) {
+                giveOracleEffect(player, com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get());
+                PlayerDataManager.cursedEyeGotten.put(player, true);
+                TCRQuests.GET_CURSED_EYE.finish(player, true);
+                TCRQuests.TALK_TO_CHRONOS_5.start(player);
+                if(!PlayerDataManager.cursedEyeActivated.get(player)) {
+                    TCRQuests.PUT_CURSED_EYE_ON_ALTAR.start(player);
+                }
+                if(!PlayerDataManager.cursedEyeBlessed.get(player)) {
+                    TCRQuests.BLESS_ON_THE_GODNESS_STATUE.start(player);
+                }
+            }
 
             if (itemStack.is(AquamiraeItems.SHELL_HORN.get()) && !PlayerDataManager.abyssEyeGotten.get(player)) {
                 giveOracleEffect(player, AquamiraeItems.SHELL_HORN.get());
