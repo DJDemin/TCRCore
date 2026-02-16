@@ -205,6 +205,12 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
                     .addOption(-1, 21)
                     .addFinalOption(dBuilder.opt(-4, TCRItems.CURSED_RESONANCE_STONE.get().getDescription()), 5);
             return treeBuilder.build();
+        } else if(TCRQuests.TALK_TO_CHRONOS_5.equals(currentQuest)) {
+            //找回诅咒眼
+            treeBuilder.start(dBuilder.ans(12, ModItems.CURSED_EYE.get().getDescription()))
+                    .addOption(dBuilder.opt(7, ModItems.CURSED_EYE.get().getDescription()), dBuilder.ans(22))
+                    .addFinalOption(-2, 6);
+            return treeBuilder.build();
         } else {
             //默认的情况
 
@@ -265,10 +271,18 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
             TCRQuests.TALK_TO_AINE_ECHO.start(player);
         }
 
+        //问到后回报
         if(code == 5) {
             TCRQuests.TALK_TO_CHRONOS_4.finish(player);
             ItemUtil.addItemEntity(player, TCRItems.CURSED_RESONANCE_STONE.get(), 1, ChatFormatting.DARK_GREEN.getColor());
             TCRQuests.GO_TO_OVERWORLD_CURSED.start(player);
+        }
+
+        //找回诅咒眼后
+        if(code == 6) {
+            TCRQuests.TALK_TO_CHRONOS_5.finish(player);
+            TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(player);
+            tcrPlayer.startWaitingResonanceStoneCharge(player);
         }
 
         this.setConversingPlayer(null);

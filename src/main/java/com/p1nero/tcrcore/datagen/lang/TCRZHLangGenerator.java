@@ -370,6 +370,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 19, "阁下，共鸣石尚未完成充能。还请阁下稍安勿躁。");
         this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 20, "这是...%s？！");
         this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 21, "既然如此，这份记忆便可以让共鸣石提前恢复魔力，吾这就将回响注入共鸣石之中，阁下务必把祂的火种收回！");
+        this.addDialogAnswer(TCREntities.CHRONOS_SOL.get(), 22, "请阁下将神之眼归位到祭坛上吧！没想到掌管冥界的使徒（Angel），终将自己踏入冥界...");
 
         this.addDialogOption(TCREntities.AINE.get(), -4, "§6法术淬灵");
         this.addDialogOption(TCREntities.AINE.get(), -3, "§6法术交易");

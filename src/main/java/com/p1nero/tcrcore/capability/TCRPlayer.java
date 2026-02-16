@@ -237,8 +237,13 @@ public class TCRPlayer {
         //冷却结束，根据任务给予共鸣石
         if(currentTime < resonanceStoneStartTime || currentTime - resonanceStoneStartTime > 6000) {
             TCRQuests.WAIT_RESONANCE_STONE_CHARGE.finish(serverPlayer, true);
-            if(PlayerDataManager.desertEyeGotten.get(serverPlayer)) {
+            //开启海洋章
+            if(PlayerDataManager.desertEyeGotten.get(serverPlayer) && !TCRQuests.TALK_TO_CHRONOS_2.isFinished(serverPlayer)) {
                 TCRQuests.TALK_TO_CHRONOS_2.start(serverPlayer);
+            }
+            //开启巨兽章
+            if(PlayerDataManager.cursedEyeGotten.get(serverPlayer) && !TCRQuests.TALK_TO_CHRONOS_6.isFinished(serverPlayer)) {
+                TCRQuests.TALK_TO_CHRONOS_6.start(serverPlayer);
             }
             resonanceStoneInCooldown = false;
         }
