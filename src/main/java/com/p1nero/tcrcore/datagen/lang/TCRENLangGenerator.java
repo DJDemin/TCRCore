@@ -74,7 +74,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addSkill("perfect_dodge", "Dodge Effect", "Play a cool animation when perfect dodge!");
 
         this.add(TCRItems.MAGIC_BOTTLE.get(), "Magic Bottle");
-        this.addItemUsageInfo(TCRItems.MAGIC_BOTTLE.get(), "Restores a certain percentage of mana when used");
+        this.addItemUsageInfo(TCRItems.MAGIC_BOTTLE.get(), "Restores a certain percentage of mana when used. Once depleted, must be used in the main city to replenish MP.");
         this.add(TCRItems.MYSTERIOUS_WEAPONS.get(), "Mysterious Weapons Scroll");
         this.addItemUsageInfo(TCRItems.MYSTERIOUS_WEAPONS.get(), "It seems to record all manner of weapons from around the world. You should show it to someone who knows about such things.");
         this.add(TCRItems.NECROMANCY_SCROLL.get(), "Necromancy Scroll");

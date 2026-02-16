@@ -177,8 +177,10 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
             TCRQuests.TALK_TO_ORNN_0.finish(player);
         }
 
+        //解锁百兵图
         if(i == 8) {
             TCRQuests.TALK_TO_ORNN_1.finish(player);
+            ItemUtil.searchAndConsumeItem(player, TCRItems.MYSTERIOUS_WEAPONS.get(), 1);
             TCRAdvancementData.finishAdvancement("unlock_weapon_armor_book", player);
             PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), player);
             player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));

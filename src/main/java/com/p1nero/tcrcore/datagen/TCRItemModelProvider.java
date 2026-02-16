@@ -2,6 +2,7 @@ package com.p1nero.tcrcore.datagen;
 
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.item.TCRItems;
+import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -35,6 +36,7 @@ public class TCRItemModelProvider extends ItemModelProvider {
         simpleItem(TCRItems.LAND_RESONANCE_STONE);
         simpleItem(TCRItems.OCEAN_RESONANCE_STONE);
         simpleItem(TCRItems.CURSED_RESONANCE_STONE);
+        withExistingItemTexture(TCRItems.NECROMANCY_SCROLL, ItemRegistry.MAGIC_CLOTH);
     }
 
     // Thank you kaupenjoe & El_Redstoniano!
@@ -112,6 +114,12 @@ public class TCRItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID,"item/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder withExistingItemTexture(RegistryObject<Item> item, RegistryObject<Item> parentItem) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(parentItem.getId().getNamespace(),"item/" + parentItem.getId().getPath()));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> item) {

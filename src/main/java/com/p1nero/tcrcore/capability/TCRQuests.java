@@ -265,10 +265,12 @@ public class TCRQuests {
 
         TRY_TO_LEARN_MAGIC = TCRQuestManager.create("try_to_learn_magic")
                 .withIcon(SIDE_QUEST_1)
+                .descParam(TCRItems.NECROMANCY_SCROLL.get().getDescription(), TCREntities.AINE.get().getDescription(), TCREntities.AINE.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_MAGIC_2 = TCRQuestManager.create("talk_to_aine_magic_2")
                 .shortDescParam(TCREntities.AINE.get().getDescription())
+                .descParam(TCREntities.AINE.get().getDescription())
                 .withIcon(SIDE_QUEST_1)
                 .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 

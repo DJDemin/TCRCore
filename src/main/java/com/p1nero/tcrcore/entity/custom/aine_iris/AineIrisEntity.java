@@ -13,6 +13,7 @@ import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRQuestManager;
 import com.p1nero.tcrcore.capability.TCRQuests;
 import com.p1nero.tcrcore.entity.TCREntities;
+import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
@@ -129,9 +130,18 @@ public class AineIrisEntity extends PathfinderMob implements IEntityNpc, GeoEnti
                     .addFinalOption(-2, 4);
             return dialogueScreenBuilder.build();
         } else if(TCRQuests.TALK_TO_AINE_MAGIC.equals(currentQuest)) {
-
+            //学魔法
+            dialogueScreenBuilder.start(dBuilder.ans(4, localPlayer.getDisplayName()))
+                    .addOption(dBuilder.opt(7, TCRItems.NECROMANCY_SCROLL.get().getDescription()), dBuilder.ans(13, TCRItems.NECROMANCY_SCROLL.get().getDescription()))
+                    .addOption(-1, 14)
+                    .addOption(dBuilder.opt(-1), dBuilder.ans(15, TCRItems.NECROMANCY_SCROLL.get().getDescription()))
+                    .addOption(-1, 16)
+                    .addOption(-1, 17)
+                    .addOption(-1, 18)
+                    .addFinalOption(-2, 5);
+            return dialogueScreenBuilder.build();
         } else if(TCRQuests.TALK_TO_AINE_MAGIC_2.equals(currentQuest)) {
-            //TODO 送点法术礼物
+            //TODO 送蓝瓶
         } else {
             if(PlayerDataManager.chonosTalked.get(localPlayer)) {
                 root.addChild(aboutChronos);
@@ -184,7 +194,8 @@ public class AineIrisEntity extends PathfinderMob implements IEntityNpc, GeoEnti
         }
 
         if(code == 5) {
-            //TODO 法术交易
+            TCRQuests.TALK_TO_AINE_MAGIC.finish(serverPlayer);
+            TCRQuests.TRY_TO_LEARN_MAGIC.start(serverPlayer);
         }
         if(code == 6) {
             //TODO 法术淬灵（打开奥术铁砧）

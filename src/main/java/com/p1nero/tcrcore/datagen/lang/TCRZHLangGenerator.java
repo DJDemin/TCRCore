@@ -88,6 +88,8 @@ public class TCRZHLangGenerator extends TCRLangProvider {
 
         //铁魔法支线
         this.addQuest(TCRQuests.TALK_TO_AINE_MAGIC, "魔法之章", "和%s对话", "[%s]掉落了神秘的%s，或许掌握魔法的%s能为我们解读上面的秘密！");
+        this.addQuest(TCRQuests.TRY_TO_LEARN_MAGIC, "魔法之章", "尝试淬灵", "[%s]为我们揭示了这个世界的魔法，现在，按照%s所说的，尝试将卷轴里的法术淬灵在武器上吧！\n\n§a[提示]：%s处解锁了新的对话选项！");
+        this.addQuest(TCRQuests.TALK_TO_AINE_MAGIC_2, "魔法之章", "和%s对话", "你已经学会了将法术淬灵在武器上啦，快去和%s聊聊吧！她将教会你如何运用好魔法！");
 
         //主线·巨兽之眼
         this.addQuest(TCRQuests.TALK_TO_CHRONOS_6, "巨兽之章", "和%s对话", "经过漫长的等待，%s已完成充能。快回去找%s吧！她在圣殿里等你。");
@@ -132,7 +134,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addSkill("perfect_dodge", "闪避特效", "完美闪避时将有帅气的动作！");
 
         this.add(TCRItems.MAGIC_BOTTLE.get(), "魔力之瓶");
-        this.addItemUsageInfo(TCRItems.MAGIC_BOTTLE.get(), "使用后可恢复一定比例的魔力");
+        this.addItemUsageInfo(TCRItems.MAGIC_BOTTLE.get(), "使用后可恢复一定比例的魔力。当用尽后，需在主城中使用以补充魔力。");
         this.add(TCRItems.MYSTERIOUS_WEAPONS.get(), "百兵图");
         this.addItemUsageInfo(TCRItems.MYSTERIOUS_WEAPONS.get(), "上面似乎记载了世间百般兵器，拿给了解的人看看吧。");
         this.add(TCRItems.NECROMANCY_SCROLL.get(), "死灵法卷");
@@ -397,6 +399,12 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialogAnswer(TCREntities.AINE.get(), 11, "上面记载了可妮莉亚船长(Captain Cornelia)的冒险故事，并且从记忆来看，灵魂使徒(Soul Angel) %s 被黑潮侵蚀后，就附身在可妮莉亚船长(Captain Cornelia)身上！快把这份解读的记忆给%s看看吧！");
         this.addDialogOption(TCREntities.AINE.get(), 8, "%s? %s?");
         this.addDialogAnswer(TCREntities.AINE.get(), 12, "灵魂之使徒，%s，掌管亡者之世界。可妮莉亚船长(Captain Cornelia)的船队则是世界闻名的远洋船队，受到黑潮的诅咒，和[%s]一起永远困在了那片寒冰迷宫！");
+        this.addDialogAnswer(TCREntities.AINE.get(), 13, "[%s]？让我看看，又是一份特殊的记忆呢...");
+        this.addDialogAnswer(TCREntities.AINE.get(), 14, "哼哼，看来掌管冥界的灵魂使徒，还掌握了生灵法术！");
+        this.addDialogAnswer(TCREntities.AINE.get(), 15, "[%s]上带给了我们两个信息，§6其一是，它为我们描绘了世界上大部分受到黑潮侵蚀的魔物！");
+        this.addDialogAnswer(TCREntities.AINE.get(), 16, "§6其二是，它上面记载了这个世界上的魔法！哼哼，这里的魔法和我所学的魔法有异曲同工之妙呢！");
+        this.addDialogAnswer(TCREntities.AINE.get(), 17, "卷轴描绘了法术源质及其对应的法术，§6将图鉴所描述的法术源质带给我，我将为你转化成对应的法术卷轴");
+        this.addDialogAnswer(TCREntities.AINE.get(), 18, "§6将武器交给我，我将把卷轴所记载的法术附魔在武器上！§f快去试试吧！");
 
         this.addDialogOption(TCREntities.ORNN.get(), -2, "结束对话");
         this.addDialogOption(TCREntities.ORNN.get(), -1, "继续");
