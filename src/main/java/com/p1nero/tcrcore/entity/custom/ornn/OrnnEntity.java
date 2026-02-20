@@ -17,6 +17,7 @@ import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
@@ -44,6 +45,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -71,9 +73,14 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         super(p_21683_, p_21684_);
     }
 
+
     @Override
-    public boolean hurt(@NotNull DamageSource source, float p_21017_) {
-        return source.isCreativePlayer();
+    public boolean hurt(@NotNull DamageSource source, float value) {
+        if(source.getEntity() instanceof Player player && player.isCreative()) {
+            player.displayClientMessage(Component.translatable("/summon " + ForgeRegistries.ENTITY_TYPES.getKey(this.getType())).withStyle(ChatFormatting.RED), false);
+            this.discard();
+        }
+        return false;
     }
 
     @Override

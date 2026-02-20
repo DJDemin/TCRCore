@@ -154,6 +154,10 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addSkill("fire_avoid", "避火咒", "免疫火焰伤害！");
         this.addSkill("perfect_dodge", "闪避特效", "完美闪避时将有帅气的动作！");
 
+        this.add(TCRItems.WITHER_SOUL_STONE.get(), "凋灵魂石");
+        this.addItemUsageInfo(TCRItems.WITHER_SOUL_STONE.get(), "它现在似乎失去了魔力，只是一块独特的石头。想办法激活它吧！");
+        this.add(TCRItems.WITHER_SOUL_STONE_ACTIVATED.get(), "凋灵魂石");
+        this.addItemUsageInfo(TCRItems.WITHER_SOUL_STONE_ACTIVATED.get(), "可打开前往§6[轮回绝境]§r的大门。");
         this.add(TCRItems.MAGIC_BOTTLE.get(), "魔力之瓶");
         this.addItemUsageInfo(TCRItems.MAGIC_BOTTLE.get(), "使用后可恢复一定比例的魔力。当用尽后，需在主城中使用以补充魔力。");
         this.add(TCRItems.MYSTERIOUS_WEAPONS.get(), "百兵图");
@@ -476,7 +480,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialogOption(TCREntities.AINE.get(), 16, "我是认真的");
         this.addDialogOption(TCREntities.AINE.get(), 17, "%s？");
         this.addDialogAnswer(TCREntities.AINE.get(), 29, "好啦好啦，等我们归还了所有的神之眼，一切问题一定都能得到解答的！");
-        this.addDialogAnswer(TCREntities.AINE.get(), 30, "嗯...智库里说，注入恶魂之泪，就可以激活它，打开[%s]的传送门！");
+        this.addDialogAnswer(TCREntities.AINE.get(), 30, "嗯...智库里说，注入[%s]，就可以激活它，打开[%s]的传送门！");
         this.addDialogAnswer(TCREntities.AINE.get(), 31, "§6[%s§6]是介于冥界和主世界之间的地带，在[%s§6]内，我们可以借助召唤祭坛，觐见往昔的使徒");
         this.addDialogAnswer(TCREntities.AINE.get(), 32, "或许我们可以进去瞧瞧，说不定可以从记忆中获取祂们的力量！");
         this.addDialogAnswer(TCREntities.AINE.get(), 33, "");

@@ -42,7 +42,6 @@
     "MagnetUpgradeWrapperMixin",
     "MazeRoseMixin",
     "MenuHooksMixin",
-    "NetMagnetItemMixin",
     "PlayerAdvancementsMixin",
     "PlayerPatchMixin",
     "PoisonedChakraMixin",

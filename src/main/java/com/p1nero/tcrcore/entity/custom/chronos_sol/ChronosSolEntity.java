@@ -413,7 +413,7 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
             PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), player);
             player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(FlyingSkills.SWORD_SOARING_MASTER.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
-            PlayerDataManager.fireAvoidUnlocked.put(player, true);
+            PlayerDataManager.swordSoaringUnlocked.put(player, true);
         }
 
         this.setConversingPlayer(null);

@@ -397,10 +397,13 @@ public class PlayerEventListeners {
                     TCRQuests.USE_NETHER_RESONANCE_STONE.start(serverPlayer);
                 }
             }
-            if(event.getTo().equals(Level.END)) {
-
-            }
             if(event.getTo().equals(AetherDimensions.AETHER_LEVEL)) {
+                if(TCRQuestManager.hasQuest(serverPlayer, TCRQuests.GO_TO_AETHER)) {
+                    TCRQuests.GO_TO_AETHER.finish(serverPlayer, true);
+                    TCRQuests.USE_AETHER_RESONANCE_STONE.start(serverPlayer);
+                }
+            }
+            if(event.getTo().equals(Level.END)) {
 
             }
             updateHealth(serverPlayer, event.getFrom());
@@ -472,7 +475,11 @@ public class PlayerEventListeners {
                 player.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                 event.setCanceled(true);
             }
-            if((!TCRQuests.GET_WITHER_EYE.isFinished(player) || TCRQuestManager.hasQuest(player, TCRQuests.GET_WITHER_EYE)) && event.getItem().getItem().is(ModItems.MONSTROUS_EYE.get())) {
+            if(!TCRQuests.USE_NETHER_RESONANCE_STONE.isFinished(player) && event.getItem().getItem().is(ModItems.MONSTROUS_EYE.get())) {
+                player.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
+                event.setCanceled(true);
+            }
+            if((!TCRQuests.GET_WITHER_EYE.isFinished(player) || TCRQuestManager.hasQuest(player, TCRQuests.GET_WITHER_EYE)) && event.getItem().getItem().is(ModItems.MECH_EYE.get())) {
                 player.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                 event.setCanceled(true);
             }

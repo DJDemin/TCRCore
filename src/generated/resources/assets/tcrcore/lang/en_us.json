@@ -223,6 +223,7 @@
   "item.tcrcore.rare_artifact_ticket": "Golden Artifact Essence",
   "item.tcrcore.rare_artifact_ticket.usage": "Obtained from certain quests in the quest book. Can be used to refine rare artifact with the §3[Ferry girl]§r at the §d[Saint Harbor]§r",
   "item.tcrcore.resonance_stone": "Resonance Stone",
+  "item.tcrcore.sky_resonance_stone": "Aether Resonance Stone",
   "item.tcrcore.void_core": "Void Essence",
   "item.tcrcore.void_core.usage": "Dropped by the [Ender Guardian] when defeated",
   "item.waystones.warp_stone.tcr_info": "Click the §6[Scroll]§r button in the inventory to teleport to activated waystones!",

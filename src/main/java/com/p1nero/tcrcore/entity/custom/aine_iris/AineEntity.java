@@ -52,6 +52,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -78,8 +79,12 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
     }
 
     @Override
-    public boolean hurt(DamageSource source, float p_21017_) {
-        return source.isCreativePlayer();
+    public boolean hurt(@NotNull DamageSource source, float value) {
+        if(source.getEntity() instanceof Player player && player.isCreative()) {
+            player.displayClientMessage(Component.translatable("/summon " + ForgeRegistries.ENTITY_TYPES.getKey(this.getType())).withStyle(ChatFormatting.RED), false);
+            this.discard();
+        }
+        return false;
     }
 
     @Override
@@ -195,8 +200,8 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                     .addChild(hard);
         } else if(TCRQuests.TALK_TO_AINE_SAMSARA.equals(currentQuest)) {
             //打开轮回绝境
-            return dialogueScreenBuilder.start(dBuilder.ans(24))
-                    .addOption(dBuilder.opt(7, TCRItems.WITHER_SOUL_STONE.get().getDescription()), dBuilder.ans(30))
+            return dialogueScreenBuilder.start(dBuilder.ans(24, localPlayer.getDisplayName()))
+                    .addOption(dBuilder.opt(7, TCRItems.WITHER_SOUL_STONE.get().getDescription()), dBuilder.ans(30, Items.GHAST_TEAR.getDescription().copy().withStyle(ChatFormatting.AQUA), Component.translatable("travelerstitles.pbf1.sanctum_of_the_battle1").withStyle(ChatFormatting.GOLD)))
                     .addOption(dBuilder.opt(17, Component.translatable("travelerstitles.pbf1.sanctum_of_the_battle1")), dBuilder.ans(31, Component.translatable("travelerstitles.pbf1.sanctum_of_the_battle1"), Component.translatable("travelerstitles.pbf1.sanctum_of_the_battle1")))
                     .addOption(-1, 32)
                     .addFinalOption(-2, 10)
@@ -221,9 +226,9 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         //初次对话&领取时装
         if(code == 1) {
             ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_TEMPLATE.get(), 20, ChatFormatting.GOLD.getColor());
-            ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_LIBRARY_GLOBAL.get().getDefaultInstance(), ChatFormatting.GOLD.getColor());
-            ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_LIBRARY.get().getDefaultInstance(), ChatFormatting.GOLD.getColor());
-            ItemUtil.addItemEntity(serverPlayer, ModItems.SKINNING_TABLE.get().getDefaultInstance(), ChatFormatting.GOLD.getColor());
+            ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_LIBRARY_GLOBAL.get(), 1, ChatFormatting.GOLD.getColor());
+            ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_LIBRARY.get(), 1, ChatFormatting.GOLD.getColor());
+            ItemUtil.addItemEntity(serverPlayer, ModItems.SKINNING_TABLE.get(), 1, ChatFormatting.GOLD.getColor());
             TCRQuests.TALK_TO_AINE_0.finish(serverPlayer);
             PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), serverPlayer);
         }

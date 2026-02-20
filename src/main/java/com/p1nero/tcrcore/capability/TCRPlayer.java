@@ -240,20 +240,20 @@ public class TCRPlayer {
         //冷却结束，根据任务给予共鸣石
         if(currentTime < resonanceStoneStartTime || currentTime - resonanceStoneStartTime > 6000) {
             TCRQuests.WAIT_RESONANCE_STONE_CHARGE.finish(serverPlayer, true);
-            //开启海洋章
+            //开启海洋章，用前一个眼是否完成来判断
             if(PlayerDataManager.desertEyeGotten.get(serverPlayer) && !TCRQuests.TALK_TO_CHRONOS_2.isFinished(serverPlayer)) {
                 TCRQuests.TALK_TO_CHRONOS_2.start(serverPlayer);
             }
-            //开启烈焰章
+            //开启烈焰章，用前一个眼是否完成来判断
             if(PlayerDataManager.cursedEyeGotten.get(serverPlayer) && !TCRQuests.TALK_TO_CHRONOS_6.isFinished(serverPlayer)) {
                 TCRQuests.TALK_TO_CHRONOS_6.start(serverPlayer);
             }
-            //开启地狱章
+            //开启地狱章，用前一个眼是否完成来判断
             if(PlayerDataManager.flameEyeGotten.get(serverPlayer) && !TCRQuests.TALK_TO_CHRONOS_8.isFinished(serverPlayer)) {
                 TCRQuests.TALK_TO_CHRONOS_8.start(serverPlayer);
             }
-            //开天堂章
-            if(PlayerDataManager.stormEyeGotten.get(serverPlayer) && !TCRQuests.TALK_TO_CHRONOS_11.isFinished(serverPlayer)) {
+            //开天堂章，用前一个眼是否完成来判断
+            if(PlayerDataManager.monstEyeGotten.get(serverPlayer) && !TCRQuests.TALK_TO_CHRONOS_11.isFinished(serverPlayer)) {
                 TCRQuests.TALK_TO_CHRONOS_11.start(serverPlayer);
             }
             resonanceStoneInCooldown = false;
