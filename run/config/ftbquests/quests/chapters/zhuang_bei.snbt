@@ -21,7 +21,7 @@
 		x: 0.0d
 		y: 0.0d
 	}]
-	order_index: 3
+	order_index: 5
 	quest_links: [ ]
 	quests: [
 		{
@@ -398,8 +398,8 @@
 				}
 			]
 			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest6067430759483142731.title}"
-			x: -4.5d
-			y: 1.5d
+			x: 0.0d
+			y: 0.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
@@ -578,63 +578,6 @@
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon: "block_factorys_bosses:dragon_skull"
-			icon_scale: 1.5d
-			id: "7587A089143BA6FA"
-			rewards: [{
-				id: "5E08F1BB3905181F"
-				type: "xp"
-				xp: 100
-			}]
-			shape: "none"
-			size: 1.5d
-			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest8468914134903924474.subtitle}"
-			tasks: [
-				{
-					id: "1A076DE083C7B8D2"
-					item: "block_factorys_bosses:dragon_skull"
-					type: "item"
-				}
-				{
-					id: "58C4C16D05E7B880"
-					item: {
-						Count: 1
-						id: "block_factorys_bosses:dragon_bones_chestplate"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "385349F8358256BE"
-					item: {
-						Count: 1
-						id: "block_factorys_bosses:dragon_bones_leggings"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "2B896F597055AE23"
-					item: {
-						Count: 1
-						id: "block_factorys_bosses:dragon_bones_boots"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-			]
-			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest8468914134903924474.title}"
-			x: 4.5d
-			y: 1.5d
-		}
-		{
-			dependencies: ["6552F3D1C32E5C75"]
 			icon: {
 				Count: 1
 				id: "cataclysm:ignitium_helmet"
@@ -770,75 +713,6 @@
 			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest6107895593504866504.title}"
 			x: -2.0d
 			y: -2.0d
-		}
-		{
-			dependencies: ["6552F3D1C32E5C75"]
-			icon: {
-				Count: 1
-				id: "monsterexpansion:skrythe_helmet"
-				tag: {
-					Damage: 0
-				}
-			}
-			icon_scale: 1.5d
-			id: "083E31035AB51591"
-			rewards: [{
-				id: "75FAC95E2EDE910B"
-				type: "xp"
-				xp: 100
-			}]
-			shape: "none"
-			size: 1.5d
-			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest593966091335964049.subtitle}"
-			tasks: [
-				{
-					id: "0C4B82D4296CD742"
-					item: {
-						Count: 1
-						id: "monsterexpansion:skrythe_helmet"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "70CF4BD036E613E0"
-					item: {
-						Count: 1
-						id: "monsterexpansion:skrythe_chestplate"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "2CEFE8214EE01EE2"
-					item: {
-						Count: 1
-						id: "monsterexpansion:skrythe_leggings"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "4C71B2882106DC90"
-					item: {
-						Count: 1
-						id: "monsterexpansion:skrythe_boots"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-			]
-			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest593966091335964049.title}"
-			x: 0.0d
-			y: 0.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
@@ -1210,75 +1084,6 @@
 			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest4525109753956982642.title}"
 			x: 1.5d
 			y: 3.75d
-		}
-		{
-			dependencies: ["6552F3D1C32E5C75"]
-			icon: {
-				Count: 1
-				id: "monsterexpansion:rhyza_helmet"
-				tag: {
-					Damage: 0
-				}
-			}
-			icon_scale: 1.5d
-			id: "2D52E40AA55DAC05"
-			rewards: [{
-				id: "34C58E317D515A20"
-				item: "fantasy_armor:moon_crystal"
-				type: "item"
-			}]
-			shape: "none"
-			size: 1.5d
-			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest3265923414172216325.subtitle}"
-			tasks: [
-				{
-					id: "5446EE89FC095BC4"
-					item: {
-						Count: 1
-						id: "monsterexpansion:rhyza_helmet"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "04F2477174983593"
-					item: {
-						Count: 1
-						id: "monsterexpansion:rhyza_chestplate"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "3279DF419336419E"
-					item: {
-						Count: 1
-						id: "monsterexpansion:rhyza_leggings"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "4E043A059BDEBF8A"
-					item: {
-						Count: 1
-						id: "monsterexpansion:rhyza_boots"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-			]
-			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest3265923414172216325.title}"
-			x: 0.0d
-			y: 2.25d
 		}
 	]
 	title: "{ftbquests.chapter.6F9A7DF2FD111443.title}"

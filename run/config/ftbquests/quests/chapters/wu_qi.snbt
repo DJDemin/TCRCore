@@ -272,6 +272,7 @@
 			y: 7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			hide_dependency_lines: false
 			icon: "efn:sword_of_pioneer"
 			icon_scale: 1.5d
@@ -377,6 +378,7 @@
 			y: -13.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			description: ["{ftbquests.chapter.chaptertcr2.quest1696022313405171865.description1}"]
 			hide_dependency_lines: false
 			hide_dependent_lines: true
@@ -567,6 +569,7 @@
 			y: 7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			hide_dependency_lines: false
 			icon_scale: 1.5d
 			id: "32C5B1F0B7165EC2"
