@@ -11,7 +11,7 @@
         }
     ],
     "inputs": [
-        { "ingredient": { "item": "tcrcore:void_core" }, "count": 2 },
+        { "ingredient": { "item": "tcrcore:void_core" }, "count": 1 },
         { "ingredient": { "item": "minecraft:shulker_shell" }, "count": 9 },
         { "ingredient": { "item": "cataclysm:void_stone" }, "count": 1 },
         { "ingredient": { "item": "minecraft:purpur_block" }, "count": 16 }

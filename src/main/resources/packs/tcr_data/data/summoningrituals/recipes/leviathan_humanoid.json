@@ -11,8 +11,8 @@
         }
     ],
     "inputs": [
-        { "ingredient": { "item": "tcrcore:abyss_core" }, "count": 2 },
-        { "ingredient": { "item": "cataclysm:coral_chunk" }, "count": 6 },
+        { "ingredient": { "item": "tcrcore:abyss_core" }, "count": 1 },
+        { "ingredient": { "item": "cataclysm:coral_chunk" }, "count": 3 },
         { "ingredient": { "item": "minecraft:conduit" }, "count": 1 },
         { "ingredient": { "item": "irons_spellbooks:ruined_book" }, "count": 1 }
     ],

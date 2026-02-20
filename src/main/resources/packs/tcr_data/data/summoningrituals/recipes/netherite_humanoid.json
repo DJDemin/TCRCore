@@ -11,8 +11,8 @@
         }
     ],
     "inputs": [
-        { "ingredient": { "item": "cataclysm:monstrous_horn" }, "count": 2 },
-        { "ingredient": { "item": "cataclysm:lava_power_cell" }, "count": 32 },
+        { "ingredient": { "item": "cataclysm:monstrous_horn" }, "count": 1 },
+        { "ingredient": { "item": "cataclysm:lava_power_cell" }, "count": 16 },
         { "ingredient": { "item": "minecraft:obsidian" }, "count": 8 },
         { "ingredient": { "item": "minecraft:crying_obsidian" }, "count": 8 },
         { "ingredient": { "item": "bosses_of_mass_destruction:obsidian_heart" }, "count": 1 }

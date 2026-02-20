@@ -11,8 +11,8 @@
         }
     ],
     "inputs": [
-        { "ingredient": { "item": "cataclysm:witherite_ingot" }, "count": 18 },
-        { "ingredient": { "item": "minecraft:nether_star" }, "count": 2 },
+        { "ingredient": { "item": "cataclysm:witherite_ingot" }, "count": 9 },
+        { "ingredient": { "item": "minecraft:nether_star" }, "count": 1 },
         { "ingredient": { "item": "create:electron_tube" }, "count": 3 },
         { "ingredient": { "item": "create:precision_mechanism" }, "count": 5 }
     ],
