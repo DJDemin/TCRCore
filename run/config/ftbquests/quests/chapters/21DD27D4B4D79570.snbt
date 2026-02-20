@@ -1,0 +1,51 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "21DD27D4B4D79570"
+	group: ""
+	icon: {
+		Count: 1
+		id: "tcrcore:proof_of_adventure"
+		tag: {
+			fdbosses: { }
+		}
+	}
+	id: "21DD27D4B4D79570"
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			id: "3825BFB29CCBF7E9"
+			rewards: [{
+				id: "21A87AFB115FE365"
+				type: "xp"
+				xp: 1
+			}]
+			tasks: [{
+				id: "29FE508F97B0D8A2"
+				item: {
+					Count: 1
+					id: "tcrcore:wither_soul_stone_activated"
+					tag: {
+						fdbosses: { }
+					}
+				}
+				type: "item"
+			}]
+			x: -0.5d
+			y: -0.5d
+		}
+		{
+			id: "048CB00656EE47EF"
+			tasks: [{
+				advancement: "tcrcore:unlock_epic_boss"
+				criterion: ""
+				id: "2C5FA8ACCAB07D14"
+				type: "advancement"
+			}]
+			x: -0.5d
+			y: 1.0d
+		}
+	]
+	title: "轮回绝境"
+}
