@@ -2,6 +2,7 @@ package com.p1nero.tcrcore.entity.custom.fake_npc.fake_end_golem;
 
 import com.brass_amber.ba_bt.init.BTEntityType;
 import com.github.L_Ender.cataclysm.init.ModItems;
+import com.hm.efn.registries.EFNItem;
 import com.p1nero.dialog_lib.api.component.DialogNode;
 import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
 import com.p1nero.dialog_lib.client.screen.DialogueScreen;
@@ -90,7 +91,7 @@ public class FakeEndGolem extends FakeNPCEntity {
             ExecutionHandler.entityForceExecute(player, this, false);
             ItemUtil.addItemEntity(player, ModItems.VOID_EYE.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
             if(i == 2) {
-                ItemUtil.addItemEntity(player, TCRItems.YAMATO_FRAGMENT.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
+                ItemUtil.addItemEntity(player, EFNItem.YAMATO_DMC_IN_SHEATH.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
             }
         }
         setConversingPlayer(null);

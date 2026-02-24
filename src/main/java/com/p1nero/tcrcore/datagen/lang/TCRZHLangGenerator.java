@@ -208,6 +208,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "上面写着古老的神谕，暗示了火种散落的地方。回主城给守望者看看吧，说不定对冒险有帮助！");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "§c多人模式请勿占据他人任务道具！每人都需各自提交！", 2);
 
+        this.addInfo("yamato_skill_lock", "[%s]已锁定，需对应附魔书以解锁！");
         this.addInfo("congratulation", "恭喜！");
         this.addInfo("open_backpack_tutorial", "按下 [%s] 以打开随身空间");
         this.addInfo("unlock_new_ftb_page_title", "§6新图鉴解锁！");
@@ -234,6 +235,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addInfo("nether_unlock", "地狱之门已解锁！");
         this.addInfo("end_unlock", "末地之门已解锁！");
         this.addInfo("dim_max_4_players", "§6幻境最多容纳4人！");
+        this.addInfo("dim_max_players", "§6已达人数上限");
         this.addInfo("can_not_enter_before_finish", "§6当前没有进入幻镜的命运。");
         this.addInfo("can_not_do_this_too_early", "§6当前没有做此事的命运。");
         this.addInfo("after_heal_stop_attack", "§6停止攻击以取消傀儡仇恨");

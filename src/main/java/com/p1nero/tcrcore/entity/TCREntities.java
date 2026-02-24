@@ -4,6 +4,8 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.entity.custom.CustomColorItemEntity;
 import com.p1nero.tcrcore.entity.custom.SimpleMobPatch;
 import com.p1nero.tcrcore.entity.custom.aine_iris.AineEntity;
+import com.p1nero.tcrcore.entity.custom.fake_npc.fake_boss.FakeBossNpc;
+import com.p1nero.tcrcore.entity.custom.fake_npc.fake_boss.FakeBossPatch;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_end_golem.FakeEndGolem;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_sky_golem.FakeSkyGolem;
 import com.p1nero.tcrcore.entity.custom.ferry_girl.FerryGirlEntity;
@@ -54,12 +56,39 @@ public class TCREntities {
     public static final RegistryObject<EntityType<TutorialGolem>> TUTORIAL_GOLEM = register("tutorial_golem",
             EntityType.Builder.of(TutorialGolem::new, MobCategory.CREATURE).sized(1.4F, 2.7f).fireImmune());
 
+    public static final RegistryObject<EntityType<FakeBossNpc>> FAKE_MALEDICTUS_HUMANOID = register("fake_maledictus_humanoid",
+            EntityType.Builder.<FakeBossNpc>of(FakeBossNpc::new, MobCategory.CREATURE).sized(0.6f, 1.9f).fireImmune());
+    public static final RegistryObject<EntityType<FakeBossNpc>> FAKE_IGNIS_HUMANOID = register("fake_ignis_humanoid",
+            EntityType.Builder.<FakeBossNpc>of(FakeBossNpc::new, MobCategory.CREATURE).sized(0.6f, 1.9f).fireImmune());
+    public static final RegistryObject<EntityType<FakeBossNpc>> FAKE_NETHERITE_HUMANOID = register("fake_netherite_humanoid",
+            EntityType.Builder.<FakeBossNpc>of(FakeBossNpc::new, MobCategory.CREATURE).sized(0.6f, 1.9f).fireImmune());
+    public static final RegistryObject<EntityType<FakeBossNpc>> FAKE_SCYLLA_HUMANOID = register("fake_scylla_humanoid",
+            EntityType.Builder.<FakeBossNpc>of(FakeBossNpc::new, MobCategory.CREATURE).sized(0.6f, 1.9f).fireImmune());
+    public static final RegistryObject<EntityType<FakeBossNpc>> FAKE_ENDER_GUARDIAN_HUMANOID = register("fake_ender_guardian_humanoid",
+            EntityType.Builder.<FakeBossNpc>of(FakeBossNpc::new, MobCategory.CREATURE).sized(0.6f, 1.9f).fireImmune());
+    public static final RegistryObject<EntityType<FakeBossNpc>> FAKE_HARBINGER_HUMANOID = register("fake_harbinger_humanoid",
+            EntityType.Builder.<FakeBossNpc>of(FakeBossNpc::new, MobCategory.CREATURE).sized(0.6f, 1.9f).fireImmune());
+    public static final RegistryObject<EntityType<FakeBossNpc>> FAKE_LEVIATHAN_HUMANOID = register("fake_leviathan_humanoid",
+            EntityType.Builder.<FakeBossNpc>of(FakeBossNpc::new, MobCategory.CREATURE).sized(0.6f, 1.9f).fireImmune());
+    public static final RegistryObject<EntityType<FakeBossNpc>> FAKE_ANCIENT_REMNANT_HUMANOID = register("fake_ancient_remnant_humanoid",
+            EntityType.Builder.<FakeBossNpc>of(FakeBossNpc::new, MobCategory.CREATURE).sized(0.6f, 1.9f).fireImmune());
+
+
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.Builder<T> entityTypeBuilder) {
         return REGISTRY.register(name, () -> entityTypeBuilder.build(ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, name).toString()));
     }
 
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
+        event.put(FAKE_MALEDICTUS_HUMANOID.get(), ChronosSolEntity.setAttributes());
+        event.put(FAKE_IGNIS_HUMANOID.get(), ChronosSolEntity.setAttributes());
+        event.put(FAKE_NETHERITE_HUMANOID.get(), ChronosSolEntity.setAttributes());
+        event.put(FAKE_SCYLLA_HUMANOID.get(), ChronosSolEntity.setAttributes());
+        event.put(FAKE_ENDER_GUARDIAN_HUMANOID.get(), ChronosSolEntity.setAttributes());
+        event.put(FAKE_HARBINGER_HUMANOID.get(), ChronosSolEntity.setAttributes());
+        event.put(FAKE_LEVIATHAN_HUMANOID.get(), ChronosSolEntity.setAttributes());
+        event.put(FAKE_ANCIENT_REMNANT_HUMANOID.get(), ChronosSolEntity.setAttributes());
+
         event.put(CHRONOS_SOL.get(), ChronosSolEntity.setAttributes());
         event.put(FERRY_GIRL.get(), ChronosSolEntity.setAttributes());
         event.put(ORNN.get(), ChronosSolEntity.setAttributes());
@@ -75,6 +104,16 @@ public class TCREntities {
         event.getTypeEntry().put(TUTORIAL_GOLEM.get(), (entity) -> IronGolemPatch::new);
         event.getTypeEntry().put(FAKE_SKY_GOLEM.get(), (entity) -> () -> new SimpleMobPatch<>(Factions.VILLAGER));
         event.getTypeEntry().put(FAKE_END_GOLEM.get(), (entity) -> () -> new SimpleMobPatch<>(Factions.VILLAGER));
+
+        event.getTypeEntry().put(FAKE_MALEDICTUS_HUMANOID.get(), (entity) -> FakeBossPatch::new);
+        event.getTypeEntry().put(FAKE_IGNIS_HUMANOID.get(), (entity) -> FakeBossPatch::new);
+        event.getTypeEntry().put(FAKE_NETHERITE_HUMANOID.get(), (entity) -> FakeBossPatch::new);
+        event.getTypeEntry().put(FAKE_SCYLLA_HUMANOID.get(), (entity) -> FakeBossPatch::new);
+        event.getTypeEntry().put(FAKE_ENDER_GUARDIAN_HUMANOID.get(), (entity) -> FakeBossPatch::new);
+        event.getTypeEntry().put(FAKE_HARBINGER_HUMANOID.get(), (entity) -> FakeBossPatch::new);
+        event.getTypeEntry().put(FAKE_LEVIATHAN_HUMANOID.get(), (entity) -> FakeBossPatch::new);
+        event.getTypeEntry().put(FAKE_ANCIENT_REMNANT_HUMANOID.get(), (entity) -> FakeBossPatch::new);
+
     }
 
     @SubscribeEvent
@@ -83,6 +122,15 @@ public class TCREntities {
             Armatures.registerEntityTypeArmature(TUTORIAL_GOLEM.get(), Armatures.IRON_GOLEM);
             Armatures.registerEntityTypeArmature(FAKE_SKY_GOLEM.get(), Armatures.BIPED);
             Armatures.registerEntityTypeArmature(FAKE_END_GOLEM.get(), Armatures.BIPED);
+
+            Armatures.registerEntityTypeArmature(FAKE_MALEDICTUS_HUMANOID.get(), Armatures.BIPED);
+            Armatures.registerEntityTypeArmature(FAKE_IGNIS_HUMANOID.get(), Armatures.BIPED);
+            Armatures.registerEntityTypeArmature(FAKE_NETHERITE_HUMANOID.get(), Armatures.BIPED);
+            Armatures.registerEntityTypeArmature(FAKE_SCYLLA_HUMANOID.get(), Armatures.BIPED);
+            Armatures.registerEntityTypeArmature(FAKE_ENDER_GUARDIAN_HUMANOID.get(), Armatures.BIPED);
+            Armatures.registerEntityTypeArmature(FAKE_HARBINGER_HUMANOID.get(), Armatures.BIPED);
+            Armatures.registerEntityTypeArmature(FAKE_LEVIATHAN_HUMANOID.get(), Armatures.BIPED);
+            Armatures.registerEntityTypeArmature(FAKE_ANCIENT_REMNANT_HUMANOID.get(), Armatures.BIPED);
         });
     }
 

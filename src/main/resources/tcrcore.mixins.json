@@ -73,7 +73,8 @@
     "PanoramaRendererMixin",
     "SkillTreeScreenAccessor",
     "SkillTreeScreenMixin",
-    "TitleScreenMixin"
+    "TitleScreenMixin",
+    "YatamoItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

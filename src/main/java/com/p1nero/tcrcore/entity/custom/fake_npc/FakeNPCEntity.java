@@ -33,7 +33,7 @@ public abstract class FakeNPCEntity extends PathfinderMob implements IEntityNpc,
     public void tick() {
         super.tick();
         LivingEntity owner = this.getOwner();
-        if(owner != null) {
+        if(owner != null && owner.level().dimension() == this.level().dimension()) {
             this.getLookControl().setLookAt(owner.getX(), owner.getEyeY(), owner.getZ());
         }
     }

@@ -113,6 +113,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "It bears an ancient oracle hinting at the locations of scattered embers. Show it to the The Sanctuary Keeper in the The Sanctuary; it might aid your adventure!");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "§cIn multiplayer mode, do not occupy other players'! Everyone must submit their own!", 2);
 
+        this.addInfo("yamato_skill_lock", "[%s] are locked. Requires special enchantment book to unlock!");
         this.addInfo("congratulation", "Congratulations!");
         this.addInfo("open_backpack_tutorial", "Press [%s] to view Backpack");
         this.addInfo("unlock_new_ftb_page_title", "§6New Chapter Unlocked!");
@@ -140,6 +141,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addInfo("end_unlock", "End Unlocked!");
         this.addInfo("nothing_happen_after_bless", "§dNothing happened... The [Eye] has been used.");
         this.addInfo("dim_max_4_players", "§6Cloudland can only contain 4 players!");
+        this.addInfo("dim_max_players", "§6Maximum capacity reached");
         this.addInfo("can_not_enter_before_finish", "§6You are not destined to enter this cloudland.");
         this.addInfo("can_not_do_this_too_early", "§6You are not destined to do this.");
         this.addInfo("captain_start_heal", "§cCornelia started healing! Increase your damage!");

@@ -34,6 +34,10 @@ public class EntityUtil {
         player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(soundEvent), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
     }
 
+    public static void playLocalSound(ServerPlayer player, Vec3 pos, SoundEvent soundEvent) {
+        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(soundEvent), SoundSource.PLAYERS, pos.x(), pos.y(), pos.z(), 1.0F, 1.0F, player.getRandom().nextInt()));
+    }
+
     /**
      * 获取视线和目标位置连线的夹角
      */

@@ -4,7 +4,10 @@ import com.hm.efn.client.sound.EFNSounds;
 import com.hm.efn.entity.EFNVFXManagers;
 import com.p1nero.p1nero_ec.effect.PECEffects;
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.client.sound.TCRSounds;
+import com.p1nero.tcrcore.utils.EntityUtil;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -31,6 +34,7 @@ import yesman.epicfight.api.animation.property.MoveCoordFunctions;
 import yesman.epicfight.api.animation.types.AttackAnimation;
 import yesman.epicfight.api.animation.types.DodgeAnimation;
 import yesman.epicfight.api.animation.types.EntityState;
+import yesman.epicfight.api.animation.types.StaticAnimation;
 import yesman.epicfight.api.asset.AssetAccessor;
 import yesman.epicfight.api.collider.MultiOBBCollider;
 import yesman.epicfight.api.collider.OBBCollider;
@@ -62,12 +66,15 @@ public class TCRAnimations {
     public static AnimationManager.AnimationAccessor<DodgeAnimation> STEP_R;
     public static AnimationManager.AnimationAccessor<AttackAnimation> TSUNAMI;
     public static AnimationManager.AnimationAccessor<AttackAnimation> SCYTHE_HARVEST;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> CLAP;
     public static AnimationManager.AnimationAccessor<UltimateAttackAnimation> SOLAR_BRASERO_OBSCURIDAD;
 
     @SubscribeEvent
     public static void registerAnimations(AnimationManager.AnimationRegistryEvent event) {
         event.newBuilder(TCRCoreMod.MOD_ID, (builder) -> {
             AssetAccessor<? extends HumanoidArmature> biped = Armatures.BIPED;
+            CLAP = builder.nextAccessor("biped/living/clap", staticAnimationAnimationAccessor ->
+               new StaticAnimation(true, staticAnimationAnimationAccessor, biped));
             STEP_F = builder.nextAccessor("dodge/step_forward", (accessor) ->
                     new DodgeAnimation(0.1F, 0.35F, accessor, 0.6F, 1.65F, Armatures.BIPED)
                             .addState(EntityState.LOCKON_ROTATE, true)

@@ -33,7 +33,7 @@ public class BedBlockMixin {
                 ServerLevel sanctum = serverPlayer.server.getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
                 if (sanctum != null) {
                     player.changeDimension(sanctum, new PositionTeleporter(new BlockPos(WorldUtil.START_POS)));
-                    if(!TCRQuestManager.hasFinished(serverPlayer, TCRQuests.TALK_TO_AINE_GAME_CLEAR)) {
+                    if(!TCRQuestManager.hasFinished(serverPlayer, TCRQuests.TALK_TO_AINE_GAME_CLEAR) && TCRQuestManager.hasFinished(serverPlayer, TCRQuests.KILL_MAD_CHRONOS)) {
                         TCRQuests.TALK_TO_AINE_GAME_CLEAR.start(serverPlayer);
                     }
                 }

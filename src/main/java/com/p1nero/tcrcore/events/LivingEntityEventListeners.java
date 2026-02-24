@@ -19,9 +19,11 @@ import com.obscuria.aquamirae.Aquamirae;
 import com.obscuria.aquamirae.AquamiraeUtils;
 import com.obscuria.aquamirae.common.entities.CaptainCornelia;
 import com.obscuria.aquamirae.registry.AquamiraeItems;
+import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.entityrespawner.EntityRespawnerMod;
 import com.p1nero.entityrespawner.entity.SoulEntity;
+import com.p1nero.tcr_bosses.entity.cataclysm.BaseBossEntity;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
@@ -112,7 +114,7 @@ public class LivingEntityEventListeners {
                 });
             }
         }
-        //骑士剑剑气
+
         if (attacker instanceof ServerPlayer serverPlayer) {
             EpicFightCapabilities.getUnparameterizedEntityPatch(serverPlayer, PlayerPatch.class).ifPresent(playerPatch -> {
                 if (playerPatch.isVanillaMode()) {
@@ -189,9 +191,11 @@ public class LivingEntityEventListeners {
         if (event.isCanceled() || livingEntity.getPersistentData().getBoolean(TRIGGERED)) {
             return;
         }
+        //防止重复刷
         livingEntity.getPersistentData().putBoolean(TRIGGERED, true);
         Vec3 center = livingEntity.position();
-        //附近玩家都获得
+
+        //附近玩家都处理击败
         livingEntity.level().getEntitiesOfClass(ServerPlayer.class, (new AABB(center, center)).inflate(30)).forEach(player -> {
 
             //击败祭坛内的boss
@@ -253,15 +257,15 @@ public class LivingEntityEventListeners {
 
             //处理主线的boss掉落眼睛
             if (livingEntity instanceof LandGolem) {
-                //捡起来之前都会掉
-                if (!PlayerDataManager.desertEyeGotten.get(player)) {
+                //有任务才会掉
+                if (TCRQuestManager.hasQuest(player, TCRQuests.GET_DESERT_EYE)) {
                     ItemUtil.addItemEntity(player, ModItems.DESERT_EYE.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                 }
             }
 
             if (livingEntity instanceof OceanGolem) {
-                if (!PlayerDataManager.abyssEyeGotten.get(player)) {
+                if (TCRQuestManager.hasQuest(player, TCRQuests.GET_OCEAN_EYE)) {
                     ItemUtil.addItemEntity(player, ModItems.ABYSS_EYE.get(), 1, ChatFormatting.BLUE.getColor().intValue());
                     ItemUtil.addItemEntity(player, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get(), 1, ChatFormatting.BLUE.getColor().intValue());
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
@@ -269,7 +273,7 @@ public class LivingEntityEventListeners {
             }
 
             if (livingEntity instanceof CaptainCornelia) {
-                if (!PlayerDataManager.cursedEyeGotten.get(player)) {
+                if (TCRQuestManager.hasQuest(player, TCRQuests.GET_CURSED_EYE)) {
                     ItemUtil.addItemEntity(player, ModItems.CURSED_EYE.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                     ItemUtil.addItemEntity(player, TCRItems.NECROMANCY_SCROLL.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
@@ -277,21 +281,21 @@ public class LivingEntityEventListeners {
             }
 
             if (livingEntity instanceof CoreGolem) {
-                if (!PlayerDataManager.flameEyeGotten.get(player)) {
+                if (TCRQuestManager.hasQuest(player, TCRQuests.GET_FLAME_EYE)) {
                     ItemUtil.addItemEntity(player, ModItems.FLAME_EYE.get(), 1, ChatFormatting.RED.getColor().intValue());
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                 }
             }
 
             if (livingEntity instanceof NetherGolem) {
-                if (!PlayerDataManager.monstEyeGotten.get(player)) {
+                if (TCRQuestManager.hasQuest(player, TCRQuests.GET_MONST_EYE)) {
                     ItemUtil.addItemEntity(player, ModItems.MONSTROUS_EYE.get(), 1, ChatFormatting.DARK_RED.getColor().intValue());
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                 }
             }
 
             if (livingEntity instanceof WitherBoss) {
-                if (!PlayerDataManager.mechEyeGotten.get(player)) {
+                if (TCRQuestManager.hasQuest(player, TCRQuests.GET_WITHER_EYE)) {
                     ItemUtil.addItemEntity(player, ModItems.MECH_EYE.get(), 1, ChatFormatting.GOLD.getColor().intValue());
                     ItemUtil.addItemEntity(player, TCRItems.WITHER_SOUL_STONE.get(), 1, ChatFormatting.GOLD.getColor().intValue());
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
@@ -309,7 +313,7 @@ public class LivingEntityEventListeners {
             }
 
             if(livingEntity instanceof FakeSkyGolem) {
-                if (!PlayerDataManager.stormEyeGotten.get(player) && TCRQuests.TALK_TO_SKY_GOLEM.isFinished(player)) {
+                if (TCRQuestManager.hasQuest(player, TCRQuests.GET_STORM_EYE) && TCRQuests.TALK_TO_SKY_GOLEM.isFinished(player)) {
                     ItemUtil.addItemEntity(player, ModItems.STORM_EYE.get(), 1, ChatFormatting.AQUA.getColor().intValue());
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     TCRQuests.GET_STORM_EYE.start(player);
@@ -325,7 +329,7 @@ public class LivingEntityEventListeners {
             }
 
             if(livingEntity instanceof FakeEndGolem) {
-                if (!PlayerDataManager.voidEyeGotten.get(player) && TCRQuests.GO_TO_THE_END.isFinished(player)) {
+                if (TCRQuestManager.hasQuest(player, TCRQuests.GET_VOID_EYE) && TCRQuests.GO_TO_THE_END.isFinished(player)) {
                     ItemUtil.addItemEntity(player, ModItems.VOID_EYE.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                 }
@@ -333,6 +337,7 @@ public class LivingEntityEventListeners {
 
         });
 
+        //===================服务端===================
         if (livingEntity.level() instanceof ServerLevel serverLevel) {
 
             if (CataclysmDimensions.LEVELS.contains(serverLevel.dimension()) && livingEntity.getType().is(Tags.EntityTypes.BOSSES)) {
@@ -399,8 +404,34 @@ public class LivingEntityEventListeners {
                 ItemUtil.addItemEntity(livingEntity, TCRItems.DUAL_BOKKEN.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor());
             }
 
+            //===================服务端玩家===================
+            if (livingEntity instanceof ServerPlayer serverPlayer && !event.isCanceled()) {
+                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("death_info"), false);
+                ServerLevel wraithonLevel = serverPlayer.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
+                if (wraithonLevel != null && wraithonLevel.players().isEmpty()) {
+                    EntityUtil.safelyClearAll(wraithonLevel);
+                    TCRDimSaveData.get(wraithonLevel).setBossSummoned(false);
+                }
+
+                //防堆命机制
+                if (event.getSource().getEntity() instanceof LivingEntity living) {
+                    if (living instanceof WraithonEntity wraithonEntity) {
+                        if (!EntityUtil.getNearByPlayers(serverPlayer, 30).isEmpty()) {
+                            return;
+                        }
+                        wraithonEntity.setPhase(WraithonEntity.START_PHASE);
+                    }
+                    living.setHealth(living.getMaxHealth());
+                    living.removeAllEffects();
+                    if (living instanceof Arterius arterius) {
+                        arterius.resetBossStatus(true);
+                    }
+                }
+            }
+
         }
 
+        //===================双端===================
         if (livingEntity instanceof CaptainCornelia) {
             if (livingEntity.level().isClientSide) {
                 //修它bgm播放bug，不知道现在修了没
@@ -420,35 +451,6 @@ public class LivingEntityEventListeners {
             }
         }
 
-        //似了换地狱傀儡出来
-        if (livingEntity instanceof EnderDragon enderDragon) {
-            enderDragon.discard();
-            //TODO 似了掉钥匙，开末地傀儡用
-        }
-
-        if (livingEntity instanceof ServerPlayer serverPlayer && !event.isCanceled()) {
-            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("death_info"), false);
-            ServerLevel wraithonLevel = serverPlayer.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
-            if (wraithonLevel != null && wraithonLevel.players().isEmpty()) {
-                EntityUtil.safelyClearAll(wraithonLevel);
-                TCRDimSaveData.get(wraithonLevel).setBossSummoned(false);
-            }
-
-            //防堆命机制
-            if (event.getSource().getEntity() instanceof LivingEntity living) {
-                if (living instanceof WraithonEntity wraithonEntity) {
-                    if (!EntityUtil.getNearByPlayers(serverPlayer, 30).isEmpty()) {
-                        return;
-                    }
-                    wraithonEntity.setPhase(WraithonEntity.START_PHASE);
-                }
-                living.setHealth(living.getMaxHealth());
-                living.removeAllEffects();
-                if (living instanceof Arterius arterius) {
-                    arterius.resetBossStatus(true);
-                }
-            }
-        }
     }
 
     @SubscribeEvent
@@ -569,6 +571,17 @@ public class LivingEntityEventListeners {
             witherBoss.setHealth(witherBoss.getMaxHealth());
         }
 
+    }
+
+    @SubscribeEvent
+    public static void livingEquipmentChange(LivingEquipmentChangeEvent event) {
+        if(event.getEntity() instanceof Player player) {
+            if(player.level().dimension().equals(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY)) {
+                if(!EntityUtil.getNearByEntities(BaseBossEntity.class, player, 50).isEmpty()) {
+
+                }
+            }
+        }
     }
 
     public static void saveSpawnPos(Entity entity) {

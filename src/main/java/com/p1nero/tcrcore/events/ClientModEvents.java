@@ -1,5 +1,6 @@
 package com.p1nero.tcrcore.events;
 
+import com.ao.tcrmeshes.TCRMeshes;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.hm.efn.registries.EFNItem;
@@ -12,7 +13,7 @@ import com.p1nero.tcrcore.client.item_renderer.RenderDualBokken;
 import com.p1nero.tcrcore.client.item_renderer.RenderTheIncinerator;
 import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.entity.custom.aine_iris.AineIrisRenderer;
-import com.p1nero.tcrcore.entity.custom.fake_npc.fake_end_golem.FakeEndGolem;
+import com.p1nero.tcrcore.entity.custom.fake_npc.fake_boss.FakeBossNpcRenderer;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_end_golem.FakeEndGolemRenderer;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_sky_golem.FakeSkyGolemRenderer;
 import com.p1nero.tcrcore.entity.custom.ferry_girl.FerryGirlGeoRenderer;
@@ -51,6 +52,30 @@ public class ClientModEvents {
         EntityRenderers.register(TCREntities.FAKE_END_GOLEM.get(), FakeEndGolemRenderer::new);
         EntityRenderers.register(TCREntities.TUTORIAL_GOLEM.get(), TutorialGolemRenderer::new);
 
+        EntityRenderers.register(TCREntities.FAKE_MALEDICTUS_HUMANOID.get(),
+                context -> new FakeBossNpcRenderer(context, TCRMeshes.MALEDICTUS_HUMANOID_TEXTURE));
+
+        EntityRenderers.register(TCREntities.FAKE_IGNIS_HUMANOID.get(),
+                context -> new FakeBossNpcRenderer(context, TCRMeshes.IGNIS_HUMANOID_TEXTURE));
+
+        EntityRenderers.register(TCREntities.FAKE_NETHERITE_HUMANOID.get(),
+                context -> new FakeBossNpcRenderer(context, TCRMeshes.NETHERITE_HUMANOID_TEXTURE));
+
+        EntityRenderers.register(TCREntities.FAKE_SCYLLA_HUMANOID.get(),
+                context -> new FakeBossNpcRenderer(context, TCRMeshes.SCYLLA_HUMANOID_TEXTURE));
+
+        EntityRenderers.register(TCREntities.FAKE_ENDER_GUARDIAN_HUMANOID.get(),
+                context -> new FakeBossNpcRenderer(context, TCRMeshes.ENDER_GUARDIAN_HUMANOID_TEXTURE));
+
+        EntityRenderers.register(TCREntities.FAKE_HARBINGER_HUMANOID.get(),
+                context -> new FakeBossNpcRenderer(context, TCRMeshes.HARBINGER_HUMANOID_TEXTURE));
+
+        EntityRenderers.register(TCREntities.FAKE_LEVIATHAN_HUMANOID.get(),
+                context -> new FakeBossNpcRenderer(context, TCRMeshes.LEVIATHAN_HUMANOID_TEXTURE));
+
+        EntityRenderers.register(TCREntities.FAKE_ANCIENT_REMNANT_HUMANOID.get(),
+                context -> new FakeBossNpcRenderer(context, TCRMeshes.ANCIENT_REMAIN_HUMANOID_TEXTURE));
+
         BlockTooltipHandler.registerBlockTooltip(TCRBlocks.ABYSS_ALTAR_BLOCK,
                 TCRCoreMod.getInfo("altar_dim_info"),
                 TCRCoreMod.getInfo("related_loot", ModEntities.THE_LEVIATHAN.get().getDescription().copy().withStyle(ChatFormatting.BLUE), ModItems.TIDAL_CLAWS.get().getDescription().copy().withStyle(ChatFormatting.GOLD)),
@@ -87,6 +112,30 @@ public class ClientModEvents {
         event.addPatchedEntityRenderer(EntityType.DROWNED, (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
         event.addPatchedEntityRenderer(TCREntities.FAKE_SKY_GOLEM.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
         event.addPatchedEntityRenderer(TCREntities.FAKE_END_GOLEM.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
+
+        event.addPatchedEntityRenderer(TCREntities.FAKE_MALEDICTUS_HUMANOID.get(), (entityType ->
+                new PHumanoidRenderer<>(TCRMeshes.MALEDICTUS_HUMANOID, context, entityType)));
+
+        event.addPatchedEntityRenderer(TCREntities.FAKE_IGNIS_HUMANOID.get(), (entityType ->
+                new PHumanoidRenderer<>(TCRMeshes.IGNIS_HUMANOID, context, entityType)));
+
+        event.addPatchedEntityRenderer(TCREntities.FAKE_NETHERITE_HUMANOID.get(), (entityType ->
+                new PHumanoidRenderer<>(TCRMeshes.NETHERITE_HUMANOID, context, entityType)));
+
+        event.addPatchedEntityRenderer(TCREntities.FAKE_SCYLLA_HUMANOID.get(), (entityType ->
+                new PHumanoidRenderer<>(TCRMeshes.SCYLLA_HUMANOID, context, entityType)));
+
+        event.addPatchedEntityRenderer(TCREntities.FAKE_ENDER_GUARDIAN_HUMANOID.get(), (entityType ->
+                new PHumanoidRenderer<>(TCRMeshes.ENDER_GUARDIAN_HUMANOID, context, entityType)));
+
+        event.addPatchedEntityRenderer(TCREntities.FAKE_HARBINGER_HUMANOID.get(), (entityType ->
+                new PHumanoidRenderer<>(TCRMeshes.HARBINGER_HUMANOID, context, entityType)));
+
+        event.addPatchedEntityRenderer(TCREntities.FAKE_LEVIATHAN_HUMANOID.get(), (entityType ->
+                new PHumanoidRenderer<>(TCRMeshes.LEVIATHAN_HUMANOID, context, entityType)));
+
+        event.addPatchedEntityRenderer(TCREntities.FAKE_ANCIENT_REMNANT_HUMANOID.get(), (entityType ->
+                new PHumanoidRenderer<>(TCRMeshes.ANCIENT_REMAIN_HUMANOID, context, entityType)));
     }
 
     @SubscribeEvent

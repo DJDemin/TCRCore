@@ -248,11 +248,11 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                     .addChild(askRoot);
 
             DialogNode c1 = new DialogNode(dBuilder.ans(49), dBuilder.opt(27))
-                    .addLeaf(dBuilder.opt(-2), 13);
+                    .addLeaf(dBuilder.opt(-2), 12);
             DialogNode c2 = new DialogNode(dBuilder.ans(49), dBuilder.opt(28))
-                    .addLeaf(dBuilder.opt(-2), 13);
+                    .addLeaf(dBuilder.opt(-2), 12);
             DialogNode c3 = new DialogNode(dBuilder.ans(49), dBuilder.opt(29))
-                    .addLeaf(dBuilder.opt(-2), 13);
+                    .addLeaf(dBuilder.opt(-2), 12);
 
             DialogNode next = new DialogNode(dBuilder.ans(44), dBuilder.opt(23))
                     .addChild(new DialogNode(dBuilder.ans(45), dBuilder.opt(24))
@@ -369,10 +369,6 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         }
 
         if (code == 12) {
-            TCRQuests.TALK_TO_AINE_GAME_CLEAR.finish(serverPlayer);
-        }
-
-        if(code == 13) {
             TCRQuests.TALK_TO_AINE_GAME_CLEAR.finish(serverPlayer);
         }
 
