@@ -1,9 +1,11 @@
 package com.p1nero.tcrcore.events;
 
+import com.brass_amber.ba_bt.entity.block.BTMonolith;
 import com.brass_amber.ba_bt.entity.hostile.golem.*;
 import com.brass_amber.ba_bt.init.BTEntityType;
 import com.brass_amber.ba_bt.init.BTExtras;
 import com.brass_amber.ba_bt.init.BTItems;
+import com.brass_amber.ba_bt.util.GolemType;
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ender_Guardian_Entity;
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ignis_Entity;
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.The_Harbinger_Entity;
@@ -33,6 +35,8 @@ import com.p1nero.tcr_bosses.entity.cataclysm.leviathan.LeviathanHumanoid;
 import com.p1nero.tcr_bosses.entity.cataclysm.maledictus.MaledictusHumanoid;
 import com.p1nero.tcr_bosses.entity.cataclysm.netherite.NetheriteHumanoid;
 import com.p1nero.tcr_bosses.entity.cataclysm.scylla.ScyllaHumanoid;
+import com.p1nero.tcr_bosses.mixins.AbstractGolemInvoker;
+import com.p1nero.tcr_bosses.mixins.BTAbstractGolemAccessor;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
@@ -76,6 +80,7 @@ import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -465,6 +470,15 @@ public class LivingEntityEventListeners {
                 ItemUtil.addItemEntity(livingEntity, TCRItems.DUAL_BOKKEN.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor());
             }
 
+            //傀儡死了掉石碑
+            if(livingEntity instanceof AbstractGolem abstractGolem) {
+                EntityType<BTMonolith> entityType = GolemType.getMonolithFor(abstractGolem.golemType);
+                Item item = getMonolithKeyItemFor(abstractGolem.golemType);
+                BlockPos home = livingEntity.getEntityData().get(((AbstractGolemInvoker)livingEntity).getSpawnPosKey());
+                entityType.spawn(serverLevel, home, MobSpawnType.MOB_SUMMONED);
+                ItemUtil.addItemEntity(livingEntity, item, 1, ChatFormatting.GOLD.getColor());
+            }
+
             //===================服务端玩家===================
             if (livingEntity instanceof ServerPlayer serverPlayer && !event.isCanceled()) {
                 serverPlayer.displayClientMessage(TCRCoreMod.getInfo("death_info"), false);
@@ -515,6 +529,20 @@ public class LivingEntityEventListeners {
             }
         }
 
+    }
+
+    public static Item getMonolithKeyItemFor(GolemType golemType) {
+        Item item;
+        switch (golemType) {
+            case OCEAN -> item = BTItems.OCEAN_MONOLITH_KEY.get();
+            case CORE -> item = BTItems.CORE_MONOLITH_KEY.get();
+            case NETHER -> item = BTItems.NETHER_MONOLITH_KEY.get();
+            case END -> item = BTItems.END_MONOLITH_KEY.get();
+            case SKY -> item = BTItems.SKY_MONOLITH_KEY.get();
+            default -> item = BTItems.LAND_MONOLITH_KEY.get();
+        }
+
+        return item;
     }
 
     public static void givePlayerAward(ServerPlayer player, int count) {

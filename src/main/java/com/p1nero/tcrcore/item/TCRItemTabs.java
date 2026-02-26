@@ -47,6 +47,8 @@ public class TCRItemTabs {
                 output.accept(TCRItems.DESERT_FRAGMENT.get());
                 output.accept(TCRItems.ENDER_FRAGMENT.get());
                 output.accept(TCRItems.STORM_FRAGMENT.get());
+                output.accept(TCRItems.SOUL_FRAGMENT.get());
+                output.accept(TCRItems.FLAME_FRAGMENT.get());
                 output.accept(TCRItems.MECH_FRAGMENT.get());
                 output.accept(TCRItems.NETHERITE_FRAGMENT.get());
             }).build());

@@ -338,7 +338,7 @@ public class PlayerEventListeners {
                 }
 
                 if (event.getDimension() == TCRDimensions.REAL_LEVEL_KEY) {
-                    if (TCRQuests.TALK_TO_AINE_GAME_CLEAR.isFinished(serverPlayer) || TCRQuestManager.hasQuest(serverPlayer, TCRQuests.TALK_TO_AINE_GAME_CLEAR)) {
+                    if (!(TCRQuests.TALK_TO_AINE_GAME_CLEAR.isFinished(serverPlayer) || TCRQuestManager.hasQuest(serverPlayer, TCRQuests.TALK_TO_AINE_GAME_CLEAR))) {
                         event.setCanceled(true);
                         serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                     }
@@ -350,17 +350,17 @@ public class PlayerEventListeners {
                     }
                 }
 
-                if (event.getDimension() == AetherDimensions.AETHER_LEVEL) {
-                    if (!(TCRQuests.GO_TO_AETHER.isFinished(serverPlayer) || TCRQuestManager.hasQuest(serverPlayer, TCRQuests.GO_TO_AETHER))) {
+                if (event.getDimension() == Level.END) {
+                    if (!(TCRQuests.GO_TO_THE_END.isFinished(serverPlayer) || TCRQuestManager.hasQuest(serverPlayer, TCRQuests.GO_TO_THE_END))) {
                         event.setCanceled(true);
                         serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                     }
                 }
 
-                if (event.getDimension() == Level.END) {
-                    if (!PlayerDataManager.canEnterEnd.get(serverPlayer)) {
+                if (event.getDimension() == AetherDimensions.AETHER_LEVEL) {
+                    if (!(TCRQuests.GO_TO_AETHER.isFinished(serverPlayer) || TCRQuestManager.hasQuest(serverPlayer, TCRQuests.GO_TO_AETHER))) {
                         event.setCanceled(true);
-                        serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_enter_dim"), true);
+                        serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                     }
                 }
 

@@ -48,7 +48,9 @@ public class TCRItemModelProvider extends ItemModelProvider {
         simpleItem(TCRItems.DESERT_FRAGMENT);
         simpleItem(TCRItems.ENDER_FRAGMENT);
         simpleItem(TCRItems.STORM_FRAGMENT);
+        simpleItem(TCRItems.SOUL_FRAGMENT);
         simpleItem(TCRItems.MECH_FRAGMENT);
+        simpleItem(TCRItems.FLAME_FRAGMENT);
         simpleItem(TCRItems.NETHERITE_FRAGMENT);
     }
 
