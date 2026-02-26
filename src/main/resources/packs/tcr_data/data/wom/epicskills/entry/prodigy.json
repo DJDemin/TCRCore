@@ -1,0 +1,1093 @@
+{
+	"nodes": [
+		{
+			"ability_points": 2,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:custom",
+							"stat": "minecraft:sprint_one_cm",
+							"value": {
+								"min": 0.008
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.precise_roll",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				100,
+				50
+			],
+			"skill": "wom:precise_roll"
+		},
+		{
+			"ability_points": 1,
+			"hidden": false,
+			"position_in_screen": [
+				300,
+				50
+			],
+			"skill": "wom:pain_anticipation"
+		},
+		{
+			"ability_points": 4,
+			"parents": [
+				{
+					"control_points": [
+						[
+							200,
+							50
+						]
+					],
+					"skill": "wom:precise_roll"
+				},
+				{
+					"control_points": [
+						[
+							200,
+							50
+						]
+					],
+					"skill": "wom:pain_anticipation"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:ravager",
+							"value": {
+								"min": 40
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.bull_charge",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				200,
+				150
+			],
+			"skill": "wom:bull_charge"
+		},
+		{
+			"ability_points": 0,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:skeleton",
+							"value": {
+								"min": 10
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.arrow_tenacity",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				150,
+				100
+			],
+			"skill": "wom:arrow_tenacity"
+		},
+		{
+			"ability_points": 3,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:creeper",
+							"value": {
+								"min": 100
+							}
+						},
+						{
+							"type": "minecraft:custom",
+							"stat": "minecraft:mob_kills",
+							"value": {
+								"min": 300
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.critical_knowledge",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				650,
+				100
+			],
+			"skill": "wom:critical_knowledge"
+		},
+		{
+			"ability_points": 3,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:witch",
+							"value": {
+								"min": 10
+							}
+						},
+						{
+							"type": "minecraft:custom",
+							"stat": "minecraft:mob_kills",
+							"value": {
+								"min": 300
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.dancing_blade",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				700,
+				100
+			],
+			"skill": "wom:dancing_blade"
+		},
+		{
+			"ability_points": 4,
+			"parents": [
+				{
+					"control_points": [
+						[
+							700,
+							200
+						]
+					],
+					"skill": "wom:dancing_blade"
+				},
+				{
+					"skill": "wom:critical_knowledge"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "wom:evil_skeleton",
+							"value": {
+								"min": 20
+							}
+						},
+						{
+							"type": "minecraft:custom",
+							"stat": "minecraft:mob_kills",
+							"value": {
+								"min": 900
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.lethal_focus",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				650,
+				200
+			],
+			"skill": "wom:lethal_focus"
+		},
+		{
+			"ability_points": 3,
+			"hidden": false,
+			"parents": [
+				{
+					"skill": "wom:pain_anticipation"
+				}
+			],
+			"position_in_screen": [
+				300,
+				100
+			],
+			"skill": "wom:latent_retribution"
+		},
+		{
+			"ability_points": 4,
+			"hidden": false,
+			"parents": [
+				{
+					"skill": "wom:latent_retribution"
+				}
+			],
+			"position_in_screen": [
+				300,
+				200
+			],
+			"skill": "wom:mindset"
+		},
+		{
+			"ability_points": 4,
+			"hidden": false,
+			"parents": [
+				{
+					"control_points": [
+						[
+							300,
+							250
+						]
+					],
+					"skill": "wom:mindset"
+				}
+			],
+			"position_in_screen": [
+				250,
+				250
+			],
+			"skill": "wom:adrenaline"
+		},
+		{
+			"ability_points": 4,
+			"hidden": false,
+			"parents": [
+				{
+					"skill": "wom:mindset"
+				}
+			],
+			"position_in_screen": [
+				200,
+				200
+			],
+			"skill": "wom:heart_shield"
+		},
+		{
+			"ability_points": 5,
+			"hidden": false,
+			"parents": [
+				{
+					"skill": "wom:mindset"
+				}
+			],
+			"position_in_screen": [
+				300,
+				300
+			],
+			"skill": "wom:meditation"
+		},
+		{
+			"ability_points": 7,
+			"parents": [
+				{
+					"skill": "wom:meditation"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:ender_dragon",
+							"value": {
+								"min": 1
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.inner_growth",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				300,
+				400
+			],
+			"skill": "wom:inner_growth"
+		},
+		{
+			"ability_points": 8,
+			"parents": [
+				{
+					"skill": "wom:inner_growth"
+				}
+			],
+			"hidden": false,
+			"position_in_screen": [
+				250,
+				400
+			],
+			"skill": "wom:proximity_exploiter"
+		},
+		{
+			"ability_points": 2,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "wom:lycanth",
+							"value": {
+								"min": 54
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.dopamine",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				450,
+				50
+			],
+			"skill": "wom:dopamine"
+		},
+		{
+			"ability_points": 2,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:skeleton",
+							"value": {
+								"min": 100
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.dodge_master",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				550,
+				50
+			],
+			"skill": "wom:dodge_master"
+		},
+		{
+			"ability_points": 2,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:enderman",
+							"value": {
+								"min": 100
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.ender_step",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				600,
+				50
+			],
+			"skill": "wom:ender_step"
+		},
+		{
+			"ability_points": 4,
+			"parents": [
+				{
+					"skill": "wom:ender_step"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:enderman",
+							"value": {
+								"min": 500
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.ender_obscuris",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				600,
+				150
+			],
+			"skill": "wom:ender_obscuris"
+		},
+		{
+			"ability_points": 6,
+			"parents": [
+				{
+					"skill": "wom:ender_obscuris"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:enderman",
+							"value": {
+								"min": 2000
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.time_travel",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				600,
+				200
+			],
+			"skill": "wom:time_travel"
+		},
+		{
+			"ability_points": 4,
+			"parents": [
+				{
+					"control_points": [
+						[
+							500,
+							50
+						]
+					],
+					"skill": "wom:dodge_master"
+				},
+				{
+					"control_points": [
+						[
+							500,
+							50
+						]
+					],
+					"skill": "wom:dopamine"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:ghast",
+							"value": {
+								"min": 18
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.lunatic_vivacity",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				500,
+				100
+			],
+			"skill": "wom:lunatic_vivacity"
+		},
+		{
+			"ability_points": 5,
+			"parents": [
+				{
+					"skill": "wom:lunatic_vivacity"
+				},
+				{
+					"skill": "wom:time_travel"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:evoker",
+							"value": {
+								"min": 20
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.voodoo_magic",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				500,
+				200
+			],
+			"skill": "wom:voodoo_magic"
+		},
+		{
+			"ability_points": 4,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:shulker",
+							"value": {
+								"min": 72
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.shulker_cloak",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				550,
+				250
+			],
+			"skill": "wom:shulker_cloak"
+		},
+		{
+			"ability_points": 4,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:wither_skeleton",
+							"value": {
+								"min": 120
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.soul_protection",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				550,
+				300
+			],
+			"skill": "wom:soul_protection"
+		},
+		{
+			"ability_points": 4,
+			"parents": [
+				{
+					"skill": "wom:lethal_focus"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "wom:evil_skeleton",
+							"value": {
+								"min": 40
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.vampirize",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				650,
+				300
+			],
+			"skill": "wom:vampirize"
+		},
+		{
+			"ability_points": 6,
+			"parents": [
+				{
+					"control_points": [
+						[
+							600,
+							300
+						]
+					],
+					"skill": "wom:soul_protection"
+				},
+				{
+					"control_points": [
+						[
+							600,
+							300
+						]
+					],
+					"skill": "wom:vampirize"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:wither",
+							"value": {
+								"min": 1
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.shadow_step",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				600,
+				350
+			],
+			"skill": "wom:shadow_step"
+		},
+		{
+			"ability_points": 1,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:enderman",
+							"value": {
+								"min": 5
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.shooting_style",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				400,
+				50
+			],
+			"skill": "wom:shooting_style"
+		},
+		{
+			"ability_points": 2,
+			"parents": [
+				{
+					"skill": "wom:shooting_style"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:enderman",
+							"value": {
+								"min": 50
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.punishment_kick",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				400,
+				100
+			],
+			"skill": "wom:punishment_kick"
+		},
+		{
+			"ability_points": 4,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "wom:hollow",
+							"value": {
+								"min": 20
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.buster_parade",
+			"custom_condition": false,
+			"hidden": false,
+			"parents": [
+				{
+					"control_points": [
+						[
+							350,
+							100
+						]
+					],
+					"skill": "wom:latent_retribution"
+				},
+				{
+					"control_points": [
+						[
+							350,
+							100
+						]
+					],
+					"skill": "wom:punishment_kick"
+				}
+			],
+			"position_in_screen": [
+				350,
+				150
+			],
+			"skill": "wom:buster_parade"
+		},
+		{
+			"ability_points": 4,
+			"hidden": false,
+			"parents": [
+				{
+					"skill": "wom:buster_parade"
+				}
+			],
+			"position_in_screen": [
+				350,
+				200
+			],
+			"skill": "wom:back_and_forth"
+		},
+		{
+			"ability_points": 4,
+			"hidden": false,
+			"parents": [
+				{
+					"control_points": [
+						[
+							400,
+							150
+						]
+					],
+					"skill": "wom:buster_parade"
+				}
+			],
+			"position_in_screen": [
+				400,
+				250
+			],
+			"skill": "wom:counter_attack"
+		},
+		{
+			"ability_points": 5,
+			"parents": [
+				{
+					"control_points": [
+						[
+							400,
+							300
+						]
+					],
+					"skill": "wom:counter_attack"
+				},
+				{
+					"skill": "wom:dopamine"
+				}
+				
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "wom:saulomonk",
+							"value": {
+								"min": 13
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.manipulator",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				450,
+				300
+			],
+			"skill": "wom:manipulator"
+		},
+		{
+			"ability_points": 5,
+			"parents": [
+				{
+					"control_points": [
+						[
+							550,
+							350
+						]
+					],
+					"skill": "wom:soul_protection"
+				},
+				{
+					"control_points": [
+						[
+							400,
+							350
+						]
+					],
+					"skill": "wom:counter_attack"
+				}
+			],
+			"hidden": false,
+			"position_in_screen": [
+				500,
+				350
+			],
+			"skill": "wom:vengeful_parry"
+		},
+		{
+			"ability_points": 10,
+			"parents": [
+				{
+					"control_points": [
+						[
+							500,
+							400
+						],
+						[
+							450,
+							400
+						],
+						[
+							450,
+							450
+						]
+					],
+					"skill": "wom:vengeful_parry"
+				},
+				{
+					"control_points": [
+						[
+							600,
+							400
+						],
+						[
+							450,
+							400
+						],
+						[
+							450,
+							450
+						]
+					],
+					"skill": "wom:shadow_step"
+				},
+				{
+					"control_points": [
+						[
+							450,
+							400
+						],
+						[
+							450,
+							450
+						]
+					],
+					"skill": "wom:inner_growth"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "wom:evil_skeleton",
+							"value": {
+								"min": 200
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.all_eyes_on_you",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				500,
+				450
+			],
+			"skill": "wom:all_eyes_on_you"
+		},
+		{
+			"ability_points": 10,
+			"parents": [
+				{
+					"control_points": [
+						[
+							500,
+							400
+						],
+						[
+							450,
+							400
+						],
+						[
+							450,
+							450
+						]
+					],
+					"skill": "wom:vengeful_parry"
+				},
+				{
+					"control_points": [
+						[
+							600,
+							400
+						],
+						[
+							450,
+							400
+						],
+						[
+							450,
+							450
+						]
+					],
+					"skill": "wom:shadow_step"
+				},
+				{
+					"control_points": [
+						[
+							450,
+							400
+						],
+						[
+							450,
+							450
+						]
+					],
+					"skill": "wom:inner_growth"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "wom:saulomonk",
+							"value": {
+								"min": 200
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.all_eyes_on_me",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				400,
+				450
+			],
+			"skill": "wom:all_eyes_on_me"
+		},
+		{
+			"ability_points": 5,
+			"parents": [
+				{
+					"control_points": [
+						[
+							350,
+							250
+						]
+					],
+					"skill": "wom:counter_attack"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:guardian",
+							"value": {
+								"min": 100
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.perfect_bulwark",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				350,
+				300
+			],
+			"skill": "wom:perfect_bulwark"
+		},
+		{
+			"ability_points": 8,
+			"parents": [
+				{
+					"skill": "wom:perfect_bulwark"
+				}
+			],
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:hollow",
+							"value": {
+								"min": 100
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.prodigy.avatar_of_might",
+			"custom_condition": false,
+			"hidden": false,
+			"position_in_screen": [
+				350,
+				350
+			],
+			"skill": "wom:avatar_of_might"
+		}
+	]
+}

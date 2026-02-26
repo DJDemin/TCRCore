@@ -2,6 +2,7 @@ package com.p1nero.tcrcore.events;
 
 import com.brass_amber.ba_bt.entity.hostile.golem.*;
 import com.brass_amber.ba_bt.init.BTEntityType;
+import com.brass_amber.ba_bt.init.BTExtras;
 import com.brass_amber.ba_bt.init.BTItems;
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ender_Guardian_Entity;
 import com.github.L_Ender.cataclysm.entity.AnimationMonster.BossMonsters.Ignis_Entity;
@@ -62,11 +63,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.IronGolem;
@@ -94,6 +93,7 @@ import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
 import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import yesman.epicfight.api.animation.AnimationPlayer;
+import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.client.input.EpicFightKeyMappings;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
@@ -453,20 +453,23 @@ public class LivingEntityEventListeners {
                     TCRDimSaveData.get(wraithonLevel).setBossSummoned(false);
                 }
 
-                //防堆命机制
-                if (event.getSource().getEntity() instanceof LivingEntity living) {
-                    if (living instanceof WraithonEntity wraithonEntity) {
-                        if (!EntityUtil.getNearByPlayers(serverPlayer, 30).isEmpty()) {
-                            return;
+
+                EntityUtil.getNearByEntities(serverPlayer, 20).forEach(entity -> {
+                    if(!(entity instanceof OwnableEntity) && entity instanceof LivingEntity living) {
+                        if (entity instanceof WraithonEntity wraithonEntity) {
+                            if (!EntityUtil.getNearByPlayers(serverPlayer, 30).isEmpty()) {
+                                return;
+                            }
+                            wraithonEntity.setPhase(WraithonEntity.START_PHASE);
                         }
-                        wraithonEntity.setPhase(WraithonEntity.START_PHASE);
+                        //防堆命机制
+                        living.setHealth(living.getMaxHealth());
+                        living.removeAllEffects();
+                        if (entity instanceof Arterius arterius) {
+                            arterius.resetBossStatus(true);
+                        }
                     }
-                    living.setHealth(living.getMaxHealth());
-                    living.removeAllEffects();
-                    if (living instanceof Arterius arterius) {
-                        arterius.resetBossStatus(true);
-                    }
-                }
+                });
             }
 
         }
@@ -497,6 +500,12 @@ public class LivingEntityEventListeners {
     public static void onLivingHurt(LivingHurtEvent event) {
         if (TCRCoreMod.hasCheatMod()) {
             event.getEntity().setHealth(0);
+        }
+
+        if(event.getEntity() instanceof Player player && player.hasEffect(BTExtras.CORE_TEMPERATURE_EFFECT.get())) {
+            if(event.getSource().is(DamageTypeTags.IS_FIRE) || event.getSource().is(DamageTypes.LAVA)) {
+                event.setCanceled(true);
+            }
         }
 
         if(event.getSource().is(DamageTypes.LAVA) || event.getSource().is(DamageTypes.IN_FIRE) || event.getSource().is(DamageTypes.ON_FIRE)) {

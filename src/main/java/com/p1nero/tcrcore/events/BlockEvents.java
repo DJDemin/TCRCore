@@ -49,7 +49,7 @@ public class BlockEvents {
             //在呱呱村庄打爆紫水晶块概率出遗忘者
             if(WorldUtil.isInStructure(event.getPlayer(), WorldUtil.RIBBIT_VILLAGE)){
                 if(event.getState().is(Blocks.AMETHYST_BLOCK)) {
-                    if(serverLevel.random.nextBoolean()) {
+                    if(serverLevel.random.nextInt(4) == 1) {
                         Forgotten forgotten = ForgottenModule.forgottenType.spawn(serverLevel, event.getPos(), MobSpawnType.SPAWNER);
                         if(forgotten != null) {
                             forgotten.setTarget(event.getPlayer());

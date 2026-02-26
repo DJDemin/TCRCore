@@ -6,38 +6,27 @@
 	hide_quest_until_deps_visible: true
 	icon: "cataclysm:ceraunus"
 	id: "2D391C2F48D42ABA"
-	images: [{
-		alpha: 200
-		color: 16755200
-		height: 36.0d
-		image: "tcrcore:textures/ftb/weapon_shelf.png"
-		rotation: 0.0d
-		width: 72.0d
-		x: 0.0d
-		y: 0.0d
-	}]
 	order_index: 2
 	quest_links: [ ]
 	quests: [
 		{
 			hide_dependency_lines: true
 			hide_dependent_lines: true
-			icon: "minecraft:anvil"
+			icon: {
+				Count: 1
+				id: "tcrcore:mysterious_weapons"
+				tag: {
+					fdbosses: { }
+				}
+			}
 			icon_scale: 2.0d
 			id: "2F9F109962C8ADF4"
 			invisible: true
-			rewards: [
-				{
-					id: "5F3BFBAB9DE60A3A"
-					item: "minecraft:smithing_table"
-					type: "item"
-				}
-				{
-					id: "20DE5B4ADDEB8BA9"
-					item: "minecraft:enchanting_table"
-					type: "item"
-				}
-			]
+			rewards: [{
+				id: "58CD0CBC03CC0566"
+				type: "xp"
+				xp: 1
+			}]
 			shape: "square"
 			size: 2.5d
 			subtitle: "{ftbquests.chapter.chaptertcr2.quest3431479692052966900.subtitle}"
@@ -50,7 +39,7 @@
 			}]
 			title: "{ftbquests.chapter.chaptertcr2.quest3431479692052966900.title}"
 			x: 0.0d
-			y: -17.5d
+			y: -2.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -111,8 +100,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -10.0d
-			y: -10.0d
+			x: -15.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -214,8 +203,8 @@
 				item: "cataclysm:tidal_claws"
 				type: "item"
 			}]
-			x: 10.0d
-			y: -10.0d
+			x: 3.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -318,8 +307,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: 7.0d
-			y: -12.0d
+			x: 0.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["2BC22961C6AEF8D9"]
@@ -347,8 +336,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: 0.0d
-			y: -14.0d
+			x: -9.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -374,8 +363,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: 4.0d
-			y: -13.0d
+			x: -6.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -531,8 +520,8 @@
 					type: "item"
 				}
 			]
-			x: 1.5d
-			y: -4.5d
+			x: 6.0d
+			y: -15.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -635,34 +624,6 @@
 			}]
 			x: 6.75d
 			y: 3.0d
-		}
-		{
-			dependencies: ["2F9F109962C8ADF4"]
-			hide_dependency_lines: false
-			icon_scale: 1.4d
-			id: "74AD9CC2957BE149"
-			size: 1.5d
-			tasks: [{
-				id: "0CA8BDBA2E7D3290"
-				item: "enchantinginfuser:enchanting_infuser"
-				type: "item"
-			}]
-			x: 0.0d
-			y: -20.25d
-		}
-		{
-			dependencies: ["74AD9CC2957BE149"]
-			icon_scale: 1.5d
-			id: "26D99F4F0A539E99"
-			shape: "rsquare"
-			size: 1.5d
-			tasks: [{
-				id: "2B318C7FF8A79104"
-				item: "enchantinginfuser:advanced_enchanting_infuser"
-				type: "item"
-			}]
-			x: 0.0d
-			y: -22.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -951,8 +912,8 @@
 				}
 				type: "item"
 			}]
-			x: -4.0d
-			y: -13.0d
+			x: -9.0d
+			y: -5.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -972,8 +933,8 @@
 				item: "cataclysm:gauntlet_of_guard"
 				type: "item"
 			}]
-			x: 5.0d
-			y: -2.0d
+			x: 9.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["04A38D08B97A07B0"]
@@ -996,8 +957,8 @@
 				item: "cataclysm:gauntlet_of_bulwark"
 				type: "item"
 			}]
-			x: 4.0d
-			y: -7.0d
+			x: 9.0d
+			y: -5.0d
 		}
 		{
 			dependencies: ["04A38D08B97A07B0"]
@@ -1020,8 +981,8 @@
 				item: "cataclysm:gauntlet_of_maelstrom"
 				type: "item"
 			}]
-			x: 7.0d
-			y: -6.0d
+			x: 9.0d
+			y: -2.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -1041,8 +1002,8 @@
 				item: "cataclysm:the_annihilator"
 				type: "item"
 			}]
-			x: -7.0d
-			y: -9.0d
+			x: -12.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["4A769401A7590B3F"]
@@ -1065,8 +1026,8 @@
 				item: "cataclysm:the_immolator"
 				type: "item"
 			}]
-			x: -7.0d
-			y: -12.0d
+			x: -12.0d
+			y: -4.0d
 		}
 		{
 			dependencies: ["72C5DAEE93ACFDD5"]
@@ -1101,7 +1062,7 @@
 				}
 				type: "item"
 			}]
-			x: 11.0d
+			x: 6.0d
 			y: -5.0d
 		}
 		{
@@ -1134,8 +1095,8 @@
 				}
 				type: "item"
 			}]
-			x: 11.0d
-			y: -2.0d
+			x: 6.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -1156,8 +1117,8 @@
 				item: "cataclysm:meat_shredder"
 				type: "item"
 			}]
-			x: -4.0d
-			y: -7.0d
+			x: 12.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -1192,7 +1153,7 @@
 				}
 				type: "item"
 			}]
-			x: -7.0d
+			x: 15.0d
 			y: -5.0d
 		}
 		{
@@ -1214,8 +1175,8 @@
 				item: "cataclysm:wither_assault_shoulder_weapon"
 				type: "item"
 			}]
-			x: -10.0d
-			y: -2.0d
+			x: 12.0d
+			y: -5.0d
 		}
 		{
 			dependencies: ["14A3BA3C1B29330D"]
@@ -1238,8 +1199,8 @@
 				item: "cataclysm:void_assault_shoulder_weapon"
 				type: "item"
 			}]
-			x: -10.0d
-			y: -5.0d
+			x: 12.0d
+			y: -2.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -1260,8 +1221,8 @@
 				item: "cataclysm:bulwark_of_the_flame"
 				type: "item"
 			}]
-			x: 7.0d
-			y: -9.0d
+			x: 0.0d
+			y: -5.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -1280,8 +1241,8 @@
 				item: "cataclysm:astrape"
 				type: "item"
 			}]
-			x: 4.0d
-			y: -10.0d
+			x: -3.0d
+			y: -8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -1307,8 +1268,8 @@
 				}
 				type: "item"
 			}]
-			x: 0.0d
-			y: -11.0d
+			x: -9.0d
+			y: -2.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -1756,8 +1717,310 @@
 				}
 				type: "item"
 			}]
-			x: -1.5d
-			y: -4.5d
+			x: -4.5d
+			y: -15.0d
+		}
+		{
+			dependencies: ["1906CC62E077B227"]
+			id: "4A93C88987F02ECF"
+			rewards: [{
+				id: "57D97C4873E01F01"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "解放[&4高频村雨&r]的全部力量！"
+			tasks: [{
+				id: "23FD38D1346F10E4"
+				item: {
+					Count: 1
+					id: "epicfight:skillbook"
+					tag: {
+						fdbosses: { }
+						skill: "efn:zansetsu"
+					}
+				}
+				type: "item"
+			}]
+			x: -4.5d
+			y: -18.5d
+		}
+		{
+			dependencies: [
+				"4A769401A7590B3F"
+				"0D76D92CF8D39AE7"
+			]
+			dependency_requirement: "one_completed"
+			hide_until_deps_visible: true
+			id: "153BA3E9B85A96B9"
+			rewards: [{
+				id: "677E4A22AB2F5A83"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "在[轮回绝境]击败[魂兮]以解锁武器的全部力量！"
+			tasks: [{
+				entity: "tcr_bosses:maledictus_humanoid"
+				id: "039887128C802B89"
+				type: "kill"
+				value: 1L
+			}]
+			x: -13.5d
+			y: -11.0d
+		}
+		{
+			dependencies: ["49526E12F56F14D0"]
+			dependency_requirement: "one_completed"
+			hide_until_deps_visible: true
+			id: "2F6D380DC5FC69B1"
+			rewards: [{
+				id: "7E325C0DCEA2F6EC"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "在[轮回绝境]击败[坤岳]以解锁武器的全部力量！"
+			tasks: [{
+				entity: "tcr_bosses:ancient_remnant_humanoid"
+				id: "4AFFD7C63CD000D8"
+				type: "kill"
+				value: 1L
+			}]
+			x: -9.0d
+			y: -11.0d
+		}
+		{
+			dependencies: [
+				"74F850F3C8C76ED4"
+				"40217A88C9D46BB1"
+			]
+			dependency_requirement: "one_completed"
+			hide_until_deps_visible: true
+			id: "08658F49935E08E0"
+			rewards: [{
+				id: "6C237D57F8E5C4CB"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "在[轮回绝境]击败[穹霄]以解锁武器的全部力量！"
+			tasks: [{
+				entity: "tcr_bosses:scylla_humanoid"
+				id: "6AB9B519617B44EB"
+				type: "kill"
+				value: 1L
+			}]
+			x: -4.5d
+			y: -11.0d
+		}
+		{
+			dependencies: ["627E4A2C0428CC5A"]
+			id: "3254967D776D648C"
+			rewards: [{
+				id: "5274468D1B56667C"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "解放[&6阎魔刀&r]的全部力量！"
+			tasks: [{
+				id: "3D44318518C329DE"
+				item: {
+					Count: 1
+					id: "minecraft:enchanted_book"
+					tag: {
+						StoredEnchantments: [{
+							id: "efn:yamato_guard"
+							lvl: 1s
+						}]
+						fdbosses: { }
+					}
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: -15.0d
+		}
+		{
+			dependencies: ["627E4A2C0428CC5A"]
+			id: "6533118C2C897C1E"
+			rewards: [{
+				id: "56ED6545CAF38BA6"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "解放[&6阎魔刀&r]的全部力量！"
+			tasks: [{
+				id: "718AD14EAA4DD552"
+				item: {
+					Count: 1
+					id: "minecraft:enchanted_book"
+					tag: {
+						StoredEnchantments: [{
+							id: "efn:yamato_doppelganger"
+							lvl: 1s
+						}]
+						fdbosses: { }
+					}
+				}
+				type: "item"
+			}]
+			x: 4.0d
+			y: -18.0d
+		}
+		{
+			dependencies: ["627E4A2C0428CC5A"]
+			id: "4108291A69C3FFF6"
+			rewards: [{
+				id: "68A7E29FE488F6BA"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "解放[&6阎魔刀&r]的全部力量！"
+			tasks: [{
+				id: "6396BA16C3C11709"
+				item: {
+					Count: 1
+					id: "minecraft:enchanted_book"
+					tag: {
+						StoredEnchantments: [{
+							id: "efn:yamato_summoned_sword"
+							lvl: 1s
+						}]
+						fdbosses: { }
+					}
+				}
+				type: "item"
+			}]
+			x: 8.0d
+			y: -18.0d
+		}
+		{
+			dependencies: ["627E4A2C0428CC5A"]
+			id: "5DBFF2EAFF720ABF"
+			rewards: [{
+				id: "325D10F10ECBA98C"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "解放[&6阎魔刀&r]的全部力量！"
+			tasks: [{
+				id: "6B39D41A39B381B4"
+				item: {
+					Count: 1
+					id: "minecraft:enchanted_book"
+					tag: {
+						StoredEnchantments: [{
+							id: "efn:yamato_judgement_cut_end"
+							lvl: 1s
+						}]
+						fdbosses: { }
+					}
+				}
+				type: "item"
+			}]
+			x: 10.0d
+			y: -15.0d
+		}
+		{
+			dependencies: ["016F12E968740FBA"]
+			dependency_requirement: "one_completed"
+			hide_until_deps_visible: true
+			id: "494B0310B146210A"
+			rewards: [{
+				id: "28E132ECF8738D2E"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "在[轮回绝境]击败[烬煌]以解锁武器的全部力量！"
+			tasks: [{
+				entity: "tcr_bosses:ignis_humanoid"
+				id: "0A8F12C168369116"
+				type: "kill"
+				value: 1L
+			}]
+			x: 0.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["12C6899DBC971D90"]
+			dependency_requirement: "one_completed"
+			hide_until_deps_visible: true
+			id: "1E2BB91EDAEA9EFB"
+			rewards: [{
+				id: "3AA684E8E2457C65"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "在[轮回绝境]击败[沧溟]以解锁武器的全部力量！"
+			tasks: [{
+				entity: "tcr_bosses:leviathan_humanoid"
+				id: "361B1B5784C2512B"
+				type: "kill"
+				value: 1L
+			}]
+			x: 3.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["72C5DAEE93ACFDD5"]
+			dependency_requirement: "one_completed"
+			hide_until_deps_visible: true
+			id: "51362145E6878F9F"
+			rewards: [{
+				id: "0E56FD2A36EEFF26"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "在[轮回绝境]击败[狱渊]以解锁武器的全部力量！"
+			tasks: [{
+				entity: "tcr_bosses:netherite_humanoid"
+				id: "7BD0A0A33E8C1A3D"
+				type: "kill"
+				value: 1L
+			}]
+			x: 6.0d
+			y: -11.0d
+		}
+		{
+			dependencies: ["04A38D08B97A07B0"]
+			dependency_requirement: "one_completed"
+			hide_until_deps_visible: true
+			id: "30B91B89C7183932"
+			rewards: [{
+				id: "37F3A67215A4A1B7"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "在[轮回绝境]击败[湮无]以解锁武器的全部力量！"
+			tasks: [{
+				entity: "tcr_bosses:ender_guardian_humanoid"
+				id: "5AC95E5287DC0979"
+				type: "kill"
+				value: 1L
+			}]
+			x: 9.0d
+			y: -11.0d
 		}
 	]
 	title: "{ftbquests.chapter.chaptertcr2.title}"

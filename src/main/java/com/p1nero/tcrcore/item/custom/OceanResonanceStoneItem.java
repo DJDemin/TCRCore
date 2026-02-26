@@ -86,7 +86,7 @@ public class OceanResonanceStoneItem extends ResonanceStoneItem{
                         player.displayClientMessage(TCRCoreMod.getInfo("resonance_search_failed", WorldUtil.RIBBIT_VILLAGE).withStyle(ChatFormatting.RED), false);
                     }
                     callback.accept(pos, serverPlayer);
-                    TCRQuests.RIBBITS_QUEST.start(serverPlayer, false);
+                    TCRQuests.RIBBITS_QUEST.start(serverPlayer);
                     //保险，俩都找到再消耗
                     if(pos != null && pos1 != null) {
                         itemStack.shrink(1);

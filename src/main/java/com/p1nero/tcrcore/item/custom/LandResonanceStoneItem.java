@@ -86,7 +86,7 @@ public class LandResonanceStoneItem extends ResonanceStoneItem{
                         player.displayClientMessage(TCRCoreMod.getInfo("resonance_search_failed", WorldUtil.BONE_CHIMERA_STRUCTURE).withStyle(ChatFormatting.RED), false);
                     }
                     callback.accept(pos, serverPlayer);
-                    TCRQuests.BONE_CHIMERA_QUEST.start(serverPlayer, false);
+                    TCRQuests.BONE_CHIMERA_QUEST.start(serverPlayer);
                     //保险，俩都找到再消耗
                     if(pos != null && pos1 != null) {
                         itemStack.shrink(1);

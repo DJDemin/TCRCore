@@ -1,0 +1,89 @@
+{
+	"nodes": [
+		{
+			"ability_points": 2,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:spider",
+							"value": {
+								"min": 100
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.acrobat.spider_techniques",
+			"hidden": false,
+			"position_in_screen": [
+				200,
+				100
+			],
+			"skill": "wom:spider_techniques"
+		},
+		{
+			"ability_points": 2,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "wom:lycanth",
+							"value": {
+								"min": 5
+							}
+						},
+						{
+							"type": "minecraft:custom",
+							"stat": "minecraft:sprint_one_cm",
+							"value": {
+								"min": 0.020
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.acrobat.natural_sprinter",
+			"hidden": false,
+			"position_in_screen": [
+				350,
+				100
+			],
+			"skill": "wom:natural_sprinter"
+		},
+		{
+			"ability_points": 2,
+			"conditions": {
+				"type_specific": {
+					"type": "player",
+					"stats": [
+						{
+							"type": "minecraft:killed",
+							"stat": "minecraft:elder_guardian",
+							"value": {
+								"min": 6
+							}
+						},{
+							"type": "minecraft:custom",
+							"stat": "minecraft:swim_one_cm",
+							"value": {
+								"min": 0.006
+							}
+						}
+					]
+				}
+			},
+			"unlock_tip": "unlock_tip.epicskills.acrobat.aqua_maneuvre",
+			"hidden": false,
+			"position_in_screen": [
+				500,
+				100
+			],
+			"skill": "wom:aqua_maneuvre"
+		}
+	]
+}

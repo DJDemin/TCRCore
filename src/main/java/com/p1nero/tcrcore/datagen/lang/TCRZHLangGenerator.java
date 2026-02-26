@@ -68,7 +68,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
 
         //主线·沙漠之眼
         this.addQuest(TCRQuests.USE_LAND_RESONANCE_STONE, "大地之章", "使用[%s]", "你终于来到了传说中的[%s]。在这里将会遇到什么样的冒险呢？快使用[%s]吧！它将指引我们寻回第一颗眼睛。");
-        this.addQuest(TCRQuests.GET_DESERT_EYE, "大地之章", "寻回[%s]", "[%s]为我们标记了[%s]所散落的位置，快出发去寻回[%s]吧！\n\n§a[提示]:[%s§a]可能藏匿于方块之中！\n\n§4[注意]：若获取后无法完成任务，请尝试关闭可能自动拾取物品的插件，并扔出去后重新拾取！");
+        this.addQuest(TCRQuests.GET_DESERT_EYE, "大地之章", "寻回[%s]", "[%s]为我们标记了[%s]所散落的位置，快出发去寻回[%s]吧！\n\n§a[提示]:探索高塔以寻找召唤boss的钥匙！注意，[%s§a]可能藏匿于方块之中！\n\n§4[注意]：若获取后无法完成任务，请尝试关闭可能自动拾取物品的插件，并扔出去后重新拾取！");
         this.addQuest(TCRQuests.TALK_TO_CHRONOS_1, "大地之章", "和%s对话", "[%s]已经寻回，快回主城找%s汇报吧！她将告诉我们下一步该做什么。");
         //奇美拉支线
         this.addQuest(TCRQuests.BONE_CHIMERA_QUEST, "神兵之章", "前往[%s]", "[%s]似乎为我们标记了一个另一个地点，说不定有什么奇遇，快去看看吧！\n\n§a[任务奖励]: §f[%s§f]");
