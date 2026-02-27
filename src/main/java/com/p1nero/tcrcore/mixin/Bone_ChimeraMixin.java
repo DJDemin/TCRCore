@@ -18,14 +18,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import static com.p1nero.tcrcore.events.ForgeEvents.BOSS_BAR_MANAGER;
+
 /**
  * 对话控制开打
  */
 @Mixin(Bone_Chimera_Entity.class)
 public abstract class Bone_ChimeraMixin extends IABoss_monster {
-
-    @Unique
-    private ServerBossEvent tcr$bossBar;
 
     public Bone_ChimeraMixin(EntityType entity, Level world) {
         super(entity, world);
@@ -33,22 +32,14 @@ public abstract class Bone_ChimeraMixin extends IABoss_monster {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void tcr$init(EntityType<?> entity, Level world, CallbackInfo ci) {
-        tcr$bossBar = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS);
-        MinecraftForge.EVENT_BUS.<PlayerEvent.StartTracking>addListener(startTracking -> {
-            if(startTracking.getTarget().equals(this) && startTracking.getEntity() instanceof ServerPlayer serverPlayer) {
-                tcr$bossBar.addPlayer(serverPlayer);
-            }
-        });
-        MinecraftForge.EVENT_BUS.<PlayerEvent.StopTracking>addListener(stopTracking -> {
-            if(stopTracking.getTarget().equals(this) && stopTracking.getEntity() instanceof ServerPlayer serverPlayer) {
-                tcr$bossBar.removePlayer(serverPlayer);
-            }
-        });
+        if(!world.isClientSide) {
+            ServerBossEvent tcr$bossBar = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS);
+            BOSS_BAR_MANAGER.put(this, tcr$bossBar);
+        }
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void tcr$tick(CallbackInfo ci) {
-        this.tcr$bossBar.setProgress(this.getHealth() / this.getMaxHealth());
         if(!level().isClientSide) {
             if(!TCREntityCapabilityProvider.getTCREntityPatch(this).isFighting()) {
                 this.setTarget(null);
