@@ -387,6 +387,14 @@ public class LivingEntityEventListeners {
                 }
             }
 
+            if(livingEntity instanceof Bone_Chimera_Entity) {
+                if(!TCRQuestManager.hasQuest(player, TCRQuests.TALK_TO_ORNN_1) && !TCRQuests.TALK_TO_ORNN_1.isFinished(player)) {
+                    //百兵图任务
+                    ItemUtil.addItemEntity(livingEntity, TCRItems.MYSTERIOUS_WEAPONS.get(), 1, ChatFormatting.GOLD.getColor());
+                    TCRQuests.TALK_TO_ORNN_1.start(player);
+                }
+            }
+
         });
 
         //===================服务端===================
@@ -440,16 +448,16 @@ public class LivingEntityEventListeners {
                 }
             }
 
-            if (livingEntity instanceof Bone_Chimera_Entity boneChimeraEntity && WorldUtil.isInStructure(livingEntity, WorldUtil.BONE_CHIMERA_STRUCTURE) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
-                //偷懒，直接秽土转生
-                SoulEntity soulEntity = EntityRespawnerMod.addToRespawn(boneChimeraEntity, 200, true);
-                if (boneChimeraEntity.getPersistentData().contains("spawnX") && soulEntity != null) {
-                    soulEntity.setPos(readSpawnPos(boneChimeraEntity));
+            if (livingEntity instanceof Bone_Chimera_Entity boneChimeraEntity) {
+                if(WorldUtil.isInStructure(livingEntity, WorldUtil.BONE_CHIMERA_STRUCTURE) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
+                    //偷懒，直接秽土转生
+                    SoulEntity soulEntity = EntityRespawnerMod.addToRespawn(boneChimeraEntity, 200, true);
+                    if (boneChimeraEntity.getPersistentData().contains("spawnX") && soulEntity != null) {
+                        soulEntity.setPos(readSpawnPos(boneChimeraEntity));
+                    }
+                    livingEntity.getPersistentData().putBoolean("already_respawn", true);
                 }
-                livingEntity.getPersistentData().putBoolean("already_respawn", true);
-
-                //掉百兵图
-                ItemUtil.addItemEntity(livingEntity, TCRItems.MYSTERIOUS_WEAPONS.get(), 1, ChatFormatting.GOLD.getColor());
+                ForgeEvents.BOSS_BAR_MANAGER.remove(boneChimeraEntity);
             }
 
             //彩蛋物品

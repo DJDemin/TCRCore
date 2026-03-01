@@ -91,12 +91,12 @@ public class ForgeEvents {
 
     @SubscribeEvent
     public static void onStopTracking(PlayerEvent.StopTracking stopTracking) {
-        BOSS_BAR_MANAGER.entrySet().removeIf(entry -> entry.getKey() == null || !entry.getKey().isAlive());
         BOSS_BAR_MANAGER.forEach(((living, serverBossEvent) -> {
             if(stopTracking.getTarget().equals(living) && stopTracking.getEntity() instanceof ServerPlayer serverPlayer) {
                 serverBossEvent.removePlayer(serverPlayer);
             }
         }));
+        BOSS_BAR_MANAGER.entrySet().removeIf(entry -> entry.getKey() == null || !entry.getKey().isAlive());
     }
 
     @SubscribeEvent

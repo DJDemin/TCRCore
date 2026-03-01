@@ -100,6 +100,11 @@ public class TCRCapabilityProvider implements ICapabilityProvider, INBTSerializa
         return player.getCapability(TCRCapabilityProvider.TCR_PLAYER).orElse(new TCRPlayer());
     }
 
+    public static void clearPlayerData(ServerPlayer serverPlayer) {
+        getTCRPlayer(serverPlayer).clear();
+        syncPlayerDataToClient(serverPlayer);
+    }
+
     public static void syncPlayerDataToClient(ServerPlayer serverPlayer) {
         getTCRPlayer(serverPlayer).syncToClient(serverPlayer);
     }

@@ -204,6 +204,10 @@ public class TCRPlayer {
         this.finishedQuests = old.finishedQuests;
     }
 
+    public void clear() {
+        copyFrom(new TCRPlayer());
+    }
+
     public void playDirectionParticle(Vec3 from, Vec3 to) {
         this.from = from;
         this.dir = to.subtract(from).normalize();

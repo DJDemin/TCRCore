@@ -25,7 +25,8 @@ import static com.p1nero.tcrcore.events.ForgeEvents.BOSS_BAR_MANAGER;
  */
 @Mixin(Bone_Chimera_Entity.class)
 public abstract class Bone_ChimeraMixin extends IABoss_monster {
-
+    @Unique
+    ServerBossEvent tcr$bossBar;
     public Bone_ChimeraMixin(EntityType entity, Level world) {
         super(entity, world);
     }
@@ -33,7 +34,7 @@ public abstract class Bone_ChimeraMixin extends IABoss_monster {
     @Inject(method = "<init>", at = @At("TAIL"))
     private void tcr$init(EntityType<?> entity, Level world, CallbackInfo ci) {
         if(!world.isClientSide) {
-            ServerBossEvent tcr$bossBar = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS);
+            tcr$bossBar = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS);
             BOSS_BAR_MANAGER.put(this, tcr$bossBar);
         }
     }
@@ -54,6 +55,13 @@ public abstract class Bone_ChimeraMixin extends IABoss_monster {
     private void tcr$hurt(DamageSource damagesource, float amount, CallbackInfoReturnable<Boolean> cir) {
         if(!TCREntityCapabilityProvider.getTCREntityPatch(this).isFighting()) {
             cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "die", at = @At("HEAD"))
+    private void tcr$die(DamageSource source, CallbackInfo ci) {
+        if(!level().isClientSide) {
+            tcr$bossBar.removeAllPlayers();
         }
     }
 

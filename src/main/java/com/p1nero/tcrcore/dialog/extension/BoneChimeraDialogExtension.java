@@ -34,7 +34,7 @@ public class BoneChimeraDialogExtension implements IEntityDialogueExtension<Bone
     @Override
     public boolean canInteractWith(Player player, Bone_Chimera_Entity boneChimeraEntity) {
         return !TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity).isFighting()
-                && (TCRQuestManager.hasQuest(player, TCRQuests.BONE_CHIMERA_QUEST) || TCRQuestManager.hasFinished(player, TCRQuests.BONE_CHIMERA_QUEST));
+                && (TCRQuestManager.hasQuest(player, TCRQuests.BONE_CHIMERA_QUEST) || TCRQuestManager.hasFinished(player, TCRQuests.BONE_CHIMERA_QUEST) || player.isCreative());
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -10,6 +10,7 @@ import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.capability.TCRQuests;
 import com.p1nero.tcrcore.client.TCRKeyMappings;
 import com.p1nero.tcrcore.dialog.custom.handler.no_entity.FirstEnterCloudlandScreenHandler;
+import com.p1nero.tcrcore.dialog.custom.handler.no_entity.ResetGameProgressScreenHandler;
 import com.p1nero.tcrcore.dialog.custom.handler.no_entity.StartScreenHandler;
 import com.p1nero.tcrcore.effect.TCREffects;
 import com.p1nero.tcrcore.entity.TCREntities;
@@ -185,6 +186,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
 
         StartScreenHandler.onGenerateZH(this);
         FirstEnterCloudlandScreenHandler.onGenerateZH(this);
+        ResetGameProgressScreenHandler.onGenerateZH(this);
 
         this.add("item.domesticationinnovation.collar_tag.tcr_info", "可进行特殊附魔，并将附魔应用于宠物身上。");
         this.addTCRItemInfo(net.blay09.mods.waystones.item.ModItems.warpStone, "点击物品栏中的传送卷轴按钮以进行传送。");
@@ -220,7 +222,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRItems.STORM_FRAGMENT.get(), "雷渊怒吼的碎片");
         this.add(TCRItems.SOUL_FRAGMENT.get(), "咒骨囚魂的遗尘");
         this.add(TCRItems.STONE_OF_REINCARNATION.get(), "轮回之石");
-        this.addItemUsageInfo(TCRItems.STONE_OF_REINCARNATION.get(), "");
+        this.addItemUsageInfo(TCRItems.STONE_OF_REINCARNATION.get(), "使用后将回到旅途的起点。");
         this.add(TCRItems.WITHER_SOUL_STONE.get(), "凋灵魂石");
         this.addItemUsageInfo(TCRItems.WITHER_SOUL_STONE.get(), "它现在似乎失去了魔力，只是一块独特的石头。想办法激活它吧！");
         this.add(TCRItems.WITHER_SOUL_STONE_ACTIVATED.get(), "凋灵魂石");

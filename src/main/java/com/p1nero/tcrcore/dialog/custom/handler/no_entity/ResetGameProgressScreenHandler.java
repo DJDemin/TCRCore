@@ -11,6 +11,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -24,13 +25,13 @@ public class ResetGameProgressScreenHandler {
         if(localPlayer == null) {
             return;
         }
-        StreamDialogueScreenBuilder screenBuilder = new StreamDialogueScreenBuilder(Component.empty(), "", TCRCoreMod.MOD_ID);
+        StreamDialogueScreenBuilder screenBuilder = new StreamDialogueScreenBuilder(Component.empty(), ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, name));
 
         screenBuilder.setCustomTitle(Component.literal("").append(TCREntities.AINE.get().getDescription().copy().withStyle(ChatFormatting.AQUA)).append(": \n"));
 
         DialogNode root = new DialogNode(builder.ans(0))
                 .addChild(new DialogNode(builder.ans(1), builder.opt(0))
-                        .addLeaf(builder.opt(0), CustomDialogHandler.ON_RESET_GAME_PROGRESS)
+                        .addLeaf(builder.opt(0), 1)
                         .addLeaf(builder.opt(1)))
                 .addLeaf(builder.opt(1));
 

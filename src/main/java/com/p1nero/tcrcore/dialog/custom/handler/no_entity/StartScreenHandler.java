@@ -9,6 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -22,13 +23,13 @@ public class StartScreenHandler {
         if(localPlayer == null) {
             return;
         }
-        StreamDialogueScreenBuilder screenBuilder = new StreamDialogueScreenBuilder(Component.empty(), "", TCRCoreMod.MOD_ID);
+        StreamDialogueScreenBuilder screenBuilder = new StreamDialogueScreenBuilder(Component.empty(), ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, name));
 
         screenBuilder.setCustomTitle(Component.literal("").append(localPlayer.getDisplayName().copy().withStyle(ChatFormatting.AQUA)).append(": \n"));
 
         screenBuilder.start(builder.ans(0, TCREntities.AINE.get().getDescription(), TCREntities.AINE.get().getDescription()))
                         .addOption(builder.opt(0), builder.ans(1, TCREntities.AINE.get().getDescription()))
-                                .addFinalOption(builder.opt(1), CustomDialogHandler.ON_START_SCREEN);
+                                .addFinalOption(builder.opt(1));
 
         Minecraft.getInstance().setScreen(screenBuilder.build());
     }
