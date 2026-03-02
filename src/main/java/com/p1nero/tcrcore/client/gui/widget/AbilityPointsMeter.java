@@ -1,6 +1,6 @@
 package com.p1nero.tcrcore.client.gui.widget;
 
-import com.p1nero.tcrcore.mixin.SkillTreeScreenAccessor;
+import com.p1nero.tcrcore.mixin.epicfight.SkillTreeScreenAccessor;
 import com.yesman.epicskills.client.gui.screen.SkillTreeScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

@@ -244,7 +244,7 @@ dependencies {
 
     //铁魔法
     implementation fg.deobf("curse.maven:playeranimator-658587:4587214")
-    implementation fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:7605614")
+    implementation fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:7691158")
     implementation fg.deobf("curse.maven:irons-spells-n-spellbooks-scroll-description-1454137:7576978")
     implementation fg.deobf("curse.maven:epic-fight-skillbook-description-1454141:7629226")
 
