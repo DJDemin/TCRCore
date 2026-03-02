@@ -385,6 +385,7 @@
   "info.tcr.press_to_show_quest_ui": "按 %s 键查看任务列表",
   "info.tcr.press_to_skill_tree": "经验充足，按下§6[K]键§f以进行技能加点！",
   "info.tcr.quest_map_mark": "任务点",
+  "info.tcr.quest_updated": "当前追踪的任务已更新！",
   "info.tcr.related_loot": "魔物： [%s] | 相关战利品：[%s]",
   "info.tcr.require_item_to_wake": "需要[%s]以唤醒...",
   "info.tcr.reset_when_no_player": "当幻境内没有玩家存在时，离开幻境过久，幻境将会重置！",

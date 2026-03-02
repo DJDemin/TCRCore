@@ -44,6 +44,7 @@ public class EntityUtil {
                 TickTaskManager.addTask(target.getUUID(), new ExecutionTask(executor, target, executionType, executionType.totalTick()){
                     @Override
                     public void onFinish() {
+                        super.onFinish();
                         target.kill();
                     }
                 });

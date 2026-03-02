@@ -10,7 +10,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import org.merlin204.mimic.entity.proteus.ProteusEntity;
-import org.merlin204.mimic.worldgen.WraithonDimensions;
+import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import yesman.epicfight.world.entity.ai.attribute.EpicFightAttributes;
 
 public class TCRMimic extends ProteusEntity {
@@ -40,7 +40,7 @@ public class TCRMimic extends ProteusEntity {
     @Override
     public void die(DamageSource cause) {
         super.die(cause);
-        ServerLevel mimicLevel = this.getServer().getLevel(WraithonDimensions.THE_LETHEAN_SEA_LEVEL_KEY);
+        ServerLevel mimicLevel = this.getServer().getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
         TCRDimSaveData.get(mimicLevel).setBossSummoned(false);
     }
 

@@ -5,7 +5,6 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.RefreshClientQuestsPacket;
 import com.p1nero.tcrcore.utils.WaypointUtil;
-import dev.ftb.mods.ftbquests.quest.Quest;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -16,7 +15,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
@@ -27,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TCRQuestManager {
     public static final String PRE = "tcrcore.quest.";
@@ -43,6 +42,16 @@ public class TCRQuestManager {
 
     public static Quest getQuestById(int id) {
         return QUEST_MAP.getOrDefault(id, EMPTY);
+    }
+
+    public static Quest getQuestByKey(String key) {
+        AtomicReference<Quest> toReturn = new AtomicReference<>();
+        QUEST_MAP.values().forEach(quest -> {
+            if(quest.getKey().equals(key)) {
+                toReturn.set(quest);
+            }
+        });
+        return toReturn.get();
     }
 
     public static Quest getCurrentQuest(Player player) {
