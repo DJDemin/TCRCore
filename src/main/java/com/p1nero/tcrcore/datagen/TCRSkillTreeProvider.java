@@ -7,8 +7,11 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import org.merlin204.efsiss.skill.EFSISSSkills;
+import yesman.epicfight.api.utils.math.Vec2i;
 import yesman.epicfight.skill.Skill;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class TCRSkillTreeProvider extends SkillTreeProvider {
@@ -21,7 +24,7 @@ public class TCRSkillTreeProvider extends SkillTreeProvider {
 
     @Override
     protected void buildSkillTreePages(Consumer<SkillTreePageBuilder> writer) {
-        int centerX = 120;
+        int centerX = 160;
         int centerY = 150;
         int radius = 100;
         int skillCount = 8;
@@ -29,7 +32,7 @@ public class TCRSkillTreeProvider extends SkillTreeProvider {
 
         Skill[] skills = {
                 EFSISSSkills.BLOOD_INTO_MANA,
-                EFSISSSkills.AUTO_HEAL,
+                EFSISSSkills.MAGIC_SWORD,
                 EFSISSSkills.RAPID_CHANT,
                 EFSISSSkills.BREATHE_AGAIN,
                 EFSISSSkills.AGAINST_MAGIC,
@@ -44,16 +47,32 @@ public class TCRSkillTreeProvider extends SkillTreeProvider {
                 .hiddenWhenLocked(true)
                 .setLocked(null);
 
+        // 存储每个技能的位置，用于后续计算中间点
+        List<Vec2i> skillPositions = new ArrayList<>();
+
         for (int i = 0; i < skills.length; i++) {
             double angle = i * angleStep;
             int x = (int) Math.round(centerX + radius * Math.cos(angle));
             int y = (int) Math.round(centerY + radius * Math.sin(angle));
-
+            skillPositions.add(new Vec2i(x, y));
             pageBuilder.newNode(skills[i])
                     .position(x, y)
-                    .abilityPointsRequirement(5)
+                    .abilityPointsRequirement(3)
                     .done();
         }
+
+        SkillTreePageBuilder.SkillTreeNodeBuilder nodeBuilder = pageBuilder.newNode(EFSISSSkills.CONNECT_ROOT)
+                .position(centerX, centerY)
+                .abilityPointsRequirement(5);
+
+        // 为每个外围技能添加父节点，转折点设置在中心点与技能点的中点
+        for (int i = 0; i < skills.length; i++) {
+            Vec2i pos = skillPositions.get(i);
+            int midX = (centerX + pos.x) / 2;
+            int midY = (centerY + pos.y) / 2;
+            nodeBuilder.addParent(skills[i], new Vec2i(midX, midY));
+        }
+        nodeBuilder.done();
 
         writer.accept(pageBuilder);
     }
