@@ -1,6 +1,0 @@
-{
-  "values": [
-    "minecraft:snowy_slopes",
-    {"id": "terralith:gravel_beach","required": false}
-  ]
-}
