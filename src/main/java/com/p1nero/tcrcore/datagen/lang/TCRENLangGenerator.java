@@ -192,7 +192,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         ResetGameProgressScreenHandler.onGenerateEN(this);
 
         this.add("item.domesticationinnovation.collar_tag.tcr_info", "It allows for special enchantments to be applied to pets.");
-        this.add("item.domesticationinnovation.pet_bed_white.tcr_info", "Allows pets to respawn on the pet bed.");
+        this.add("block.domesticationinnovation.pet_bed_white.tcr_info", "Allows pets to respawn on the pet bed.");
         this.addTCRItemInfo(net.blay09.mods.waystones.item.ModItems.warpStone, "Click the §6[Scroll]§r button in the inventory to teleport to activated waystones!");
         this.addTCRItemInfo(ItemRegistry.BOTTLE_OF_BLOOD.get(), "Brewed using §c[Crystallized Blood Marrow]§r, a drop from §d[Nehemoth]§r");
         this.addTCRItemInfo(EFNItem.DEEPDARK_HEART.get(), "Obtained by defeating the §2[Warden]§r or §2[Captain Cornelia]§r");
@@ -269,7 +269,8 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "Oracle Fragment");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "§c§kI'm Your...");
 
-        this.addInfo("dragon_die_back", "Your dragon has died, no pet bed detected, and has respawned in the sanctum.");
+        this.addInfo("temp_dragon_flute", "[Temporary Dragon Flute]: It will be consumed after use!");
+        this.addInfo("dragon_die_back", "Your dragon has died, no pet bed detected, and has beed saved to a new dragon flute");
         this.addInfo("only_work_on_dragon", "Only work on Dragon!");
         this.addInfo("creative_may_lost_progress", "Warning: Defeating the boss in Creative Mode will not progress the game!");
         this.addInfo("exit_spectator_in_pbf1", "Press [%s] to exit Spectator Mode and return to the Sanctum.");

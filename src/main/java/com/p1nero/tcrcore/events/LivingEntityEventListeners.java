@@ -49,6 +49,7 @@ import com.p1nero.tcrcore.entity.custom.fake_npc.fake_sky_golem.FakeSkyGolem;
 import com.p1nero.tcrcore.entity.custom.mimic.TCRMimic;
 import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.item.TCRItems;
+import com.p1nero.tcrcore.item.custom.DragonFluteItem;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
@@ -85,6 +86,7 @@ import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -399,17 +401,12 @@ public class LivingEntityEventListeners {
                 if(dragonBase.getOwnerUUID() != null) {
                     BlockPos bedPos = TameableUtils.getPetBedPos(event.getEntity());
                     if(bedPos == null) {
-                        ServerLevel sanctum = serverLevel.getServer().getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
-                        if(sanctum != null) {
-                            CompoundTag data = new CompoundTag();
-                            dragonBase.saveWithoutId(data);
-                            Entity newEntity = dragonBase.getType().spawn(sanctum, new BlockPos(WorldUtil.START_POS.above(5)), MobSpawnType.MOB_SUMMONED);
-                            if(newEntity instanceof DragonBase newDragon) {
-                                newEntity.load(data);
-                                if(newDragon.getOwner() instanceof Player player) {
-                                    player.displayClientMessage(TCRCoreMod.getInfo("dragon_die_back").withStyle(ChatFormatting.GOLD), false);
-                                }
-                            }
+                        if(dragonBase.getOwner() instanceof Player player) {
+                            ItemStack itemStack = TCRItems.DRAGON_FLUTE.get().getDefaultInstance();
+                            DragonFluteItem.saveToItem(itemStack, dragonBase);
+                            itemStack.getOrCreateTag().putBoolean("tcr_temp", true);
+                            ItemUtil.addItemEntity(player, itemStack);
+                            player.displayClientMessage(TCRCoreMod.getInfo("dragon_die_back").withStyle(ChatFormatting.GOLD), false);
                         }
                     }
 

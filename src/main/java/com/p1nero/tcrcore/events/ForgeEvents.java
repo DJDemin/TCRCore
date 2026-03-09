@@ -1,9 +1,11 @@
 package com.p1nero.tcrcore.events;
 
+import com.github.dodo.dodosmobs.entity.InternalAnimationMonster.IABossMonsters.Bone_Chimera_Entity;
 import com.p1nero.cataclysm_dimension.CataclysmDimensionMod;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.dialog_lib.events.ServerNpcEntityInteractEvent;
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.capability.TCREntityCapabilityProvider;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
@@ -106,6 +108,9 @@ public class ForgeEvents {
                 if(living != null) {
                     if(living.isAlive()) {
                         serverBossEvent.setProgress(living.getHealth() / living.getMaxHealth());
+                        if(living instanceof Bone_Chimera_Entity) {
+                            serverBossEvent.setVisible(TCREntityCapabilityProvider.getTCREntityPatch(living).isFighting());
+                        }
                     } else {
                         serverBossEvent.removeAllPlayers();
                     }

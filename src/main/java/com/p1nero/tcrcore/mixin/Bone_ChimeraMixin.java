@@ -47,9 +47,7 @@ public abstract class Bone_ChimeraMixin extends IABoss_monster {
                 this.attackTicks = 0;
                 this.attackCooldown = 100;
                 this.setAttackState(0);
-                tcr$bossBar.setVisible(false);
             }
-            tcr$bossBar.setVisible(true);
         }
     }
 

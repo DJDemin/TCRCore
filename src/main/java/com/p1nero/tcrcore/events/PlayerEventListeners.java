@@ -174,8 +174,8 @@ public class PlayerEventListeners {
 
             ItemUtil.addItem(serverPlayer, Items.LANTERN, 1);
             ItemUtil.addItem(serverPlayer, Items.BREAD, 32);
-//            ItemUtil.addItem(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 1);
-            ItemUtil.addItem(serverPlayer, TCRItems.RESET_SKILL_STONE.get(), 1);
+            ItemUtil.addItem(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 1);
+//            ItemUtil.addItem(serverPlayer, TCRItems.RESET_SKILL_STONE.get(), 1);
 
             net.getUnifiedStorage().insert(new ItemStackKey(BDItems.XP_EXCHANGE_ITEM.get().getDefaultInstance()), 1, false);
 
@@ -533,8 +533,8 @@ public class PlayerEventListeners {
                     serverPlayer.serverLevel().setBlockAndUpdate(new BlockPos(WorldUtil.BED_POS), Blocks.WHITE_BED.defaultBlockState().setValue(BlockStateProperties.BED_PART, BedPart.FOOT).setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST));
                 }
 
-                if (EntityUtil.getNearByEntities(FakeBossNpc.class, serverPlayer, 50).isEmpty()) {
-                    ServerLevel level = serverPlayer.serverLevel();
+                ServerLevel realLevel = serverPlayer.server.getLevel(TCRDimensions.REAL_LEVEL_KEY);
+                if (realLevel != null && !TCRDimSaveData.get(realLevel).isBossSummoned()) {
 
                     double[] angles = {
                             0, Math.PI / 4, Math.PI / 2, 3 * Math.PI / 4,
@@ -554,11 +554,11 @@ public class PlayerEventListeners {
 
                     for (int i = 0; i < 8; i++) {
                         double angle = angles[i];
-                        double distance = 5 + level.random.nextInt(4);
+                        double distance = 5 + realLevel.random.nextInt(4);
                         double dx = distance * Math.cos(angle);
                         double dz = distance * Math.sin(angle);
 
-                        FakeBossNpc fakeBossNpc = entityTypes.get(i).create(level);
+                        FakeBossNpc fakeBossNpc = entityTypes.get(i).create(realLevel);
                         if (fakeBossNpc != null) {
                             fakeBossNpc.setPos(WorldUtil.BED_POS.getX() + dx, WorldUtil.BED_POS.getY(), WorldUtil.BED_POS.getZ() + dz);
                             Vec3 dir = new BlockPos(WorldUtil.BED_POS).getCenter().subtract(fakeBossNpc.position());
@@ -566,10 +566,10 @@ public class PlayerEventListeners {
                             fakeBossNpc.setYRot(yRot);
                             fakeBossNpc.setYBodyRot(yRot);
                             fakeBossNpc.getLookControl().setLookAt(WorldUtil.BED_POS.getX(), WorldUtil.BED_POS.getY() + 2, WorldUtil.BED_POS.getZ());
-                            level.addFreshEntity(fakeBossNpc);
+                            realLevel.addFreshEntity(fakeBossNpc);
                         }
                     }
-
+                    TCRDimSaveData.get(realLevel).setBossSummoned(true);
                 }
             }
 

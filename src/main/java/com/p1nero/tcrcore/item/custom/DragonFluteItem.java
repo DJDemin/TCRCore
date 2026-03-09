@@ -3,6 +3,7 @@ package com.p1nero.tcrcore.item.custom;
 import com.p1nero.tcrcore.TCRCoreMod;
 import net.magister.bookofdragons.advancement.ModAdvancementTriggers;
 import net.magister.bookofdragons.entity.base.dragon.DragonBase;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,7 +34,8 @@ public class DragonFluteItem extends SimpleDescriptionItem {
     public @NotNull InteractionResult useOn(UseOnContext onContext) {
         if (!onContext.getLevel().isClientSide) {
             Player pPlayer = onContext.getPlayer();
-            LivingEntity livingEntity = releaseEntity(onContext.getItemInHand(), onContext.getLevel(), onContext.getClickLocation());
+            ItemStack stack = onContext.getItemInHand();
+            LivingEntity livingEntity = releaseEntity(stack, onContext.getLevel(), onContext.getClickLocation());
             if(livingEntity instanceof DragonBase dragonBase && pPlayer != null && dragonBase.canBeMountedBy(pPlayer)) {
                 boolean ridingSuccess = pPlayer.startRiding(dragonBase);
                 if (ridingSuccess) {
@@ -45,7 +47,11 @@ public class DragonFluteItem extends SimpleDescriptionItem {
                     dragonBase.goalSelector.getRunningGoals().forEach(WrappedGoal::stop);
                     dragonBase.targetSelector.getRunningGoals().forEach(WrappedGoal::stop);
                 }
-
+            }
+            if(livingEntity != null) {
+                if(stack.getOrCreateTag().getBoolean("tcr_temp")) {
+                    stack.shrink(1);
+                }
             }
         }
         return super.useOn(onContext);
@@ -63,8 +69,12 @@ public class DragonFluteItem extends SimpleDescriptionItem {
         return super.interactLivingEntity(itemStack, player, entity, hand);
     }
 
+    public static boolean containsDragon(ItemStack itemStack) {
+        return itemStack.getOrCreateTag().contains("entity");
+    }
+
     @Nullable
-    public LivingEntity releaseEntity(ItemStack itemStack, Level level, Vec3 spawnPos) {
+    public static LivingEntity releaseEntity(ItemStack itemStack, Level level, Vec3 spawnPos) {
         CompoundTag tag = itemStack.getOrCreateTag();
         EntityType<?> entityType = EntityType.byString(tag.getString("entity")).orElse(null);
         if (entityType != null && entityType.create(level) instanceof LivingEntity livingEntity) {
@@ -78,7 +88,7 @@ public class DragonFluteItem extends SimpleDescriptionItem {
         return null;
     }
 
-    public void saveToItem(ItemStack itemStack, LivingEntity entity) {
+    public static void saveToItem(ItemStack itemStack, LivingEntity entity) {
         entity.removeEffect(MobEffects.GLOWING);
         CompoundTag tag = itemStack.getOrCreateTag();
         tag.putString("entity", EntityType.getKey(entity.getType()).toString());
@@ -93,6 +103,9 @@ public class DragonFluteItem extends SimpleDescriptionItem {
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemStack, level, list, flag);
         CompoundTag tag = itemStack.getOrCreateTag();
+        if(tag.getBoolean("tcr_temp")) {
+            list.add(TCRCoreMod.getInfo("temp_dragon_flute").withStyle(ChatFormatting.GOLD));
+        }
         if(tag.contains("entity")) {
             EntityType.byString(tag.getString("entity")).ifPresent(entityType ->
                     list.add(TCRCoreMod.getInfo("containing_dragon", entityType.getDescription())));
