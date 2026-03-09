@@ -108,23 +108,8 @@ public class TCRCoreMod {
                     ModEntities.DEEPLING_BRUTE.get(),
                     ModEntities.DEEPLING.get()
             ));
-            ItemEvents.additionalInfoItems.addAll(List.of(
-                    DIItemRegistry.COLLAR_TAG.get(),
-                    net.blay09.mods.waystones.item.ModItems.warpStone,
-                    ItemRegistry.BOTTLE_OF_BLOOD.get(),
-                    com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(),
-                    ModItems.CHITIN_CLAW.get(),
-                    ModItems.CORAL_CHUNK.get(),
-                    Items.DRAGON_EGG,
-                    EFNItem.DEEPDARK_HEART.get(),
-                    EpicSkillsItems.ABILIITY_STONE.get()
-//                net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.MAGNET_UPGRADE.get(),
-//                net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.ADVANCED_MAGNET_UPGRADE.get(),
-//                net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.PICKUP_UPGRADE.get(),
-//                net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.ADVANCED_PICKUP_UPGRADE.get()
-            ));
 
-            ItemEvents.eyes.addAll(List.of(ModItems.MONSTROUS_EYE.get(), ModItems.VOID_EYE.get(), ModItems.MECH_EYE.get(), ModItems.ABYSS_EYE.get(), ModItems.STORM_EYE.get(), ModItems.CURSED_EYE.get(), ModItems.FLAME_EYE.get(), ModItems.DESERT_EYE.get()));
+            ItemEvents.initAdditionalInfoItems();
 
             PEpicCataclysmMod.astrapeLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
                     TCRBossEntities.SCYLLA_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.RED);

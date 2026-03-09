@@ -1,18 +1,26 @@
 package com.p1nero.tcrcore.events;
 
+import com.github.L_Ender.cataclysm.init.ModItems;
+import com.github.alexthe668.domesticationinnovation.server.block.DIBlockRegistry;
+import com.github.alexthe668.domesticationinnovation.server.item.DIItemRegistry;
+import com.hm.efn.registries.EFNItem;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
+import com.yesman.epicskills.registry.entry.EpicSkillsItems;
 import net.genzyuro.uniqueaccessories.registry.UAItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.sonmok14.fromtheshadows.server.utils.registry.ItemRegistry;
 import org.apache.commons.lang3.SystemUtils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
@@ -38,4 +46,23 @@ public class ItemEvents {
 
     }
 
+    public static void initAdditionalInfoItems() {
+        ItemEvents.additionalInfoItems.addAll(List.of(
+                DIItemRegistry.COLLAR_TAG.get(),
+                DIBlockRegistry.WHITE_PET_BED.get().asItem(),
+                net.blay09.mods.waystones.item.ModItems.warpStone,
+                ItemRegistry.BOTTLE_OF_BLOOD.get(),
+                com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(),
+                ModItems.CHITIN_CLAW.get(),
+                ModItems.CORAL_CHUNK.get(),
+                Items.DRAGON_EGG,
+                EFNItem.DEEPDARK_HEART.get(),
+                EpicSkillsItems.ABILIITY_STONE.get()
+//                net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.MAGNET_UPGRADE.get(),
+//                net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.ADVANCED_MAGNET_UPGRADE.get(),
+//                net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.PICKUP_UPGRADE.get(),
+//                net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.ADVANCED_PICKUP_UPGRADE.get()
+        ));
+        ItemEvents.eyes.addAll(List.of(ModItems.MONSTROUS_EYE.get(), ModItems.VOID_EYE.get(), ModItems.MECH_EYE.get(), ModItems.ABYSS_EYE.get(), ModItems.STORM_EYE.get(), ModItems.CURSED_EYE.get(), ModItems.FLAME_EYE.get(), ModItems.DESERT_EYE.get()));
+    }
 }

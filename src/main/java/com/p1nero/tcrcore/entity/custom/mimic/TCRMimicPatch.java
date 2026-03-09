@@ -20,6 +20,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import org.merlin204.mimic.copy.CopyAnimationInfo;
 import org.merlin204.mimic.entity.MimicEntities;
+import org.merlin204.mimic.entity.MimicEntity;
 import org.merlin204.mimic.entity.MimicPatch;
 import org.merlin204.mimic.entity.proteus.ProteusEntity;
 import org.merlin204.mimic.entity.shadow.ShadowMimicEntity;
@@ -194,21 +195,21 @@ public class TCRMimicPatch<T extends ProteusEntity> extends MimicPatch<T> {
      */
     @Override
     public void tryToLearnAnimation(LivingEntity livingEntity){
-        LivingEntityPatch<?> livingEntityPatch = EpicFightCapabilities.getEntityPatch(livingEntity,LivingEntityPatch.class);
-        if (livingEntityPatch != null && livingEntityPatch.getArmature() instanceof HumanoidArmature){
-
-            if (livingEntityPatch.getAnimator().getPlayerFor(null).getAnimation().get() instanceof AttackAnimation animation){
+        LivingEntityPatch<?> livingEntityPatch = EpicFightCapabilities.getEntityPatch(livingEntity, LivingEntityPatch.class);
+        if (livingEntityPatch != null && livingEntityPatch.getArmature() instanceof HumanoidArmature) {
+            if (livingEntityPatch.getAnimator().getPlayerFor(null).getAnimation().get() instanceof AttackAnimation animation) {
                 ItemStack main = livingEntity.getMainHandItem();
                 ItemStack off = livingEntity.getOffhandItem();
-                if (main.getItem() instanceof IAvalonAnimationItem || main.getItem() instanceof IChangeArmatureItem
-                        || off.getItem() instanceof IAvalonAnimationItem || off.getItem() instanceof IChangeArmatureItem) {
-
-                }else {
-                    if (main != ItemStack.EMPTY){
-                        CopyAnimationInfo copyAnimationInfo = new CopyAnimationInfo(animation.getAccessor(),this,livingEntity.getMainHandItem(),livingEntity.getOffhandItem());
-                        if (animation.getTotalTime() < 8F){
-                            this.copyMap.put(animation.getAccessor(),copyAnimationInfo);
-                        }
+                if (!(main.getItem() instanceof IAvalonAnimationItem) &&
+                        !(main.getItem() instanceof IChangeArmatureItem) &&
+                        !(off.getItem() instanceof IAvalonAnimationItem) &&
+                        !(off.getItem() instanceof IChangeArmatureItem) &&
+                        main != ItemStack.EMPTY &&
+                        animation.getArmature() instanceof HumanoidArmature &&
+                        !animation.getRegistryName().toString().contains("wom")) {
+                    CopyAnimationInfo copyAnimationInfo = new CopyAnimationInfo(animation.getAccessor(), this, livingEntity.getMainHandItem(), livingEntity.getOffhandItem());
+                    if (animation.getTotalTime() < 8.0F) {
+                        this.copyMap.put(animation.getAccessor(), copyAnimationInfo);
                     }
                 }
             }

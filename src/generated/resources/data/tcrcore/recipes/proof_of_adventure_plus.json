@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tcrcore:abyss_fragment"
+    },
+    {
+      "item": "tcrcore:storm_fragment"
+    },
+    {
+      "item": "tcrcore:flame_fragment"
+    },
+    {
+      "item": "tcrcore:mech_fragment"
+    },
+    {
+      "item": "tcrcore:soul_fragment"
+    },
+    {
+      "item": "tcrcore:desert_fragment"
+    },
+    {
+      "item": "tcrcore:ender_fragment"
+    },
+    {
+      "item": "tcrcore:netherite_fragment"
+    },
+    {
+      "item": "tcrcore:divine_fragment"
+    }
+  ],
+  "result": {
+    "item": "tcrcore:proof_of_adventure_plus"
+  }
+}

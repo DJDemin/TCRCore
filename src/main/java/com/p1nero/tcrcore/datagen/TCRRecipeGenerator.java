@@ -1,11 +1,13 @@
 package com.p1nero.tcrcore.datagen;
 
+import com.github.L_Ender.cataclysm.init.ModItems;
 import com.p1nero.tcrcore.datagen.tags.TCRItemTags;
 import com.p1nero.tcrcore.item.TCRItems;
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -18,6 +20,14 @@ public class TCRRecipeGenerator extends TCRRecipeProvider implements IConditionB
     }
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TCRItems.DRAGON_FLUTE.get(), 1)
+                .pattern(" AA")
+                .pattern("AAA")
+                .pattern("BA ")
+                .define('A', ModItems.KOBOLETON_BONE.get())
+                .define('B', Items.STICK)
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(consumer);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TCRItems.WITHER_SOUL_STONE_ACTIVATED.get(), 1)
                 .requires(TCRItems.WITHER_SOUL_STONE.get())
                 .requires(Items.GHAST_TEAR)

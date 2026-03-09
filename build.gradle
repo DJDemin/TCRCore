@@ -238,7 +238,7 @@ dependencies {
     implementation fg.deobf("curse.maven:combat-evolution-1377795:7708585")
     implementation fg.deobf("libs:tcr_bosses:1.0.0")
     implementation fg.deobf("libs:tcrmeshes:1.0.0")
-    implementation fg.deobf("libs:mimic:1.0.0")
+    implementation fg.deobf("curse.maven:epic-fight-the-mimic-1360684:7717502")
 
     //铁魔法
     implementation fg.deobf("curse.maven:playeranimator-658587:4587214")
@@ -389,14 +389,13 @@ dependencies {
         jarJar.ranged(it, "[2.3.0,)")
     }
 
-//    implementation fg.deobf("curse.maven:epic-knights-armor-and-weapons-509041:7090494")//FIXME runData时需注释掉
-    compileOnly(fg.deobf("curse.maven:armourers-workshop-229523:6965580"))
-//    implementation fg.deobf("curse.maven:item-borders-513769:5903326")//FIXME runData时需注释掉
-//    implementation fg.deobf("curse.maven:legendary-tooltips-532127:4662781")//FIXME runData时需注释掉
-
+    implementation fg.deobf("curse.maven:epic-knights-armor-and-weapons-509041:7090494")//FIXME runData时需注释掉
+    implementation fg.deobf("curse.maven:item-borders-513769:5903326")//FIXME runData时需注释掉
+    implementation fg.deobf("curse.maven:legendary-tooltips-532127:4662781")//FIXME runData时需注释掉
     runtimeOnly(fg.deobf("curse.maven:armourers-workshop-229523:6965580"))//FIXME runData时需注释掉
-    runtimeOnly fg.deobf("curse.maven:domestication-innovation-591149:4911955")//FIXME runData时需注释掉
 
+    runtimeOnly fg.deobf("curse.maven:domestication-innovation-591149:4911955")
+    compileOnly(fg.deobf("curse.maven:armourers-workshop-229523:6965580"))
     runtimeOnly fg.deobf("curse.maven:citadel-331936:7476570")
     compileOnly fg.deobf("curse.maven:domestication-innovation-591149:4911955")
     compileOnly fg.deobf("curse.maven:citadel-331936:7476570")

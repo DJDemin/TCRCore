@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "cataclysm:koboleton_bone"
+    },
+    "B": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " AA",
+    "AAA",
+    "BA "
+  ],
+  "result": {
+    "item": "tcrcore:dragon_flute"
+  },
+  "show_notification": true
+}

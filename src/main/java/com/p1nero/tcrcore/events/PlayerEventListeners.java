@@ -174,7 +174,8 @@ public class PlayerEventListeners {
 
             ItemUtil.addItem(serverPlayer, Items.LANTERN, 1);
             ItemUtil.addItem(serverPlayer, Items.BREAD, 32);
-            ItemUtil.addItem(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 1);
+//            ItemUtil.addItem(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 1);
+            ItemUtil.addItem(serverPlayer, TCRItems.RESET_SKILL_STONE.get(), 1);
 
             net.getUnifiedStorage().insert(new ItemStackKey(BDItems.XP_EXCHANGE_ITEM.get().getDefaultInstance()), 1, false);
 

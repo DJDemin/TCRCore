@@ -26,7 +26,7 @@ import static com.p1nero.tcrcore.events.ForgeEvents.BOSS_BAR_MANAGER;
 @Mixin(Bone_Chimera_Entity.class)
 public abstract class Bone_ChimeraMixin extends IABoss_monster {
     @Unique
-    ServerBossEvent tcr$bossBar;
+    private ServerBossEvent tcr$bossBar;
     public Bone_ChimeraMixin(EntityType entity, Level world) {
         super(entity, world);
     }
@@ -47,7 +47,9 @@ public abstract class Bone_ChimeraMixin extends IABoss_monster {
                 this.attackTicks = 0;
                 this.attackCooldown = 100;
                 this.setAttackState(0);
+                tcr$bossBar.setVisible(false);
             }
+            tcr$bossBar.setVisible(true);
         }
     }
 

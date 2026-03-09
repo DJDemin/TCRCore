@@ -53,5 +53,6 @@ public class TCRItemTabs {
                 output.accept(TCRItems.MECH_FRAGMENT.get());
                 output.accept(TCRItems.NETHERITE_FRAGMENT.get());
                 output.accept(TCRItems.STONE_OF_REINCARNATION.get());
+                output.accept(TCRItems.RESET_SKILL_STONE.get());
             }).build());
 }

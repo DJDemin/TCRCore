@@ -190,6 +190,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         ResetGameProgressScreenHandler.onGenerateZH(this);
 
         this.add("item.domesticationinnovation.collar_tag.tcr_info", "可进行特殊附魔，并将附魔应用于宠物身上。");
+        this.add("item.domesticationinnovation.pet_bed_white.tcr_info", "可使宠物在宠物床复活。");
         this.addTCRItemInfo(net.blay09.mods.waystones.item.ModItems.warpStone, "点击物品栏中的传送卷轴按钮以进行传送。");
         this.addTCRItemInfo(ItemRegistry.BOTTLE_OF_BLOOD.get(), "使用§d[尼赫莫斯]§r掉落物§c[晶化血髓]§r酿造获取");
         this.addTCRItemInfo(EFNItem.DEEPDARK_HEART.get(), "击败§2[监守者]§r或§2[可妮莉亚船长]§r获取");
@@ -213,6 +214,8 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addSkill("fire_avoid", "避火咒", "免疫火焰伤害！");
         this.addSkill("perfect_dodge", "闪避特效", "完美闪避时将有帅气的动作！");
 
+        this.add(TCRItems.RESET_SKILL_STONE.get(), "重置技能石");
+        this.addItemUsageInfo(TCRItems.RESET_SKILL_STONE.get(), "使用后将重置技能树中的所有技能并返还点数，十分的珍贵！");
         this.add(TCRItems.PROOF_OF_ADVENTURE_PLUS.get(), "真·冒险之证");
         this.addItemUsageInfo(TCRItems.PROOF_OF_ADVENTURE_PLUS.get(), "至高无上的荣耀！");
         this.add(TCRItems.DIVINE_FRAGMENT.get(), "神性碎片");
@@ -264,6 +267,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "神谕残卷");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "§c§kI'm Your...");
 
+        this.addInfo("dragon_die_back", "您的龙已死亡，未检测到宠物床，已在主城重生。");
         this.addInfo("only_work_on_dragon", "只能对龙类使用！");
         this.addInfo("creative_may_lost_progress", "警告！创造模式下击败boss将无法推进游戏进度！");
         this.addInfo("exit_spectator_in_pbf1", "按[%s]以退出观察者模式并回到主城");

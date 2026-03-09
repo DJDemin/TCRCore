@@ -24,13 +24,13 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 蓝瓶，使用后可回1/3蓝
  */
-public class BlueBottle extends SimpleDescriptionItem{
+public class BlueBottleItem extends SimpleDescriptionItem{
 
     public static final String DATA_KEY = "count";
 
     public static final float RATE = 0.33F;
 
-    public BlueBottle(Properties properties) {
+    public BlueBottleItem(Properties properties) {
         super(properties);
     }
 

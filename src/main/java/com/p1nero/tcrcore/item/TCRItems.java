@@ -45,6 +45,7 @@ public class TCRItems {
     public static final RegistryObject<Item> SOUL_FRAGMENT = REGISTRY.register("soul_fragment", () -> new CataclysmHumanoidBossDropItem(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC).fireResistant(), TCRBossEntities.MALEDICTUS_HUMANOID::get));
 
     public static final RegistryObject<Item> RESONANCE_STONE = REGISTRY.register("resonance_stone", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> RESET_SKILL_STONE = REGISTRY.register("reset_skill_stone", () -> new ResetSkillStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
     public static final RegistryObject<Item> LAND_RESONANCE_STONE = REGISTRY.register("land_resonance_stone",
             () -> new LandResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.LAND_GOLEM), ResonanceStoneItem.SURFACE, Level.OVERWORLD, (serverPlayer) ->
@@ -154,7 +155,7 @@ public class TCRItems {
 
     public static final RegistryObject<Item> DIVINE_FRAGMENT = REGISTRY.register("divine_fragment", () -> new SimpleDescriptionItem(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC).fireResistant(), true));
 
-    public static final RegistryObject<Item> MAGIC_BOTTLE = REGISTRY.register("magic_bottle", () -> new BlueBottle(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> MAGIC_BOTTLE = REGISTRY.register("magic_bottle", () -> new BlueBottleItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
     public static final RegistryObject<Item> THE_INCINERATOR_SOUL = REGISTRY.register("the_incinerator_soul", () -> new The_Incinerator((new Item.Properties()).stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 }
