@@ -14,6 +14,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -102,7 +103,7 @@ public class ItemUtil {
     }
 
     public static CustomColorItemEntity addItemEntity(Entity spawnOn, Item item, int count){
-        if(spawnOn instanceof Player player) {
+        if(spawnOn instanceof Player player && !Items.AIR.equals(item)) {
             player.displayClientMessage(TCRCoreMod.getInfo("add_item_tip", item.getDefaultInstance().getDisplayName(), count), false);
         }
         CustomColorItemEntity itemEntity = new CustomColorItemEntity(spawnOn.level(), spawnOn.getX(), spawnOn.getY(), spawnOn.getZ(), item.getDefaultInstance().copyWithCount(count));
@@ -112,7 +113,7 @@ public class ItemUtil {
     }
 
     public static CustomColorItemEntity addItemEntity(Entity spawnOn, ItemStack item, int color){
-        if(spawnOn instanceof Player player) {
+        if(spawnOn instanceof Player player && !item.isEmpty()) {
             player.displayClientMessage(TCRCoreMod.getInfo("add_item_tip", item.getDisplayName(),  item.getCount()), false);
         }
         CustomColorItemEntity itemEntity = new CustomColorItemEntity(spawnOn.level(), spawnOn.getX(), spawnOn.getY(), spawnOn.getZ(), item);
@@ -123,7 +124,7 @@ public class ItemUtil {
     }
 
     public static CustomColorItemEntity addItemEntity(Entity spawnOn, ItemStack item){
-        if(spawnOn instanceof Player player) {
+        if(spawnOn instanceof Player player && !item.isEmpty()) {
             player.displayClientMessage(TCRCoreMod.getInfo("add_item_tip", item.getDisplayName(),  item.getCount()), false);
         }
         CustomColorItemEntity itemEntity = new CustomColorItemEntity(spawnOn.level(), spawnOn.getX(), spawnOn.getY(), spawnOn.getZ(), item);
