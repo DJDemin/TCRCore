@@ -6,15 +6,14 @@ import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.capability.TCRPlayer;
+import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.events.PlayerEventListeners;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.level.GameRules;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import reascer.wom.world.gamerules.WOMGamerules;
 
 import java.util.Objects;
 
@@ -42,6 +41,7 @@ public class CustomDialogHandler {
                 //二阶段，清理数据，回出生点
 
                 int newSardine = TCRCapabilityProvider.clearPlayerData(serverPlayer);
+                TCRAdvancementData.revokeAllAdvancement(serverPlayer);
                 if(serverPlayer.server.isSingleplayer()) {
                     TCRPlayer.SARDINE_COUNT = newSardine;
                 }

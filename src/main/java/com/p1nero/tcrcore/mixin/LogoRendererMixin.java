@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class LogoRendererMixin {
     @Unique
     private static final ResourceLocation MY_LOGO = ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, "textures/gui/title/title_zh.png");
+    @Unique
     private static final ResourceLocation MY_LOGO_EN = ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, "textures/gui/title/title_en.png");
     @Shadow @Final private boolean keepLogoThroughFade;
 

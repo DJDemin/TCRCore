@@ -160,13 +160,6 @@ public class TCRCoreMod {
 
     private void addPackFindersEvent(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-            String name = "zh_cn_translation";
-            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
-            var pack = Pack.readMetaAndCreate(name, Component.literal("远梦之棺中文包"), true,
-                    (path) -> new PathPackResources(path, resourcePath, false), PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
-            event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
-        }
-        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             String name = "i18n";
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
             var pack = Pack.readMetaAndCreate(name, TCRCoreMod.getInfo("i18n_pack"), true,
@@ -180,6 +173,15 @@ public class TCRCoreMod {
                     (path) -> new PathPackResources(path, resourcePath, false), PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
             event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
         }
+        //idas为可选
+        if (event.getPackType() == PackType.SERVER_DATA && ModList.get().isLoaded("idas")) {
+            String name = "idas_modify";
+            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
+            var pack = Pack.readMetaAndCreate(name, Component.literal("The Casket of Reveries Data - IDAS Override"), true,
+                    (path) -> new PathPackResources(path, resourcePath, false), PackType.SERVER_DATA, Pack.Position.TOP, PackSource.WORLD);
+            event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
+        }
+
         if (event.getPackType() == PackType.SERVER_DATA) {
             String name = "tcr_data";
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);

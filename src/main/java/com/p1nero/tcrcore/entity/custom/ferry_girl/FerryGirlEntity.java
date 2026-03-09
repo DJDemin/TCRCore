@@ -326,14 +326,15 @@ public class FerryGirlEntity extends PathfinderMob implements IEntityNpc, GeoEnt
             ItemUtil.addItemEntity(serverPlayer, ModItems.BOOK_OF_DRAGONS.get().getDefaultInstance());
             ItemUtil.addItemEntity(serverPlayer, TCRItems.DRAGON_FLUTE.get().getDefaultInstance());
             ItemUtil.addItemEntity(serverPlayer, ModItems.RATTLE_STAFF.get().getDefaultInstance());
+            ItemUtil.addItemEntity(serverPlayer, DIBlockRegistry.WHITE_PET_BED.get().asItem().getDefaultInstance());
             TCRQuests.TAME_DRAGON.start(serverPlayer, false);
             PlayerDataManager.ferryGirlGiftGet.put(serverPlayer, true);
         }
 
         //将龙养大
         if(i == 10) {
+            ItemUtil.addItemEntity(serverPlayer, Items.SADDLE.getDefaultInstance());
             ItemUtil.addItemEntity(serverPlayer, DIItemRegistry.COLLAR_TAG.get().getDefaultInstance());
-            ItemUtil.addItemEntity(serverPlayer, DIBlockRegistry.WHITE_PET_BED.get().asItem().getDefaultInstance());
             TCRQuests.TAME_DRAGON_BACK_TO_FERRY_GIRL.finish(serverPlayer);
         }
 

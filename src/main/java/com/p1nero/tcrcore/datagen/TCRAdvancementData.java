@@ -155,6 +155,33 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
 
     }
 
+    public static void revokeAllAdvancement(ServerPlayer serverPlayer) {
+        serverPlayer.server.getAdvancements().getAllAdvancements().forEach(advancement -> {
+            revokeAdvancement(advancement, serverPlayer);
+        });
+    }
+
+    public static boolean revokeAdvancement(ResourceLocation id,  ServerPlayer serverPlayer) {
+        Advancement advancement = serverPlayer.server.getAdvancements().getAdvancement(id);
+        return revokeAdvancement(advancement, serverPlayer);
+    }
+
+    public static boolean revokeAdvancement(Advancement advancement, ServerPlayer serverPlayer) {
+        if(advancement != null) {
+            AdvancementProgress advancementprogress = serverPlayer.getAdvancements().getOrStartProgress(advancement);
+            if (!advancementprogress.hasProgress()) {
+                return false;
+            } else {
+                for(String s : advancementprogress.getCompletedCriteria()) {
+                    serverPlayer.getAdvancements().revoke(advancement, s);
+                }
+
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void finishAdvancement(Advancement advancement, ServerPlayer serverPlayer) {
         AdvancementProgress progress = serverPlayer.getAdvancements().getOrStartProgress(advancement);
         if (!progress.isDone()) {

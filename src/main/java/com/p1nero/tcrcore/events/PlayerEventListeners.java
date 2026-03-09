@@ -369,35 +369,36 @@ public class PlayerEventListeners {
                     }
                 }
 
-                if (event.getDimension() == TCRDimensions.REAL_LEVEL_KEY) {
+                else if (event.getDimension() == TCRDimensions.REAL_LEVEL_KEY) {
                     //卡在中间，只有击败最终boss才能进，后日谈完成后也不能进
                     if (TCRQuests.TALK_TO_AINE_GAME_CLEAR.isFinished(serverPlayer) || !TCRQuests.KILL_MAD_CHRONOS.isFinished(serverPlayer)) {
                         event.setCanceled(true);
                         serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                     }
                 }
-                if (event.getDimension() == Level.NETHER) {
+
+                else if (event.getDimension() == Level.NETHER) {
                     if (!(TCRQuests.GO_TO_NETHER.isFinished(serverPlayer) || TCRQuestManager.hasQuest(serverPlayer, TCRQuests.GO_TO_NETHER))) {
                         event.setCanceled(true);
                         serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                     }
                 }
 
-                if (event.getDimension() == Level.END) {
+                else if (event.getDimension() == Level.END) {
                     if (!(TCRQuests.GO_TO_THE_END.isFinished(serverPlayer) || TCRQuestManager.hasQuest(serverPlayer, TCRQuests.GO_TO_THE_END))) {
                         event.setCanceled(true);
                         serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                     }
                 }
 
-                if (event.getDimension() == AetherDimensions.AETHER_LEVEL) {
+                else if (event.getDimension() == AetherDimensions.AETHER_LEVEL) {
                     if (!(TCRQuests.GO_TO_AETHER.isFinished(serverPlayer) || TCRQuestManager.hasQuest(serverPlayer, TCRQuests.GO_TO_AETHER))) {
                         event.setCanceled(true);
                         serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_do_this_too_early"), true);
                     }
                 }
 
-                if (CataclysmDimensions.LEVELS.contains(event.getDimension())) {
+                else if (CataclysmDimensions.LEVELS.contains(event.getDimension())) {
                     ServerLevel targetLevel = serverPlayer.server.getLevel(event.getDimension());
                     if (targetLevel != null) {
                         long realPlayerCount = targetLevel.players().stream()

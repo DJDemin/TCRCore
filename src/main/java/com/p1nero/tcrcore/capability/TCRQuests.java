@@ -220,7 +220,7 @@ public class TCRQuests {
                 .descParam(TCREntities.FERRY_GIRL.get().getDescription(),
                         net.magister.bookofdragons.item.ModItems.BOOK_OF_DRAGONS.get().getDescription(),
                         Component.translatable("item.domesticationinnovation.collar_tag"),
-                        Component.translatable("block.domesticationinnovation.pet_bed_white"));
+                        Items.SADDLE.getDescription());
 
         TAME_DRAGON_BACK_TO_FERRY_GIRL = TCRQuestManager.create("tame_dragon_back_to_ferry_girl")
                 .shortDescParam(TCREntities.FERRY_GIRL.get().getDescription())

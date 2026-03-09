@@ -38,6 +38,9 @@ public abstract class DragonBaseMixin extends TamableAnimal implements GeoEntity
     @Shadow(remap = false)
     public abstract DragonNeedsSystem getNeedsSystem();
 
+    @Shadow
+    public abstract boolean isTame();
+
     protected DragonBaseMixin(EntityType<? extends TamableAnimal> p_21803_, Level p_21804_) {
         super(p_21803_, p_21804_);
     }
@@ -55,10 +58,10 @@ public abstract class DragonBaseMixin extends TamableAnimal implements GeoEntity
             }
         }
         FoodProperties foodProperties = mainHand.getItem().getFoodProperties(mainHand, pPlayer);
-        if (pPlayer instanceof ServerPlayer serverPlayer && foodProperties != null) {
+        if (pPlayer instanceof ServerPlayer serverPlayer && foodProperties != null && this.isTame()) {
             this.setGrowthProgress(this.getGrowthProgress() + foodProperties.getNutrition() * 200);
             EntityUtil.playLocalSound(serverPlayer, SoundEvents.GENERIC_EAT);
-            this.getNeedsSystem().setFoodLevel(DragonNeedsSystem.getMaxHunger() / 2);
+            this.getNeedsSystem().setFoodLevel((int) (DragonNeedsSystem.getMaxHunger() * 0.8));
             if (!pPlayer.isCreative()) {
                 mainHand.shrink(1);
             }
