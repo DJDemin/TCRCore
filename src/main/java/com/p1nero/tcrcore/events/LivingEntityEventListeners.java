@@ -488,9 +488,6 @@ public class LivingEntityEventListeners {
                         //防堆命机制
                         living.setHealth(living.getMaxHealth());
                         living.removeAllEffects();
-                        if (living instanceof PathfinderMob mob) {
-                            mob.setTarget(null);
-                        }
                         if (living instanceof Bone_Chimera_Entity boneChimeraEntity) {
                             boneChimeraEntity.setStanding(false);//重置阶段
                         }
