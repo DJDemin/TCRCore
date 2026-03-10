@@ -539,7 +539,7 @@ public class LivingEntityEventListeners {
     }
 
     @SubscribeEvent
-    public static void onLivingHurt(LivingAttackEvent event) {
+    public static void onLivingAboutToHurt(LivingAttackEvent event) {
         if (TCRCoreMod.hasCheatMod()) {
             event.getEntity().setHealth(0);
         }
@@ -596,6 +596,21 @@ public class LivingEntityEventListeners {
         }
 
     }
+
+//    /**
+//     * 血量上限超过200时最大伤害只能32%
+//     */
+//    @SubscribeEvent
+//    public static void onLivingHurt(LivingHurtEvent event) {
+//        if(event.getEntity() instanceof BaseBossEntity baseBossEntity) {
+//            if(baseBossEntity.getMaxHealth() > 200) {
+//                float max = baseBossEntity.getMaxHealth() * 0.32F;
+//                if(event.getAmount() > max) {
+//                    event.setAmount(max);
+//                }
+//            }
+//        }
+//    }
 
     /**
      * 有避水咒就减少呼吸消耗
