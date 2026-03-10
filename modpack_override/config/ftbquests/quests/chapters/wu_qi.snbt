@@ -1697,7 +1697,7 @@
 			}]
 			shape: "none"
 			size: 3.0d
-			subtitle: "{ftbquests.chapter.wu_qi.quest1906CC62E077B227.subtitle}"
+			subtitle: "{ftbquests.chapter.wu_qi.quest1696022313405171865.subtitle}"
 			tasks: [{
 				id: "7ED8555AABADF249"
 				item: {
