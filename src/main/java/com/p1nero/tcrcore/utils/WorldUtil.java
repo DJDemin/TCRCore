@@ -55,7 +55,7 @@ public class WorldUtil {
     public static final Vec3i MONST_EYE_ALTAR_POS = new Vec3i(-104, 83, -206);
 
     //一些关键定位
-    public static final Vec3i BED_POS = new Vec3i(0, 96, 0);
+    public static final Vec3i BED_POS = new Vec3i(0, 64, 0);
     public static final Vec3i ORNN_POS = new Vec3i(-224, 80, -99);
     public static final BlockPos ORNN_BLOCK_POS = new BlockPos(-224, 80, -99);
     public static final BlockPos SMITH_BLOCK_POS = new BlockPos(-226, 77, -100);
