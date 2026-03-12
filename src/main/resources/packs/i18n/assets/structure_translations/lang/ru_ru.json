@@ -1,0 +1,23 @@
+{
+  "_comment": "block_factorys_bosses",
+  "structure.ba_bt.land_tower": "Земельная башня",
+  "structure.ba_bt.ocean_tower": "Океанская башня",
+  "structure.ba_bt.core_tower": "Основная башня",
+  "structure.tcrcore.gate_of_disaster": "Врата катастрофы",
+  "structure.lost_aether_content.platinum_dungeon": "Платиновое подземелье",
+  "structure.tcrcore.underworld_arena": "Адская арена",
+  "structure.integrated_stronghold.stronghold": "Врата Конца",
+  "structure.dodosmobs.jungle_prison": "Тюрьма Химеры",
+  "structure.ribbits.ribbit_village": "Деревня Риббит",
+  "structure.trek.overworld.very_rare.floating_farm_large": "Небесный остров",
+  "structure.aquamirae.ship": "Выброшенный на берег военный корабль",
+  "structure.aquamirae.ice_maze": "Ледяной лабиринт",
+  "structure.block_factorys_bosses.dragon_tower": "БОСС [Адский Дракон]Башня Дракона",
+  "structure.block_factorys_bosses.sandworm_nest": "БОСС [Песчаный червь] Гнездо песчаного червя",
+  "structure.block_factorys_bosses.underworld_arena": "БОСС [Рыцарь подземного мира] Арена подземного мира",
+  "structure.block_factorys_bosses.yeti_hideout": "БОСС [Йети] Убежище йети",
+  "structure.mowziesmobs.frostmaw_spawn": "БОСС [Ледяная пасть]",
+  "structure.mowziesmobs.wrought_chamber": "БОСС [Черный кованный наут] Кованая палата",
+  "structure.mowziesmobs.umvuthana_grove": "БОСС [Умвутхана] Роща Умвутхана",
+  "structure.mowziesmobs.monastery": "Монастырь [Тонгби, Скульптор]"
+}
